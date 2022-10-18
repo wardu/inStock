@@ -1,0 +1,168 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.warehouseList {
+  border: 0.01rem solid $instock_primary-white;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  background-color: $instock_primary-white;
+  border-radius: 0.25rem;
+
+  &__tablet-heading {
+    display: none;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(247, 248, 249, 0.7);
+      padding: 0 1rem;
+    }
+  }
+  &__header {
+    width: 6.5rem;
+    @include tablet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(247, 248, 249, 0.7);
+    }
+  }
+
+  &__inventory-title {
+    color: $instock_secondary-slate;
+    width: 5rem;
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  &__sort-arrows {
+    display: none;
+    @include tablet {
+      display: inline;
+    }
+  }
+
+  &__inventory {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.01rem solid $instock_secondary-grey;
+    width: 100%;
+    @include tablet {
+      padding: 1rem;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__inventory-box {
+    width: 50%;
+    display: block;
+    @include tablet {
+      width: 6.5rem;
+    }
+  }
+
+  &__inventory-icon {
+    display: block;
+    width: 100%;
+    @include tablet {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    @include tablet {
+      width: 6.5rem;
+    }
+  }
+  &__inventory-action {
+    display: none;
+    @include tablet {
+      display: flex;
+      background-color: rgba(247, 248, 249, 0.7);
+      padding-bottom: 0.7rem;
+    }
+  }
+  &__inventory {
+    height: 10rem;
+    @include tablet {
+      height: 4rem;
+    }
+  }
+  &__inventory-item {
+    margin: 0;
+    line-height: 1.5rem;
+    padding-top: 1rem;
+    @include tablet {
+      width: 6rem;
+    }
+  }
+  &__inventory-action {
+    @include tablet {
+      padding: 0.5rem 0.5rem 0 0;
+    }
+    @include desktop {
+      font-size: 1rem;
+    }
+  }
+
+  &__inventory-box {
+    width: 6.5rem;
+  }
+  &__inventory-item {
+    color: $instock_primary-blue;
+    font-size: 0.8125rem;
+    font-weight: bold;
+  }
+
+  &__inventory-message {
+    height: 1.5rem;
+    width: 6rem;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    padding: 0 0.5rem 0 0.5rem;
+    border-radius: 1.25rem;
+    text-align: center;
+
+    &--instock {
+      background-color: rgba(21, 132, 99, 0.07);
+      color: $instock_primary-green;
+    }
+
+    &--outofstock {
+      background-color: rgba(201, 69, 21, 0.07);
+      color: $instock_primary-red;
+    }
+  }
+  &__item-box {
+    display: flex;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+  &__header--mobile {
+    @include tablet {
+      display: none;
+    }
+  }
+  &__edit-icon {
+    color: white;
+    background-color: white;
+    @include tablet {
+      margin-left: 0.5rem;
+    }
+  }
+  &__action-icons {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1rem;
+    @include tablet {
+      padding-right: 0.6rem;
+      justify-content: flex-end;
+    }
+  }
+}
