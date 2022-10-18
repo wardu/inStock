@@ -11,46 +11,46 @@ const WarehouseDetailsList = () => {
       <section className="warehouseList">
         <article className="warehouseList__tablet-heading">
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">INVENTORY ITEM</p>
-            <section>
+            <p className="warehouseList__inventory-title">
+              INVENTORY ITEM
               <img
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
               />
-            </section>
+            </p>
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">CATEGORY</p>
-            <section>
+            <p className="warehouseList__inventory-title">
+              CATEGORY
               <img
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
               />
-            </section>
+            </p>
           </div>
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">STATUS</p>
-            <section>
+            <p className="warehouseList__inventory-title">
+              STATUS
               <img
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
               />
-            </section>
+            </p>
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">QTY</p>
-            <section>
+            <p className="warehouseList__inventory-title">
+              QTY
               <img
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
               />
-            </section>
+            </p>
           </div>
 
           <div className="warehouseList__header">
