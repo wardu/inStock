@@ -1,0 +1,15 @@
+.warehouses {
+  &__details {
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+  }
+
+  &__wrapper-left {
+    border-top: 2px solid red;
+    color: red;
+  }
+
+  &__contact-name {
+    color: red;
+  }
+}
