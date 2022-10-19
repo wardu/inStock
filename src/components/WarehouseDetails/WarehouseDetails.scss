@@ -51,7 +51,7 @@
     flex-direction: column;
     @include tablet {
       flex-direction: row;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
     @include desktop {
       justify-content: flex-start;
@@ -62,10 +62,15 @@
     margin-bottom: 2rem;
     margin-top: 0.5rem;
     @include tablet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       width: 60%;
+      height: 4rem;
     }
     @include desktop {
-      margin: 0 12rem 0 3rem;
+      margin: 0 12rem 0 1rem;
     }
   }
   &__edit-wrapper {
@@ -90,6 +95,7 @@
     margin-top: 0;
     @include tablet {
       font-size: 0.875rem;
+      width: 100%;
     }
   }
 

@@ -1,0 +1,93 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.main-container {
+  margin: -3rem 1.5rem 3rem 1.5rem;
+  box-shadow: 0px 2px 5px $instock_secondary-slate;
+  border-radius: 3px;
+  background-color: $instock_primary-white;
+  @include desktop {
+    max-width: 1020px;
+    margin: -5rem auto;
+  }
+}
+
+.main-heading {
+  &__back-button {
+    display: inline-block;
+    height: 100%;
+    margin: auto 1rem auto 0;
+    vertical-align: middle;
+  }
+
+  &__edit-icon {
+    display: inline-block;
+    height: 100%;
+    margin: auto 1rem auto 0;
+    vertical-align: middle;
+  }
+}
+
+.item-details {
+  margin-top: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.8rem;
+  @include tablet {
+    display: flex;
+  }
+
+  &__section {
+    @include tablet {
+      flex-grow: 1;
+      flex-basis: 50%;
+    }
+
+    &--left {
+      @include tablet {
+        padding-right: 1rem;
+        border-right: 1px solid $instock_secondary-grey;
+      }
+    }
+
+    &--right {
+      @include tablet {
+        padding-left: 2rem;
+      }
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    width: 100%;
+  }
+
+  &__label {
+    margin: 1rem 0 0.25rem 0;
+    padding: 0;
+    color: $instock_secondary-slate;
+    line-height: 1rem;
+  }
+
+  &__text {
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+
+  &__pill {
+    margin: 0;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+
+    &--red {
+      background-color: rgba(201, 69, 21, 0.07);
+      color: $instock_primary-red;
+    }
+
+    &--green {
+      background-color: rgba(21, 132, 99, 0.07);
+      color: $instock_primary-green;
+    }
+  }
+}

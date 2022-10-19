@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Header />
-      <WarehouseDetails />
+      {/* <ItemDetails /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/warehouses" element={<Warehouses />} />
