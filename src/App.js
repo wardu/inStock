@@ -19,12 +19,10 @@ function App() {
     address: false,
     city: false,
     country: false,
-    contact: {
-      name: false,
-      position: false,
-      phone: false,
-      email: false,
-    },
+    contactName: false,
+    contactPosition: false,
+    contactPhone: false,
+    contactEmail: false,
   });
 
   let showError = false;
@@ -48,6 +46,54 @@ function App() {
       }));
     }
 
+    if (!e.target.city.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        city: true,
+      }));
+    }
+
+    if (!e.target.country.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        country: true,
+      }));
+    }
+
+    if (!e.target.contactName.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactName: true,
+      }));
+    }
+
+    if (!e.target.contactPosition.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactPosition: true,
+      }));
+    }
+
+    if (!e.target.contactPhone.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactPhone: true,
+      }));
+    }
+
+    if (!e.target.contactEmail.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactEmail: true,
+      }));
+    }
+
     if (showError) {
       return;
     }
@@ -60,9 +106,9 @@ function App() {
       country: e.target.country.value,
       contact: {
         name: e.target.contactName.value,
-        position: e.target.position.value,
-        phone: e.target.phone.value,
-        email: e.target.email.value,
+        position: e.target.contactPosition.value,
+        phone: e.target.contactPhone.value,
+        email: e.target.contactEmail.value,
       },
     };
 
