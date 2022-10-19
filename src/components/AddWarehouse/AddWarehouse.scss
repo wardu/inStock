@@ -1,0 +1,19 @@
+.add-warehouse {
+  box-shadow: 0px 2px 5px #13182c;
+  border-radius: 3px;
+  margin: 1rem;
+
+  &__title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.2rem;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    line-height: 3.6rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+}

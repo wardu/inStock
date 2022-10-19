@@ -1,36 +1,27 @@
-import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
+import ErrorIcon from "../../assets/icons/error-24px.svg";
+import "./AddWarehouse.scss";
 
-const AddWarehouse = () => {
-  const addWarehouse = async (e) => {
-    e.preventDefault();
-    const newWarehouse = {
-      id: "",
-      name: e.target.name.value,
-      address: e.target.address.value,
-      city: e.target.city.value,
-      country: e.target.country.value,
-      contact: {
-        name: e.target.contactName.value,
-        position: e.target.position.value,
-        phone: e.target.phone.value,
-        email: e.target.email.value,
-      },
-    };
-
-    await axios.post("http://localhost:8080/warehouses", newWarehouse);
-  };
+const AddWarehouse = ({ addWarehouse, showError, inputErrors }) => {
+  const navigate = useNavigate();
 
   return (
     <section className="add-warehouse">
       <div className="add-warehouse__title-wrapper">
-        <img src={BackArrow} alt="" className="add-warehouse__back-arrow" />
+        <img
+          src={BackArrow}
+          alt=""
+          className="add-warehouse__back-arrow"
+          onClick={() => navigate("/warehouses")}
+        />
         <h1 className="add-warehouse__title">Add New Warehouse</h1>
       </div>
       <form className="form" onSubmit={(e) => addWarehouse(e)}>
         <div className="form__container">
           <h2 className="form__subtitle">Warehouse Details</h2>
+          {/* <Input label="Warehouse Name" name="name"  /> */}
           <label htmlFor="name" className="form__label">
             Warehouse Name
           </label>
@@ -41,6 +32,12 @@ const AddWarehouse = () => {
             className="form__input"
             placeholder="Warehouse Name"
           />
+          {inputErrors.name && (
+            <div className="upload__success">
+              <img src={ErrorIcon} alt="" />
+              <p className="upload__message">This field is required</p>
+            </div>
+          )}
           <label htmlFor="address" className="form__label">
             Street Address
           </label>
@@ -51,6 +48,12 @@ const AddWarehouse = () => {
             className="form__input"
             placeholder="Street Address"
           />
+          {inputErrors.address && (
+            <div className="upload__success">
+              <img src={ErrorIcon} alt="" />
+              <p className="upload__message">This field is required</p>
+            </div>
+          )}
           <label htmlFor="city" className="form__label">
             City
           </label>
