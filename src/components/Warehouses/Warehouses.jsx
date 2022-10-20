@@ -71,6 +71,11 @@ const Warehouses = () => {
           </div>
           <div className="warehouses__edit-icon-container">
             {" "}
+            <img
+              className="warehouses__delete-icon-tablet"
+              src={deleteIcon}
+              alt="delete"
+            />
             <img className="warehouses__edit-icon" src={editIcon} alt="edit" />
           </div>
         </div>
@@ -82,37 +87,43 @@ const Warehouses = () => {
     <section className="warehouses">
       <div className="warehouses__title-container">
         <h1 className="warehouses__title">Warehouses</h1>
-        <div className="warehouses__wrapper-search">
-          <input
-            placeholder="Search..."
-            type="search"
-            className="warehouses__search"
-          ></input>
-        </div>
-        <div className="warehouses__button-container">
-          <button className="warehouses__button-add">
-            + Add New Warehouse
-          </button>
+        <div className="warehouses__title-wrapper-right">
+          <div className="warehouses__wrapper-search">
+            <input
+              placeholder="Search..."
+              type="search"
+              className="warehouses__search"
+            ></input>
+          </div>
+          <div className="warehouses__button-container">
+            <button className="warehouses__button-add">
+              + Add New Warehouse
+            </button>
+          </div>
         </div>
       </div>
       <div className="warehouses__subtitle">
-        <div className="warehouses__warehouse-subtitle">
-          WAREHOUSE
-          <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+        <div className="warehouses__details-wrapper-left">
+          <div className="warehouses__warehouse-subtitle">
+            WAREHOUSE
+            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+          </div>
+          <div className="warehouses__address-subtitle">
+            ADDRESS
+            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+          </div>
         </div>
-        <div className="warehouses__address-subtitle">
-          ADDRESS
-          <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+        <div className="warehouses__details-wrapper-right">
+          <div className="warehouses__contact-name-subtitle">
+            CONTACT NAME
+            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+          </div>
+          <div className="warehouses__contact-info-subtitle">
+            CONTACT INFORMATION{" "}
+            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+          </div>
+          <div className="warehouses__actions-subtitle">ACTIONS</div>
         </div>
-        <div className="warehouses__contact-name-subtitle">
-          CONTACT NAME
-          <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
-        </div>
-        <div className="warehouses__contact-info-subtitle">
-          CONTACT INFORMATION{" "}
-          <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
-        </div>
-        <div className="warehouses__actions-subtitle">ACTIONS</div>
       </div>
       <div className="warehouses__container">{warehouseList}</div>
     </section>
