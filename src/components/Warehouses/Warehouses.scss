@@ -3,18 +3,21 @@
 
 .warehouses {
   font-size: 1rem;
-  margin: 2rem auto;
+  margin: 0rem auto;
   border-radius: 3px;
-  width: 28rem;
+  width: 90%;
   border: 1px solid $instock_secondary-grey;
+  position: relative;
+  top: -0px;
 
   @include tablet {
     width: 85%;
-    margin: 2rem auto;
+    top: -45px;
   }
 
   @include desktop {
     width: 80%;
+    top: -35px;
   }
 
   &__title {
@@ -298,6 +301,8 @@
 
   &__warehouse-subtitle {
     color: $instock_secondary-slate;
+    font-weight: 600;
+
     @include tablet {
       font-size: 1.1rem;
       width: 50%;
@@ -310,6 +315,8 @@
 
   &__address-subtitle {
     color: $instock_secondary-slate;
+    font-weight: 600;
+
     @include tablet {
       font-size: 1.1rem;
       width: 50%;
@@ -318,6 +325,8 @@
 
   &__contact-name-subtitle {
     color: $instock_secondary-slate;
+    font-weight: 600;
+
     @include tablet {
       font-size: 1.1rem;
       width: 33%;
@@ -326,6 +335,8 @@
 
   &__contact-info-subtitle {
     color: $instock_secondary-slate;
+    font-weight: 600;
+
     @include tablet {
       font-size: 1.1rem;
       width: 40%;
@@ -334,6 +345,8 @@
 
   &__actions-subtitle {
     color: $instock_secondary-slate;
+    font-weight: 600;
+
     @include tablet {
       font-size: 1.1rem;
       width: 25%;
