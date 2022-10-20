@@ -5,23 +5,26 @@ import arrowBack from "../../assets/icons/edit-white.svg";
 import "./WarehouseDetails.scss";
 import WarehouseDetailsList from "../WarehouseDetailsList/WarehouseDetailsList";
 import axios from "axios";
+import { getWarehouse } from "../../utils/apiHelpers.mjs";
 
 const WarehouseDetails = () => {
   const [warehouse, setWarehouse] = useState(null);
 
   const { warehouseId } = useParams();
 
-  const getWarehouses = async (id) => {
-    console.log(id);
-    const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+  const getData = async () => {
+    const response = await getWarehouse(warehouseId);
     setWarehouse(response.data);
   };
 
   useEffect(() => {
-    getWarehouses(warehouseId);
+    getData();
   }, []);
 
-  // getWarehouses();
+  if (!warehouse) {
+    return <p>Loading</p>;
+  }
+
   return (
     <section className="details">
       <section className="details__title-box">
