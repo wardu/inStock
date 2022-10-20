@@ -5,23 +5,32 @@ import './EditWarehouse.scss';
 import { useParams } from 'react-router';
 import { getWarehouse } from '../../utils/apiHelpers.mjs';
 import { useEffect, useState } from 'react';
-import Warehouses from '../Warehouses/Warehouses';
 
 const EditWarehouse = ({ editWarehouse, inputErrors }) => {
   const navigate = useNavigate();
   const { warehouseId } = useParams();
   const [warehouse, setWarehouse] = useState(null);
 
+  // Change handlers that allow the input fields contacts to be
+  // inserted into the UseState
   const inputChangeHandler = (e) => {
     setWarehouse({
       ...warehouse,
       [e.target.name]: e.target.value,
     });
   };
+  const contactHandler = (e) => {
+    setWarehouse({
+      ...warehouse,
+      contact: {
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
 
+  // Gets the data to populate the fields upon load
   const getData = async () => {
     const response = await getWarehouse(warehouseId);
-    console.log(response.data);
     setWarehouse(response.data);
   };
 
@@ -32,8 +41,6 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
   if (!warehouse) {
     return <p> Loading ...</p>;
   }
-
-  console.log(warehouse); // testing the axios call
 
   return (
     <section className='edit-warehouse'>
@@ -174,18 +181,13 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
                 </label>
                 <input
                   type='text'
-                  name='contact.name'
+                  name='name'
                   id='contactName'
                   className={`form__input ${
                     inputErrors.contactName && 'form__input--error'
                   }`}
-                  value={warehouse.contact.name}
-                  onChange={(e) => {
-                    setWarehouse({
-                      ...warehouse,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
+                  defaultValue={warehouse.contact.name}
+                  onChange={(e) => contactHandler(e)}
                 />
 
                 {inputErrors.contactName && (
@@ -208,13 +210,13 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
                 </label>
                 <input
                   type='text'
-                  name='contactPosition'
+                  name='position'
                   id='contactPosition'
                   className={`form__input ${
                     inputErrors.contactPosition && 'form__input--error'
                   }`}
-                  value={warehouse.contact.position}
-                  // onChange={(e) => inputChangeHandler(e)}
+                  defaultValue={warehouse.contact.position}
+                  onChange={(e) => contactHandler(e)}
                 />
                 {inputErrors.contactPosition && (
                   <div className='form__error'>
@@ -236,13 +238,13 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
                 </label>
                 <input
                   type='text'
-                  name='contactPhone'
+                  name='phone'
                   id='contactPhone'
                   className={`form__input ${
                     inputErrors.contactPhone && 'form__input--error'
                   }`}
-                  value={warehouse.contact.phone}
-                  // onChange={(e) => inputChangeHandler(e)}
+                  defaultValue={warehouse.contact.phone}
+                  onChange={(e) => contactHandler(e)}
                 />
                 {inputErrors.contactPhone && (
                   <div className='form__error'>
@@ -264,13 +266,13 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
                 </label>
                 <input
                   type='text'
-                  name='contactEmail'
+                  name='email'
                   id='contactEmail'
                   className={`form__input ${
                     inputErrors.contactEmail && 'form__input--error'
                   }`}
-                  value={warehouse.contact.email}
-                  // onChange={(e) => inputChangeHandler(e)}
+                  defaultValue={warehouse.contact.email}
+                  onChange={(e) => contactHandler(e)}
                 />
                 {inputErrors.contactEmail && (
                   <div className='form__error'>
