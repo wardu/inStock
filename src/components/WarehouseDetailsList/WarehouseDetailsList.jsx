@@ -14,12 +14,10 @@ const WarehouseDetailsList = () => {
 
   useEffect(() => {
     const getWarehouseInventory = async () => {
-      console.log("test");
       const response = await axios.get(
         `http://localhost:8080/warehouses/${warehouseId}/inventory`
       );
       setInventory(response.data);
-      console.log(response.data);
     };
 
     getWarehouseInventory();
@@ -114,7 +112,15 @@ const WarehouseDetailsList = () => {
                 STATUS
               </p>
               <div className="WarehouseList__stock">
-                <p className="warehouseList__category-item">{item.status}</p>
+                <p
+                  className={
+                    item.status === "In Stock"
+                      ? "item-details__pill item-details__pill--green"
+                      : "item-details__pill item-details__pill--red"
+                  }
+                >
+                  {item.status}
+                </p>
               </div>
             </section>
 

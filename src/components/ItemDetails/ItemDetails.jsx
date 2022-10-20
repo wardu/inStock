@@ -56,7 +56,13 @@ const ItemDetails = () => {
             <div className="item-details__group">
               <div className="item-details__wrapper">
                 <p className="item-details__label">STATUS:</p>
-                <p className={"item-details__pill item-details__pill--green"}>
+                <p
+                  className={
+                    itemDetails.status === "In Stock"
+                      ? "item-details__pill item-details__pill--green"
+                      : "item-details__pill item-details__pill--red"
+                  }
+                >
                   {itemDetails.status}
                 </p>
               </div>

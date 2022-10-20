@@ -11,8 +11,12 @@ const Header = () => {
           <img src={Logo} alt="instock logo" />
         </div>
         <div className="header__container">
-          <p className="header__item">Warehouses</p>
-          <p className="header__item">Inventory</p>
+          <p to={"/warehouses"} className="header__item">
+            Warehouses
+          </p>
+          <p to={"/inventory"} className="header__item">
+            Inventory
+          </p>
         </div>
       </div>
     </nav>
