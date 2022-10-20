@@ -153,7 +153,7 @@
     width: 100%;
     @include tablet {
       padding-right: 0.6rem;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
   }
 }

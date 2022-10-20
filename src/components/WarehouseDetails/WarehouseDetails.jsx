@@ -11,23 +11,17 @@ const WarehouseDetails = () => {
 
   const { warehouseId } = useParams();
 
-  useEffect(() => {
-    const getWarehouses = async () => {
-      console.log("test");
-      const response = await axios.get(
-        `http://localhost:8080/warehouses/${warehouseId}`
-      );
-      setWarehouse(response.data);
-      console.log(response.data);
-    };
+  const getWarehouses = async (id) => {
+    console.log(id);
+    const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+    setWarehouse(response.data);
+  };
 
-    getWarehouses();
+  useEffect(() => {
+    getWarehouses(warehouseId);
   }, []);
 
-  if (!warehouse) {
-    return <p>Loading...</p>;
-  }
-
+  // getWarehouses();
   return (
     <section className="details">
       <section className="details__title-box">
@@ -58,9 +52,7 @@ const WarehouseDetails = () => {
 
           <section className="details__contact">
             <p className="details__contact-info">CONTACT INFORMATION:</p>
-            <p className="details__contact-number">
-              {warehouse.contact.phone}{" "}
-            </p>
+            <p className="details__contact-number">{warehouse.contact.phone}</p>
             <p className="details__contact-email"> {warehouse.contact.email}</p>
           </section>
         </article>

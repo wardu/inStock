@@ -10,8 +10,28 @@ import ItemDetails from "./components/ItemDetails/ItemDetails";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function App() {
+  // const [warehouse, setWarehouse] = useState(null);
+  // const { warehouseId } = useParams();
+
+  // const getWarehouses = async (id) => {
+  //   const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+  //   setWarehouse(response.data);
+  //   console.log(response);
+  // };
+
+  // useEffect(() => {
+  //   getWarehouses(warehouseId);
+  // }, []);
+
+  // if (!warehouse) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <>
       <Header />
@@ -22,6 +42,7 @@ function App() {
           <Route
             path="/warehouses/:warehouseId"
             element={<WarehouseDetails />}
+            // getWarehouses={getWarehouses}
           />
           <Route
             path="/warehouses/:warehouseId/edit"

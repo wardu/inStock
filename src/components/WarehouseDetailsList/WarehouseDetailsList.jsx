@@ -105,7 +105,7 @@ const WarehouseDetailsList = () => {
                 CATEGORY
               </p>
               <div>
-                <p className="WarehouseList__category-item">Catagories</p>
+                <p className="WarehouseList__category-item">{item.category}</p>
               </div>
             </section>
 
@@ -114,7 +114,7 @@ const WarehouseDetailsList = () => {
                 STATUS
               </p>
               <div className="WarehouseList__stock">
-                <p className="warehouseList__category-item">IN STOCK</p>
+                <p className="warehouseList__category-item">{item.status}</p>
               </div>
             </section>
 
