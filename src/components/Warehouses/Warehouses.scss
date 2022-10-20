@@ -1,15 +1,222 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
 .warehouses {
+  font-size: 1rem;
+  margin: 2rem auto;
+  border-radius: 3px;
+  width: 28rem;
+  border: 1px solid $instock_secondary-grey;
+
+  @include tablet {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 3.3rem;
+      width: 50%;
+    }
+  }
+
+  &__title-container {
+    padding: 2rem;
+    border-bottom: 0.5px solid $instock_secondary-grey;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__wrapper-search {
+    padding-top: 1rem;
+
+    @include tablet {
+      padding-top: 0;
+      align-self: center;
+    }
+  }
+  &__search {
+    background: url("../../assets/icons/search-24px.svg") top 2px right 6px
+      no-repeat;
+    background-size: 20px;
+    height: 3rem;
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid $instock_secondary-grey;
+    padding-left: 2rem;
+
+    @include tablet {
+      width: 18.5rem;
+      height: 3.8rem;
+      background: url("../../assets/icons/search-24px.svg") top 6px right 6px
+        no-repeat;
+    }
+  }
+
+  input::placeholder {
+    color: $instock_secondary-slate;
+    font-size: 1.1rem;
+
+    @include tablet {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__button-add {
+    width: 100%;
+    background-color: $instock_primary-blue;
+    color: $instock_primary-white;
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    border-radius: 20px;
+
+    @include tablet {
+      width: 16.8rem;
+      height: 3.8rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+
+  &__button-container {
+    margin-bottom: 1rem;
+
+    @include tablet {
+      margin-bottom: 0;
+      align-self: center;
+      justify-content: flex-end;
+      padding-left: 1.2rem;
+    }
+  }
   &__details {
-    border-top: 2px solid red;
-    border-bottom: 2px solid red;
+    border-bottom: 0.5px solid $instock_secondary-grey;
   }
 
-  &__wrapper-left {
-    border-top: 2px solid red;
-    color: red;
+  &__details-container {
+    display: flex;
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
   }
 
-  &__contact-name {
-    color: red;
+  &__details-wrapper-left {
+    width: 43%;
+
+    @include tablet {
+      display: flex;
+    }
+  }
+
+  &__details-wrapper-right {
+    width: 50%;
+  }
+
+  &____contact-name-container {
+    margin-bottom: 2rem;
+  }
+  &__warehouse-name-label,
+  &__contact-name-label {
+    font-size: 0.8rem;
+    color: $instock_secondary-slate;
+    padding-bottom: 0.2rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+  &__contact-info-label,
+  &__warehouse-address-label {
+    font-size: 0.8rem;
+    color: $instock_secondary-slate;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__warehouse-name {
+    color: $instock_primary-blue;
+    font-weight: 600;
+
+    @include tablet {
+      width: 20%;
+    }
+  }
+  &__delete-icon-container {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__edit-icon-container {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__arrow-icon {
+    width: 15px;
+    position: absolute;
+  }
+
+  &__subtitle {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      background-color: $instock_secondary-light-grey;
+    }
+  }
+
+  &__address-subtitle {
+    @include tablet {
+      font-size: 1rem;
+      width: 15%;
+    }
+  }
+  &__warehouse-subtitle {
+    @include tablet {
+      font-size: 1rem;
+      width: 20%;
+    }
+  }
+
+  &__contact-name-subtitle {
+    @include tablet {
+      font-size: 1rem;
+      width: 15%;
+    }
+  }
+
+  &__contact-info-subtitle {
+    @include tablet {
+      font-size: 1rem;
+      width: 20%;
+    }
+  }
+
+  &__actions-subtitle {
+    @include tablet {
+      font-size: 1rem;
+      width: 10%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  &__sort-icon {
+    @include tablet {
+      position: absolute;
+      height: 15px;
+    }
   }
 }
