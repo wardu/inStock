@@ -30,11 +30,6 @@
       align-items: center;
       justify-content: space-between;
     }
-
-    @include desktop {
-      padding-left: 5rem;
-      padding-right: 5rem;
-    }
   }
 
   &__container {
