@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import edit from "../../assets/icons/edit-white.svg";
 import { Link, useParams } from "react-router-dom";
-import arrowBack from "../../assets/icons/edit-white.svg";
+import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import "./WarehouseDetails.scss";
 import WarehouseDetailsList from "../WarehouseDetailsList/WarehouseDetailsList";
 import { getWarehouse } from "../../utils/apiHelpers.mjs";
@@ -28,9 +28,13 @@ const WarehouseDetails = () => {
   return (
     <section className="details">
       <section className="details__title-box">
-        <img src={arrowBack} alt="go back" />
         <div className="details__title-row">
-          <h2 className="details__title">{warehouse.name}</h2>
+          <h2 className="details__title">
+            <Link to="/warehouses">
+              <img src={arrowBack} alt="go back" />
+            </Link>
+            {warehouse.name}
+          </h2>
         </div>
 
         <div className="details__title-edit">

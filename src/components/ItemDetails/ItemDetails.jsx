@@ -28,20 +28,22 @@ const ItemDetails = () => {
     <div>
       <main className="main-container">
         <section className="main-heading">
-          <div to="/inventory" className="main-heading__nav-link">
+          <Link to="/inventory" className="main-heading__nav-link">
             <img
               className="main-heading__back-button"
               src={arrowBack}
               alt="Go back"
             />
-          </div>
+          </Link>
           <h1 className="main-heading__title">{itemDetails.itemName}</h1>
           <div className="main-heading__nav-link main-heading__nav-link--right">
-            <img
-              className="main-heading__edit-icon"
-              src={editIcon}
-              alt="edit"
-            />
+            <Link to="/warehouses/:warehouseId">
+              <img
+                className="main-heading__edit-icon"
+                src={editIcon}
+                alt="edit"
+              />
+            </Link>
           </div>
         </section>
 
