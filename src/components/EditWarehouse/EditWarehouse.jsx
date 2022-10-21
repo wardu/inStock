@@ -181,7 +181,7 @@ const EditWarehouse = ({ editWarehouse, inputErrors }) => {
                 </label>
                 <input
                   type='text'
-                  name='name'
+                  name='contactName'
                   id='contactName'
                   className={`form__input ${
                     inputErrors.contactName && 'form__input--error'
