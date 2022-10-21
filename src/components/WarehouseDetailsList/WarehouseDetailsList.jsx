@@ -14,10 +14,12 @@ const WarehouseDetailsList = () => {
 
   useEffect(() => {
     const getWarehouseInventory = async () => {
+
       const response = await axios.get(
         `http://localhost:8080/warehouses/${warehouseId}/inventory`
       );
       setInventory(response.data);
+
     };
 
     getWarehouseInventory();
@@ -121,6 +123,7 @@ const WarehouseDetailsList = () => {
                 >
                   {item.status}
                 </p>
+
               </div>
             </section>
 
