@@ -167,10 +167,6 @@
     @include desktop {
       width: 50%;
     }
-
-    @include desktop {
-      width: 50%;
-    }
   }
   &__contact-information-container,
   &__contact-name-container {
@@ -205,6 +201,7 @@
   &__warehouse-name {
     color: $instock_primary-blue;
     font-weight: 600;
+    display: flex;
 
     @include tablet {
       width: 15rem;
@@ -266,7 +263,7 @@
 
   &__edit-icon {
     @include tablet {
-      height: 22px;
+      height: 20px;
     }
   }
 
@@ -274,14 +271,13 @@
     display: none;
     @include tablet {
       display: inline;
-      height: 22px;
+      height: 20px;
       padding-right: 1.6rem;
     }
   }
 
   &__arrow-icon {
     width: 15px;
-    position: absolute;
   }
 
   &__subtitle {
