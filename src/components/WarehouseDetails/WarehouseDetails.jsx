@@ -4,8 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import arrowBack from "../../assets/icons/edit-white.svg";
 import "./WarehouseDetails.scss";
 import WarehouseDetailsList from "../WarehouseDetailsList/WarehouseDetailsList";
-import axios from "axios";
 import { getWarehouse } from "../../utils/apiHelpers.mjs";
+const { v4: uuid } = require("uuid");
 
 const WarehouseDetails = () => {
   const [warehouse, setWarehouse] = useState(null);
@@ -33,8 +33,9 @@ const WarehouseDetails = () => {
           <h2 className="details__title">{warehouse.name}</h2>
         </div>
 
-        <div className="details__title-row-contact">
+        <div className="details__title-edit">
           <div className="details__edit-wrapper">
+            <p className="details__edit-text">Edit</p>
             <img src={edit} alt="edit" className="details__edit-icon " />
           </div>
         </div>
@@ -60,7 +61,7 @@ const WarehouseDetails = () => {
           </section>
         </article>
       </article>
-      <WarehouseDetailsList warehouseId={warehouseId} />
+      <WarehouseDetailsList warehouseId={warehouseId} key={uuid()} />
     </section>
   );
 };
