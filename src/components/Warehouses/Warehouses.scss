@@ -1,0 +1,359 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.warehouses {
+  font-size: 1rem;
+  margin: 0rem auto;
+  border-radius: 3px;
+  width: 90%;
+  border: 1px solid $instock_secondary-grey;
+  position: relative;
+  top: -0px;
+
+  @include tablet {
+    width: 85%;
+    top: -45px;
+  }
+
+  @include desktop {
+    width: 80%;
+    top: -35px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 550;
+
+    @include tablet {
+      font-size: 3.3rem;
+      width: 50%;
+    }
+  }
+
+  &__title-container {
+    padding: 2rem;
+    border-bottom: 0.5px solid $instock_secondary-grey;
+
+    @include tablet {
+      display: flex;
+      padding: 2rem 3rem;
+      justify-content: space-between;
+    }
+
+    @include desktop {
+      padding: 2rem 5rem;
+    }
+  }
+
+  &__title-wrapper-right {
+    @include tablet {
+      display: flex;
+    }
+  }
+
+  &__wrapper-search {
+    padding: 1rem 0;
+
+    @include tablet {
+      padding: 0;
+      align-self: center;
+    }
+  }
+  &__search {
+    background: url("../../assets/icons/search-24px.svg") top 3px right 6px
+      no-repeat;
+    background-size: 20px;
+    height: 3rem;
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid $instock_secondary-grey;
+    padding-left: 2rem;
+
+    @include tablet {
+      width: 18.5rem;
+      height: 3.8rem;
+      background: url("../../assets/icons/search-24px.svg") top 6px right 6px
+        no-repeat;
+    }
+  }
+
+  input::placeholder {
+    color: $instock_secondary-grey;
+    font-size: 1.1rem;
+
+    @include tablet {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__button-add {
+    width: 100%;
+    background-color: $instock_primary-blue;
+    color: $instock_primary-white;
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    border-radius: 20px;
+
+    @include tablet {
+      width: 16.8rem;
+      height: 3.8rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+
+  &__button-container {
+    margin-bottom: 0.5rem;
+
+    @include tablet {
+      margin-bottom: 0;
+      align-self: center;
+      justify-content: flex-end;
+      padding-left: 1.2rem;
+    }
+  }
+  &__details {
+    border-bottom: 0.5px solid $instock_secondary-grey;
+  }
+
+  &__details-container {
+    display: flex;
+    padding: 1.5rem 2rem;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 1.2rem 4rem;
+      align-items: center;
+    }
+
+    @include desktop {
+      padding: 1.2rem 5rem;
+    }
+  }
+
+  &__details-wrapper-left {
+    width: 43%;
+
+    @include tablet {
+      display: flex;
+      width: 40%;
+      align-items: center;
+    }
+    @include desktop {
+      width: 50%;
+    }
+  }
+
+  &__name-container {
+    @include tablet {
+      width: 50%;
+    }
+
+    @include desktop {
+      width: 40%;
+    }
+  }
+  &__details-wrapper-right {
+    width: 43%;
+
+    @include tablet {
+      display: flex;
+      width: 60%;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @include desktop {
+      width: 50%;
+    }
+  }
+  &__contact-information-container,
+  &__contact-name-container {
+    @include tablet {
+      width: 33%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__warehouse-name-label,
+  &__contact-name-label {
+    font-size: 0.8rem;
+    color: $instock_secondary-slate;
+    padding-bottom: 0.2rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+  &__contact-info-label,
+  &__warehouse-address-label {
+    font-size: 0.8rem;
+    color: $instock_secondary-slate;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__warehouse-name {
+    color: $instock_primary-blue;
+    font-weight: 600;
+    display: flex;
+
+    @include tablet {
+      width: 15rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__address-container {
+    @include desktop {
+      width: 50%;
+    }
+  }
+
+  &__warehouse-address {
+    @include tablet {
+      width: 10rem;
+      font-size: 1.3rem;
+    }
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  &__contact-name {
+    @include tablet {
+      font-size: 1.3rem;
+      width: 100%;
+    }
+  }
+  &__contact-email,
+  &__contact-phone {
+    @include tablet {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__delete-icon-container {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+
+    @include tablet {
+      display: none;
+      padding-top: 0;
+    }
+  }
+
+  &__edit-icon-container {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+
+    @include tablet {
+      width: 33%;
+      padding-top: 0;
+    }
+  }
+
+  &__edit-icon {
+    @include tablet {
+      height: 20px;
+    }
+  }
+
+  &__delete-icon-tablet {
+    display: none;
+    @include tablet {
+      display: inline;
+      height: 20px;
+      padding-right: 1.6rem;
+    }
+  }
+
+  &__arrow-icon {
+    width: 15px;
+  }
+
+  &__subtitle {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background-color: $buttons-background;
+    }
+
+    @include desktop {
+      padding: 1.5rem 5rem;
+    }
+  }
+
+  &__warehouse-subtitle {
+    color: $instock_secondary-slate;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 1.1rem;
+      width: 50%;
+    }
+
+    @include desktop {
+      width: 40%;
+    }
+  }
+
+  &__address-subtitle {
+    color: $instock_secondary-slate;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 1.1rem;
+      width: 50%;
+    }
+  }
+
+  &__contact-name-subtitle {
+    color: $instock_secondary-slate;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 1.1rem;
+      width: 33%;
+    }
+  }
+
+  &__contact-info-subtitle {
+    color: $instock_secondary-slate;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 1.1rem;
+      width: 40%;
+    }
+  }
+
+  &__actions-subtitle {
+    color: $instock_secondary-slate;
+    font-weight: 600;
+
+    @include tablet {
+      font-size: 1.1rem;
+      width: 25%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  &__sort-icon {
+    @include tablet {
+      position: absolute;
+      height: 15px;
+    }
+  }
+}
