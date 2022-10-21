@@ -4,6 +4,11 @@
 .header {
   display: flex;
   flex-direction: column;
+  @include tablet {
+    align-items: center;
+    height: 18rem;
+    background-color: #13182c;
+  }
 
   &__wrapper {
     background-color: $instock_primary-black;
@@ -17,11 +22,13 @@
     @include tablet {
       flex-direction: row;
       padding-bottom: 1.5rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
       position: relative;
       bottom: 3.5rem;
-      height: 12rem;
+      height: 20rem;
+      width: 1020px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     @include desktop {
@@ -36,8 +43,9 @@
     padding-top: 1rem;
 
     @include tablet {
+      width: 25%;
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: space-between;
       padding-top: 0;
     }
   }
@@ -49,9 +57,10 @@
     text-align: center;
     padding: 0.5rem;
     margin: 0 1rem;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     @include tablet {
-      width: 10%;
+      padding: 1rem;
+      width: 14rem;
       margin: 0;
     }
 
