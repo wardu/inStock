@@ -1,4 +1,4 @@
-import { default as React, default as React, useEffect, useState } from "react";
+import { default as React, useEffect, useState } from "react";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
@@ -12,6 +12,7 @@ import axios from "axios";
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -23,7 +24,11 @@ const Inventories = () => {
     getInventories();
   }, []);
 
-  const showDeleteModal = () => {
+  const showDeleteModal = (id) => {
+    const item = inventories.find((item) => {
+      return id === item.id;
+    });
+    setSelectedItem(item);
     setShowModal(!showModal);
   };
 
@@ -52,7 +57,6 @@ const Inventories = () => {
               </div>
 
               <div className="inventories__inventory-category">
-                {" "}
                 {inventories.category}
               </div>
             </div>
@@ -82,7 +86,7 @@ const Inventories = () => {
           src={deleteIcon}
           alt="delete"
           onClick={() => {
-            showDeleteModal();
+            showDeleteModal(inventories.id);
           }}
         />
         <img className="inventories__edit-icon" src={editIcon} alt="edit" />
@@ -163,6 +167,7 @@ const Inventories = () => {
           <DeleteItemModal
             selectedItem={selectedItem}
             showDeleteModal={showDeleteModal}
+            getInventories={getInventories}
           />
         )}
       </div>

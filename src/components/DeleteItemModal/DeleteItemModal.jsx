@@ -1,8 +1,15 @@
+import axios from "axios";
 import React from "react";
 import CrossIcon from "../../assets/icons/close-24px.svg";
 import "./DeleteItemModal.scss";
 
-const DeleteItemModal = ({ selectedItem, showDeleteModal }) => {
+const DeleteItemModal = ({ selectedItem, showDeleteModal, getInventories }) => {
+  const deleteItem = async (id) => {
+    await axios.delete(`http://localhost:8080/inventory/${id}`);
+    getInventories();
+    showDeleteModal();
+  };
+
   return (
     <section className="delete-modal">
       <div className="delete-modal__container">
@@ -35,7 +42,10 @@ const DeleteItemModal = ({ selectedItem, showDeleteModal }) => {
             >
               Cancel
             </button>
-            <button className="delete-modal__button delete-modal__button--delete">
+            <button
+              className="delete-modal__button delete-modal__button--delete"
+              onClick={() => deleteItem(selectedItem.id)}
+            >
               Delete
             </button>
           </div>
