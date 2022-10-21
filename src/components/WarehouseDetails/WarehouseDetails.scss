@@ -10,12 +10,14 @@
   position: relative;
   bottom: 5.2rem;
   border-radius: 0.25rem;
+
   @include tablet {
-    margin: 1rem 2rem 2rem 2rem;
-    bottom: 7.45rem;
+    margin: 0 auto;
+    width: 90%;
   }
+
   @include desktop {
-    margin: 1rem 6rem 6rem 6rem;
+    width: 1020px;
   }
 
   &__title-box {
@@ -24,7 +26,12 @@
     align-items: center;
     border-bottom: 0.01rem solid $instock_secondary-grey;
     height: 5rem;
+
+    @include tablet {
+      height: 10rem;
+    }
   }
+
   &__title-row {
     width: 85%;
     display: flex;
@@ -36,10 +43,12 @@
       margin-top: 2.5rem;
     }
   }
+
   &__title {
     font-size: 1.75rem;
+
     @include tablet {
-      font-size: 2rem;
+      font-size: 4rem;
       padding-top: 0;
     }
   }
@@ -49,18 +58,22 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
     @include tablet {
       flex-direction: row;
       margin-top: 0.5rem;
     }
+
     @include desktop {
       justify-content: flex-start;
     }
   }
+
   &__address-box {
     width: 90%;
     margin-bottom: 2rem;
     margin-top: 0.5rem;
+
     @include tablet {
       display: flex;
       flex-direction: column;
@@ -69,10 +82,12 @@
       width: 60%;
       height: 4rem;
     }
+
     @include desktop {
       margin: 0 12rem 0 1rem;
     }
   }
+
   &__edit-wrapper {
     background-color: $instock_primary-blue;
     width: 2.5rem;
@@ -83,6 +98,7 @@
     justify-content: center;
     margin-right: 0.5rem;
   }
+
   &__address-title {
     width: 100%;
     font-size: 0.6875rem;
@@ -90,9 +106,11 @@
     font-weight: bold;
     margin-bottom: 0;
   }
+
   &__address-location {
     font-size: 0.8125rem;
     margin-top: 0;
+
     @include tablet {
       font-size: 0.875rem;
       width: 100%;
@@ -104,24 +122,29 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+
     @include tablet {
       justify-content: flex-start;
       padding-left: 3rem;
       border-left: 0.01rem solid $instock_secondary-grey;
     }
   }
+
   &__info-box {
     margin-right: 1rem;
+
     @include tablet {
       margin-right: 2rem;
     }
   }
+
   &__info-contact,
   &__contact-info {
     font-size: 0.6875rem;
     color: $instock_secondary-slate;
     font-weight: bold;
     margin-bottom: 0.5rem;
+
     @include tablet {
       font-size: 0.75rem;
     }
@@ -133,6 +156,7 @@
   &__contact-email {
     font-size: 0.8125rem;
     margin: 0;
+
     @include tablet {
       font-size: 0.875rem;
     }
@@ -147,6 +171,7 @@
   &__warehouse-name {
     font-size: 0.8125rem;
     color: $instock_primary-black;
+
     @include tablet {
       font-size: 1rem;
       margin-top: 0;

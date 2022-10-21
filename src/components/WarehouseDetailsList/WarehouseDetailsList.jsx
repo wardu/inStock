@@ -42,7 +42,7 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+            <p className="warehouseList__sub-title">
               CATEGORY
               <img
                 className="warehouseList__sort-arrows"
@@ -52,7 +52,7 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+            <p className="warehouseList__sub-title">
               STATUS
               <img
                 className="warehouseList__sort-arrows"
@@ -63,7 +63,7 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+            <p className="warehouseList__sub-title">
               QTY
               <img
                 className="warehouseList__sort-arrows"
@@ -74,7 +74,7 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">ACTIONS</p>
+            <p className="warehouseList__sub-title">ACTIONS</p>
           </div>
         </article>
 
@@ -111,7 +111,7 @@ const WarehouseDetailsList = () => {
               <p className="warehouseList__inventory-status warehouseList__header--mobile">
                 STATUS
               </p>
-              <div className="WarehouseList__stock">
+              <div className="warehouseList__stock">
                 <p
                   className={
                     item.status === "In Stock"
