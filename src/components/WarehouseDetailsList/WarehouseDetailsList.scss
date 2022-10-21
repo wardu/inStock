@@ -8,6 +8,7 @@
 
   &__tablet-heading {
     display: none;
+
     @include tablet {
       display: flex;
       justify-content: space-between;
@@ -15,9 +16,13 @@
       padding: 0 1rem;
     }
   }
+
   &__header {
     width: 6.5rem;
+
     @include tablet {
+      width: 14.5rem;
+      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -27,17 +32,18 @@
 
   &__inventory-title {
     color: $instock_secondary-slate;
-    width: 5rem;
+
     @include tablet {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 100%;
+      width: 14.5rem;
     }
   }
 
   &__sort-arrows {
     display: none;
+
     @include tablet {
       display: inline;
     }
@@ -50,14 +56,14 @@
     margin-bottom: 1rem;
     border-bottom: 0.01rem solid $instock_secondary-grey;
     width: 100%;
-    height: 10rem;
+    height: 20rem;
 
     @include tablet {
       padding: 1rem;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
-      height: 4rem;
+      height: 7rem;
     }
   }
 
@@ -65,6 +71,7 @@
     margin-right: 0rem;
     width: 50%;
     display: block;
+
     @include tablet {
       width: 6.5rem;
     }
@@ -87,8 +94,10 @@
       width: 6.5rem;
     }
   }
+
   &__inventory-action {
     display: none;
+
     @include tablet {
       display: flex;
       background-color: rgba(247, 248, 249, 0.7);
@@ -98,10 +107,11 @@
 
   &__inventory-item {
     color: $instock_primary-blue;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 0;
     line-height: 1.5rem;
+
     @include tablet {
       width: 6rem;
     }
@@ -142,18 +152,36 @@
   &__edit-icon {
     color: white;
     background-color: white;
+
     @include tablet {
       margin-left: 0.5rem;
     }
   }
+
   &__action-icons {
     display: flex;
     justify-content: space-between;
     padding-right: 1rem;
     width: 100%;
+
     @include tablet {
       padding-right: 0.6rem;
       justify-content: flex-start;
+    }
+  }
+
+  &__stock {
+    width: 12rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  &__sub-title {
+    @include tablet {
+      width: 10rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

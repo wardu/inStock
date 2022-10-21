@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/logo/InStock-Logo.svg";
 import "./Header.scss";
 
@@ -11,12 +11,12 @@ const Header = () => {
           <img src={Logo} alt="instock logo" />
         </div>
         <div className="header__container">
-          <p to={"/warehouses"} className="header__item">
+          <Link to="/warehouses" className="header__item">
             Warehouses
-          </p>
-          <p to={"/inventory"} className="header__item">
+          </Link>
+          <Link to="/inventory" className="header__item">
             Inventory
-          </p>
+          </Link>
         </div>
       </div>
     </nav>
