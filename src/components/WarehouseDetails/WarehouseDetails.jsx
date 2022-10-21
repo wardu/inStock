@@ -35,8 +35,8 @@ const WarehouseDetails = () => {
 
         <div className="details__title-edit">
           <div className="details__edit-wrapper">
-            <p className="details__edit-text">Edit</p>
             <img src={edit} alt="edit" className="details__edit-icon " />
+            <p className="details__edit-text">Edit</p>
           </div>
         </div>
       </section>

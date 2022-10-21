@@ -32,7 +32,6 @@
 
   &__inventory-title {
     color: $instock_secondary-slate;
-    width: 5rem;
 
     @include tablet {
       display: flex;
@@ -57,7 +56,7 @@
     margin-bottom: 1rem;
     border-bottom: 0.01rem solid $instock_secondary-grey;
     width: 100%;
-    height: 10rem;
+    height: 20rem;
 
     @include tablet {
       padding: 1rem;
@@ -174,6 +173,7 @@
   &__stock {
     width: 12rem;
     text-align: center;
+    margin-top: 1rem;
   }
 
   &__sub-title {

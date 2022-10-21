@@ -90,13 +90,17 @@
 
   &__edit-wrapper {
     background-color: $instock_primary-blue;
-    width: 7rem;
-    height: 2.5rem;
-    border-radius: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     margin-right: 0.5rem;
+    @include tablet {
+      width: 8rem;
+      border-radius: 2rem;
+    }
   }
   &__edit-text {
     color: white;
@@ -108,18 +112,18 @@
 
   &__address-title {
     width: 100%;
-    font-size: 0.6875rem;
+    font-size: 1rem;
     color: $instock_secondary-slate;
     font-weight: bold;
     margin-bottom: 0;
   }
 
   &__address-location {
-    font-size: 0.8125rem;
+    font-size: 1rem;
     margin-top: 0;
 
     @include tablet {
-      font-size: 0.875rem;
+      font-size: 1rem;
       width: 100%;
     }
   }
@@ -147,13 +151,13 @@
 
   &__info-contact,
   &__contact-info {
-    font-size: 0.6875rem;
+    font-size: 1rem;
     color: $instock_secondary-slate;
     font-weight: bold;
     margin-bottom: 0.5rem;
 
     @include tablet {
-      font-size: 0.75rem;
+      font-size: 1rem;
     }
   }
 
@@ -161,11 +165,11 @@
   &__info-title,
   &__contact-number,
   &__contact-email {
-    font-size: 0.8125rem;
+    font-size: 1rem;
     margin: 0;
 
     @include tablet {
-      font-size: 0.875rem;
+      font-size: 1rem;
     }
   }
 
@@ -176,7 +180,7 @@
   }
 
   &__warehouse-name {
-    font-size: 0.8125rem;
+    font-size: 1rem;
     color: $instock_primary-black;
 
     @include tablet {
