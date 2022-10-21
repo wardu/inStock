@@ -1,9 +1,9 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { default as React, useEffect, useState } from "react";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 
 import "./Inventory.scss";
 
@@ -11,6 +11,8 @@ import axios from "axios";
 
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -21,6 +23,14 @@ const Inventories = () => {
   useEffect(() => {
     getInventories();
   }, []);
+
+  const showDeleteModal = (id) => {
+    const item = inventories.find((item) => {
+      return id === item.id;
+    });
+    setSelectedItem(item);
+    setShowModal(!showModal);
+  };
 
   const inventoryList = inventories.map((inventories) => (
     <article key={inventories.id} className="inventories__details">
@@ -47,7 +57,6 @@ const Inventories = () => {
               </div>
 
               <div className="inventories__inventory-category">
-                {" "}
                 {inventories.category}
               </div>
             </div>
@@ -76,6 +85,9 @@ const Inventories = () => {
           className="inventories__delete-icon"
           src={deleteIcon}
           alt="delete"
+          onClick={() => {
+            showDeleteModal(inventories.id);
+          }}
         />
         <img className="inventories__edit-icon" src={editIcon} alt="edit" />
       </div>
@@ -150,6 +162,15 @@ const Inventories = () => {
       </div>
 
       <div className="inventories__container">{inventoryList}</div>
+      <div>
+        {showModal && (
+          <DeleteItemModal
+            selectedItem={selectedItem}
+            showDeleteModal={showDeleteModal}
+            getInventories={getInventories}
+          />
+        )}
+      </div>
     </section>
   );
 };
