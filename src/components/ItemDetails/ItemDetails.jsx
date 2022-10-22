@@ -25,59 +25,49 @@ const ItemDetails = () => {
   }
 
   return (
-    <div>
-      <main className="main-container">
-        <section className="main-heading">
-          <div to="/inventory" className="main-heading__nav-link">
-            <img
-              className="main-heading__back-button"
-              src={arrowBack}
-              alt="Go back"
-            />
-          </div>
-          <h1 className="main-heading__title">{itemDetails.itemName}</h1>
-          <div className="main-heading__nav-link main-heading__nav-link--right">
-            <img
-              className="main-heading__edit-icon"
-              src={editIcon}
-              alt="edit"
-            />
-          </div>
-        </section>
-
-        <article className="item-details">
-          <section className="item-details__section item-details__section--left">
-            <p className="item-details__label">ITEM DESCRIPTION:</p>
-            <p className="item-details__text">{itemDetails.description}</p>
-            <p className="item-details__label">CATEGORY:</p>
-            <p className="item-details__text">{itemDetails.category}</p>
-          </section>
-          <section className="item-details__section item-details__section--right">
-            <div className="item-details__group">
-              <div className="item-details__wrapper">
-                <p className="item-details__label">STATUS:</p>
-                <p
-                  className={
-                    itemDetails.status === "In Stock"
-                      ? "item-details__pill item-details__pill--green"
-                      : "item-details__pill item-details__pill--red"
-                  }
-                >
-                  {itemDetails.status}
-                </p>
-              </div>
-              <div className="item-details__wrapper--col">
-                <p className="item-details__label">QUANTITY:</p>
-                <p className="item-details__text">{itemDetails.quantity}</p>
-              </div>
+    <div className="itemDetails">
+      <div className="itemDetails__header">
+        <Link to="/inventory" className="itemDetails__header--back">
+          <img src={arrowBack} alt="back" />
+        </Link>
+        <h1 className="itemDetails__header--name">{itemDetails.itemName}</h1>
+        <img
+          className="itemDetails__header--edit"
+          src={editIcon}
+          alt="edit"
+          onClick={() => this.clickHandler(itemDetails.id)}
+        />
+      </div>
+      <div className="itemDetails__info">
+        <div className="itemDetails__info--first-half">
+          <h3 className="itemDetails__info--header">ITEM DESCRIPTION</h3>
+          <p className="itemDetails__info--text">{itemDetails.description}</p>
+          <h3 className="itemDetails__info--header">CATEGORY</h3>
+          <p className="itemDetails__info--text">{itemDetails.category}</p>
+        </div>
+        <div className="itemDetails__info--second-half">
+          <div className="itemDetails__stock-container">
+            <div class="itemDetails__status">
+              <h3 className="itemDetails__info--header">STATUS</h3>
+              <p
+                className={
+                  itemDetails.status === "In Stock"
+                    ? "itemDetails__pill itemDetails__pill--green"
+                    : "itemDetails__pill itemDetails__pill--red"
+                }
+              >
+                {itemDetails.status}
+              </p>
             </div>
-            <div className="item-details__wrapper">
-              <p className="item-details__label">WAREHOUSE:</p>
-              <p className="item-details__text">{itemDetails.warehouseName}</p>
+            <div className="itemDetails__quantity">
+              <h3 className="itemDetails__info--header">QUANTITY</h3>
+              <p className="itemDetails__info--text">{itemDetails.quantity}</p>
             </div>
-          </section>
-        </article>
-      </main>
+          </div>
+          <h3 className="itemDetails__info--header">WAREHOUSE</h3>
+          <p className="itemDetails__info--text">{itemDetails.warehouseName}</p>
+        </div>
+      </div>
     </div>
   );
 };
