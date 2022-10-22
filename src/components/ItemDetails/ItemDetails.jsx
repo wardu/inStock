@@ -31,12 +31,7 @@ const ItemDetails = () => {
           <img src={arrowBack} alt="back" />
         </Link>
         <h1 className="itemDetails__header--name">{itemDetails.itemName}</h1>
-        <img
-          className="itemDetails__header--edit"
-          src={editIcon}
-          alt="edit"
-          onClick={() => this.clickHandler(itemDetails.id)}
-        />
+        <img className="itemDetails__header--edit" src={editIcon} alt="edit" />
       </div>
       <div className="itemDetails__info">
         <div className="itemDetails__info--first-half">
