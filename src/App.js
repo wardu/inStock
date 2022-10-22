@@ -1,18 +1,18 @@
-import axios from "axios";
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AddItem from "./components/AddItem/AddItem";
-import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
-import EditItem from "./components/EditItem/EditItem";
-import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header.jsx";
-import Inventory from "./components/Inventory/Inventory";
-import ItemDetails from "./components/ItemDetails/ItemDetails";
-import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
-import Warehouses from "./components/Warehouses/Warehouses";
-import "./styles/partials/_resets.scss";
-import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AddItem from './components/AddItem/AddItem';
+import AddWarehouse from './components/AddWarehouse/AddWarehouse';
+import EditItem from './components/EditItem/EditItem';
+import EditWarehouse from './components/EditWarehouse/EditWarehouse';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header.jsx';
+import Inventory from './components/Inventory/Inventory';
+import ItemDetails from './components/ItemDetails/ItemDetails';
+import WarehouseDetails from './components/WarehouseDetails/WarehouseDetails';
+import Warehouses from './components/Warehouses/Warehouses';
+import './styles/partials/_resets.scss';
+import { useParams } from 'react-router-dom';
 
 function App() {
   const [errors, setErrors] = useState({
@@ -100,7 +100,7 @@ function App() {
     }
 
     const newWarehouse = {
-      id: "",
+      id: '',
       name: e.target.name.value,
       address: e.target.address.value,
       city: e.target.city.value,
@@ -113,7 +113,7 @@ function App() {
       },
     };
 
-    await axios.post("http://localhost:8080/warehouses", newWarehouse);
+    await axios.post('http://localhost:8080/warehouses', newWarehouse);
   };
 
   /// ----------  Edited Warehouse
@@ -214,14 +214,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/warehouses" element={<Warehouses />} />
+          <Route path='/warehouses' element={<Warehouses />} />
           <Route
-            path="/warehouses/:warehouseId"
+            path='/warehouses/:warehouseId'
             element={<WarehouseDetails />}
             // getWarehouses={getWarehouses}
           />
           <Route
-            path="/warehouses/:warehouseId/edit"
+            path='/warehouses/:warehouseId/edit'
             element={
               <EditWarehouse
                 editWarehouse={editWarehouse}
@@ -231,7 +231,7 @@ function App() {
             }
           />
           <Route
-            path="/warehouses/add"
+            path='/warehouses/add'
             element={
               <AddWarehouse
                 addWarehouse={addWarehouse}
@@ -241,7 +241,7 @@ function App() {
             }
           />
           <Route
-            path="/warehouses/add"
+            path='/warehouses/add'
             element={
               <AddWarehouse
                 addWarehouse={addWarehouse}
@@ -250,10 +250,10 @@ function App() {
               />
             }
           />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/inventory/:itemId" element={<ItemDetails />} />
-          <Route path="/inventory/:itemId/edit" element={<EditItem />} />
-          <Route path="/inventory/add" element={<AddItem />} />
+          <Route path='/inventory' element={<Inventory />} />
+          <Route path='/inventory/:itemId' element={<ItemDetails />} />
+          <Route path='/inventory/:itemId/edit' element={<EditItem />} />
+          <Route path='/inventory/add' element={<AddItem />} />
         </Routes>
       </BrowserRouter>
       <Footer />
