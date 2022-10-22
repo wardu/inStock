@@ -13,7 +13,7 @@
       display: flex;
       justify-content: space-between;
       background-color: rgba(247, 248, 249, 0.7);
-      padding: 0 1rem;
+      padding: 0 2.5rem;
     }
   }
 
@@ -32,11 +32,12 @@
 
   &__inventory-title {
     color: $instock_secondary-slate;
+    width: 5rem;
 
     @include tablet {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       width: 14.5rem;
     }
   }
@@ -59,7 +60,7 @@
     height: 20rem;
 
     @include tablet {
-      padding: 1rem;
+      padding: 1rem 2.5rem;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
@@ -144,7 +145,7 @@
     display: flex;
     align-items: center;
   }
-  &__header--mobile {
+  &__header-mobile {
     @include tablet {
       display: none;
     }
@@ -173,7 +174,6 @@
   &__stock {
     width: 12rem;
     text-align: center;
-    margin-top: 1rem;
   }
 
   &__sub-title {
@@ -182,6 +182,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+  &__action-title {
+    display: none;
+    @include tablet {
+      display: flex;
+      align-items: center;
+      color: $instock_secondary-slate;
+    }
+    @include desktop {
+      justify-content: flex-end;
+      width: 12.5rem;
     }
   }
 }
