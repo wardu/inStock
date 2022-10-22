@@ -27,7 +27,7 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 0.01rem solid $instock_secondary-grey;
-    height: 5rem;
+    height: 7rem;
 
     @include tablet {
       height: 9rem;
@@ -46,11 +46,11 @@
   }
 
   &__title {
-    width: 9rem;
+    width: 10rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 2rem;
+    font-size: 2.5rem;
     @include tablet {
       width: 15rem;
       display: flex;
