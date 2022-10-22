@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixin" as *;
 
 .details {
   margin: 1rem;
@@ -8,10 +9,11 @@
   background-color: $instock_primary-white;
   z-index: 1;
   position: relative;
-  bottom: 5.2rem;
+  bottom: 6rem;
   border-radius: 0.25rem;
 
   @include tablet {
+    bottom: 9rem;
     margin: 0 auto;
     width: 90%;
   }
@@ -28,24 +30,29 @@
     height: 5rem;
 
     @include tablet {
-      height: 10rem;
+      height: 9rem;
     }
   }
 
   &__title-row {
-    width: 85%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding-left: 1rem;
-
-    img {
-      margin-top: 2.5rem;
+    @include tablet {
+      width: 60%;
     }
   }
 
   &__title {
     font-size: 1.75rem;
+    @include tablet {
+      width: 15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
 
     @include tablet {
       font-size: 4rem;
@@ -58,8 +65,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 1rem 0;
 
     @include tablet {
+      height: 10rem;
       flex-direction: row;
       margin-top: 0.5rem;
     }
@@ -81,10 +90,7 @@
       justify-content: space-between;
       width: 60%;
       height: 4rem;
-    }
-
-    @include desktop {
-      margin: 0 12rem 0 1rem;
+      margin-left: 3rem;
     }
   }
 
@@ -145,7 +151,7 @@
     margin-right: 1rem;
 
     @include tablet {
-      margin-right: 2rem;
+      margin-right: 15rem;
     }
   }
 
@@ -187,5 +193,19 @@
       font-size: 1rem;
       margin-top: 0;
     }
+  }
+  &__arrow {
+    @include tablet {
+      @include arrow-transition;
+    }
+  }
+  &__arrow:hover {
+    @include tablet {
+      @include arrow-hover;
+    }
+  }
+
+  &__arrow-link {
+    margin: 0;
   }
 }

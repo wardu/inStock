@@ -28,14 +28,16 @@ const ItemDetails = () => {
     <div>
       <main className="main-container">
         <section className="main-heading">
-          <Link to="/inventory" className="main-heading__nav-link">
-            <img
-              className="main-heading__back-button"
-              src={arrowBack}
-              alt="Go back"
-            />
-          </Link>
-          <h1 className="main-heading__title">{itemDetails.itemName}</h1>
+          <div className="main__header-container">
+            <Link to="/inventory" className="main-heading__nav-link">
+              <img
+                className="main-heading__back-button"
+                src={arrowBack}
+                alt="Go back"
+              />
+            </Link>
+            <h1 className="main-heading__title">{itemDetails.itemName}</h1>
+          </div>
           <div className="main-heading__nav-link main-heading__nav-link--right">
             <Link to="/warehouses/:warehouseId">
               <img

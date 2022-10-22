@@ -30,8 +30,8 @@ const WarehouseDetails = () => {
       <section className="details__title-box">
         <div className="details__title-row">
           <h2 className="details__title">
-            <Link to="/warehouses">
-              <img src={arrowBack} alt="go back" />
+            <Link to="/warehouses" className="details__arrow-link">
+              <img src={arrowBack} alt="go back" className="details__arrow" />
             </Link>
             {warehouse.name}
           </h2>
