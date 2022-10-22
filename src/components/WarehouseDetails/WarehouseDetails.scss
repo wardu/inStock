@@ -46,7 +46,11 @@
   }
 
   &__title {
-    font-size: 1.75rem;
+    width: 9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
     @include tablet {
       width: 15rem;
       display: flex;
@@ -206,6 +210,7 @@
   }
 
   &__arrow-link {
+    display: flex;
     margin: 0;
   }
 }
