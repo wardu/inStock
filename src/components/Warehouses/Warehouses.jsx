@@ -3,6 +3,8 @@ import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
+import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+
 import "./Warehouses.scss";
 
 import axios from "axios";
@@ -10,6 +12,8 @@ import axios from "axios";
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
   const [warehousesOrder, setWarehousesOrder] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState({});
 
   const getWarehouses = async () => {
     const response = await axios.get("http://localhost:8080/warehouses");
@@ -34,6 +38,14 @@ const Warehouses = () => {
       );
       setWarehouses(response.data);
     }
+  };
+
+  const showDeleteModal = (id) => {
+    const warehouse = warehouses.find((warehouse) => {
+      return id === warehouse.id;
+    });
+    setSelectedWarehouse(warehouse);
+    setShowModal(!showModal);
   };
 
   const warehouseList = warehouses.map((warehouses) => (
@@ -62,6 +74,9 @@ const Warehouses = () => {
               className="warehouses__delete-icon"
               src={deleteIcon}
               alt="delete"
+              onClick={() => {
+                showDeleteModal(warehouses.id);
+              }}
             />
           </div>
         </div>
@@ -89,6 +104,9 @@ const Warehouses = () => {
               className="warehouses__delete-icon-tablet"
               src={deleteIcon}
               alt="delete"
+              onClick={() => {
+                showDeleteModal(warehouses.id);
+              }}
             />
             <img className="warehouses__edit-icon" src={editIcon} alt="edit" />
           </div>
@@ -168,6 +186,16 @@ const Warehouses = () => {
         </div>
       </div>
       <div className="warehouses__container">{warehouseList}</div>
+
+      <div>
+        {showModal && (
+          <DeleteWarehouseModal
+            selectedWarehouse={selectedWarehouse}
+            showDeleteModal={showDeleteModal}
+            getWarehouses={getWarehouses}
+          />
+        )}
+      </div>
     </section>
   );
 };
