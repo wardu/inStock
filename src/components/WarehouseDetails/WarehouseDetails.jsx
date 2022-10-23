@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import edit from "../../assets/icons/edit-white.svg";
 import { Link, useParams } from "react-router-dom";
-import arrowBack from "../../assets/icons/edit-white.svg";
+import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import "./WarehouseDetails.scss";
 import WarehouseDetailsList from "../WarehouseDetailsList/WarehouseDetailsList";
-import axios from "axios";
 import { getWarehouse } from "../../utils/apiHelpers.mjs";
+const { v4: uuid } = require("uuid");
 
 const WarehouseDetails = () => {
   const [warehouse, setWarehouse] = useState(null);
@@ -28,14 +28,19 @@ const WarehouseDetails = () => {
   return (
     <section className="details">
       <section className="details__title-box">
-        <img src={arrowBack} alt="go back" />
         <div className="details__title-row">
-          <h2 className="details__title">{warehouse.name}</h2>
+          <h2 className="details__title">
+            <Link to="/warehouses" className="details__arrow-link">
+              <img src={arrowBack} alt="go back" className="details__arrow" />
+            </Link>
+            {warehouse.name}
+          </h2>
         </div>
 
-        <div className="details__title-row-contact">
+        <div className="details__title-edit">
           <div className="details__edit-wrapper">
             <img src={edit} alt="edit" className="details__edit-icon " />
+            <p className="details__edit-text">Edit</p>
           </div>
         </div>
       </section>
@@ -60,7 +65,7 @@ const WarehouseDetails = () => {
           </section>
         </article>
       </article>
-      <WarehouseDetailsList warehouseId={warehouseId} />
+      <WarehouseDetailsList warehouseId={warehouseId} key={uuid()} />
     </section>
   );
 };

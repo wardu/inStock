@@ -14,12 +14,10 @@ const WarehouseDetailsList = () => {
 
   useEffect(() => {
     const getWarehouseInventory = async () => {
-      console.log("test");
       const response = await axios.get(
         `http://localhost:8080/warehouses/${warehouseId}/inventory`
       );
       setInventory(response.data);
-      console.log(response.data);
     };
 
     getWarehouseInventory();
@@ -76,14 +74,14 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">ACTIONS</p>
+            <p className="warehouseList__action-title">ACTIONS</p>
           </div>
         </article>
 
         {inventory.map((item) => (
           <article className="warehouseList__inventory">
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 INVENTORY ITEM
               </p>
               <div className="warehouseList__item-box">
@@ -101,7 +99,7 @@ const WarehouseDetailsList = () => {
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 CATEGORY
               </p>
               <div>
@@ -110,16 +108,26 @@ const WarehouseDetailsList = () => {
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-status warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 STATUS
               </p>
-              <div className="WarehouseList__stock">
-                <p className="warehouseList__category-item">{item.status}</p>
+              <div className="warehouseList__stock">
+                <p
+                  className={
+                    item.status === "In Stock"
+                      ? "item-details__pill item-details__pill--green"
+                      : "item-details__pill item-details__pill--red"
+                  }
+                >
+                  {item.status}
+                </p>
               </div>
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__header--mobile">QTY</p>
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                QTY
+              </p>
               <div>
                 <p className="warehouseList__category-item">{item.quantity}</p>
               </div>

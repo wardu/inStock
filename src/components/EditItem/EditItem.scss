@@ -170,6 +170,7 @@
       }
     }
   }
+
   &__textarea {
     all: unset;
     border-radius: 2rem;
@@ -246,4 +247,9 @@
       color: white;
     }
   }
+}
+
+input[type="radio"]:checked + label {
+  font-weight: bold;
+  color: $instock_primary-black;
 }

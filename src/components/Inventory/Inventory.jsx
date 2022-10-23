@@ -1,30 +1,34 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { default as React, useEffect, useState } from "react";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
 import { Link } from "react-router-dom";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import "./Inventory.scss";
-
 import axios from "axios";
 
-const Inventory = ({ inventories, selectItem, test }) => {
-  console.log(inventories);
-  console.log(selectItem);
-  console.log(test);
-  // const [inventories, setInventories] = useState([]);
-  // const [selectedItem, setSelectedItem] = useState({});
+// const Inventory = ({ inventories, selectItem, test }) => {
+//   console.log(inventories);
+//   console.log(selectItem);
+//   console.log(test);
+// const [inventories, setInventories] = useState([]);
+// const [selectedItem, setSelectedItem] = useState({});
 
-  // const getInventories = async () => {
-  //   const response = await axios.get("http://localhost:8080/inventory");
-  //   setInventories(response.data);
-  //   console.log(response.data);
-  // };
+const Inventories = () => {
+  const [inventories, setInventories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
-  // useEffect(() => {
-  //   getInventories();
-  // }, []);
+  const getInventories = async () => {
+    const response = await axios.get("http://localhost:8080/inventory");
+    setInventories(response.data);
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    getInventories();
+  }, []);
 
   // const selectItem = (id) => {
   //   const chosenItem = inventories.find((item) => {
@@ -32,6 +36,14 @@ const Inventory = ({ inventories, selectItem, test }) => {
   //   });
   //   setSelectedItem(chosenItem);
   // };
+
+  const showDeleteModal = (id) => {
+    const item = inventories.find((item) => {
+      return id === item.id;
+    });
+    setSelectedItem(item);
+    setShowModal(!showModal);
+  };
 
   const inventoryList = inventories.map((inventories) => (
     <article key={inventories.id} className="inventories__details">
@@ -42,15 +54,16 @@ const Inventory = ({ inventories, selectItem, test }) => {
               <div className="inventories__inventory-name-label">
                 INVENTORY ITEM
               </div>
-
-              <div className="inventories__inventory-name">
-                {inventories.itemName}
-                <img
-                  className="inventories__arrow-icon"
-                  src={arrowRight}
-                  alt=""
-                />
-              </div>
+              <Link to={`/inventory/${inventories.id}`}>
+                <div className="inventories__inventory-name">
+                  {inventories.itemName}
+                  <img
+                    className="inventories__arrow-icon"
+                    src={arrowRight}
+                    alt=""
+                  />
+                </div>
+              </Link>
             </div>
             <div className="inventories__category-container">
               <div className="inventories__inventory-category-label">
@@ -58,7 +71,6 @@ const Inventory = ({ inventories, selectItem, test }) => {
               </div>
 
               <div className="inventories__inventory-category">
-                {" "}
                 {inventories.category}
               </div>
             </div>
@@ -66,7 +78,15 @@ const Inventory = ({ inventories, selectItem, test }) => {
           <div className="inventories__details-wrapper-right">
             <div className="inventories__status-container">
               <div className="inventories__status-label">STATUS</div>
-              <div className="inventories__status">{inventories.status}</div>
+              <div
+                className={
+                  inventories.status === "In Stock"
+                    ? "inventories__pill inventories__pill--green"
+                    : "inventories__pill inventories__pill--red"
+                }
+              >
+                {inventories.status}
+              </div>
             </div>
             <div className="inventories__qty-container">
               <div className="inventories__qty-label">QTY</div>
@@ -87,6 +107,9 @@ const Inventory = ({ inventories, selectItem, test }) => {
           className="inventories__delete-icon"
           src={deleteIcon}
           alt="delete"
+          onClick={() => {
+            showDeleteModal(inventories.id);
+          }}
         />
         <Link to={`/inventory/${inventories.id}/edit`}>
           <img
@@ -168,8 +191,17 @@ const Inventory = ({ inventories, selectItem, test }) => {
       </div>
 
       <div className="inventories__container">{inventoryList}</div>
+      <div>
+        {showModal && (
+          <DeleteItemModal
+            selectedItem={selectedItem}
+            showDeleteModal={showDeleteModal}
+            getInventories={getInventories}
+          />
+        )}
+      </div>
     </section>
   );
 };
 
-export default Inventory;
+export default Inventories;

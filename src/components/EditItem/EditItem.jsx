@@ -7,6 +7,8 @@ import { useParams } from "react-router";
 import { getInventory } from "../../utils/apiHelpers.mjs";
 import { useEffect, useState } from "react";
 
+const categories = ["Electronics", "Gear", "Apparel", "Accessories", "Health"];
+
 const EditItem = ({
   editInventory,
   inputErrors,
@@ -17,8 +19,13 @@ const EditItem = ({
   const navigate = useNavigate();
   const { itemId } = useParams();
   const [inventory, setInventory] = useState(null);
+  // const [warehouses, setWarehouses] = useState([]);
+  console.log(warehouses);
+  console.log(inventory?.warehouseName); //? warehouseName is optional
+
   useEffect(() => {
     getInventory(itemId).then((response) => {
+      console.log(response.data);
       setInventory(response.data);
     });
   }, []);
@@ -41,14 +48,20 @@ const EditItem = ({
     });
   };
 
-  // const contactHandler = (e) => {
-  //   setInventory({
-  //     ...inventory,
-  //     contact: {
-  //       [e.target.name]: e.target.value,
-  //     },
-  //   });
-  // };
+  const changeWarehouse = (e) => {
+    console.log(e.target.value);
+    // const warehouse = JSON.parse(e.target.value); //converts the stringiy back into an object
+    // console.log(warehouse);
+    const warehouse = warehouses.find((warehouse) => {
+      //find the warehouse using the ID (id is e.target.value)
+      if (warehouse.id == e.target.value) return true; //
+    });
+    setInventory({
+      ...inventory, //spread operator, to keep all other values the same, but change other values below
+      warehouseName: warehouse.name,
+      warehouseID: e.target.value,
+    });
+  };
 
   //Gets the data to populate the fields upon load
 
@@ -82,7 +95,10 @@ const EditItem = ({
         />
         <h1 className="edit-inventory__title">Edit Inventory Item</h1>
       </div>
-      <form className="form" onSubmit={(e) => editInventory(e, itemId)}>
+      <form
+        className="form"
+        onSubmit={(e) => editInventory(e, itemId, inventory)}
+      >
         <div className="form__outer">
           <div className="form__container form__container--left">
             <div className="form__inner">
@@ -124,11 +140,14 @@ const EditItem = ({
                   type="select"
                   name="category"
                   id="category"
+                  value={inventory.category}
                   // placeholder={inventory.category}
                   // defaultValue={inventory.category}
                   onChange={(e) => inputChangeHandler(e)}
                 >
-                  <option>{inventory.category}</option>
+                  {categories.map((category) => {
+                    return <option>{category}</option>;
+                  })}
                 </select>
               </div>
             </div>
@@ -144,7 +163,7 @@ const EditItem = ({
                   <div className="form__question-radio-wrapper">
                     <input
                       type="radio"
-                      checked={"In Stock"}
+                      checked={inventory.status == "In Stock" ? true : false}
                       name="status"
                       id="In Stock"
                       value="In Stock"
@@ -158,6 +177,9 @@ const EditItem = ({
                   <div className="form__question-radio-wrapper">
                     <input
                       type="radio"
+                      checked={
+                        inventory.status == "Out of Stock" ? true : false
+                      }
                       name="status"
                       id="Out of Stock"
                       value="Out of Stock"
@@ -181,9 +203,15 @@ const EditItem = ({
                   type="select"
                   name="warehouse"
                   id="warehouse"
+                  value={inventory.warehouseID}
+                  onChange={changeWarehouse}
                 >
-                  {" "}
-                  <option>{inventory.warehouseName}</option>{" "}
+                  {warehouses.map((warehouse) => {
+                    return (
+                      <option value={warehouse.id}>{warehouse.name}</option>
+                    );
+                  })}
+                  {/* <option>{inventory.warehouseName}</option> */}
                 </select>
               </div>
             </div>
@@ -197,7 +225,9 @@ const EditItem = ({
           >
             Cancel
           </button>
-          <button className="form__button form__button--add">Save</button>
+          <button className="form__button form__button--add" type="submit">
+            Save
+          </button>
         </div>
       </form>
     </section>
