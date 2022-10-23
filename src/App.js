@@ -253,7 +253,16 @@ function App() {
           <Route path='/inventory' element={<Inventory />} />
           <Route path='/inventory/:itemId' element={<ItemDetails />} />
           <Route path='/inventory/:itemId/edit' element={<EditItem />} />
-          <Route path='/inventory/add' element={<AddItem />} />
+          <Route
+            path='/inventory/add'
+            element={
+              <AddItem
+                showError={showError}
+                inputErrors={errors}
+                warehouses={Warehouses}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
