@@ -4,23 +4,34 @@ import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
-
+import { Link } from "react-router-dom";
 import "./Inventory.scss";
 
 import axios from "axios";
 
-const Inventories = () => {
-  const [inventories, setInventories] = useState([]);
+const Inventory = ({ inventories, selectItem, test }) => {
+  console.log(inventories);
+  console.log(selectItem);
+  console.log(test);
+  // const [inventories, setInventories] = useState([]);
+  // const [selectedItem, setSelectedItem] = useState({});
 
-  const getInventories = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    setInventories(response.data);
-    console.log(response.data);
-  };
+  // const getInventories = async () => {
+  //   const response = await axios.get("http://localhost:8080/inventory");
+  //   setInventories(response.data);
+  //   console.log(response.data);
+  // };
 
-  useEffect(() => {
-    getInventories();
-  }, []);
+  // useEffect(() => {
+  //   getInventories();
+  // }, []);
+
+  // const selectItem = (id) => {
+  //   const chosenItem = inventories.find((item) => {
+  //     return item.id === id;
+  //   });
+  //   setSelectedItem(chosenItem);
+  // };
 
   const inventoryList = inventories.map((inventories) => (
     <article key={inventories.id} className="inventories__details">
@@ -77,7 +88,14 @@ const Inventories = () => {
           src={deleteIcon}
           alt="delete"
         />
-        <img className="inventories__edit-icon" src={editIcon} alt="edit" />
+        <Link to={`/inventory/${inventories.id}/edit`}>
+          <img
+            className="inventories__edit-icon"
+            src={editIcon}
+            alt="edit"
+            // onClick={() => selectItem(inventories.id)}
+          />
+        </Link>
       </div>
     </article>
   ));
@@ -154,4 +172,4 @@ const Inventories = () => {
   );
 };
 
-export default Inventories;
+export default Inventory;

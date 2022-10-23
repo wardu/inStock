@@ -1,0 +1,249 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.edit-inventory {
+  position: relative;
+  background-color: white;
+  margin: 0 auto;
+  top: -5rem;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+  margin: 0 2rem;
+
+  @include tablet {
+    margin: 0 3.2rem;
+  }
+
+  @include desktop {
+    margin: 0 13rem;
+  }
+
+  &__title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3.2rem 0;
+
+    @include tablet {
+      justify-content: flex-start;
+      padding: 3.2rem 3.6rem;
+    }
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    line-height: 3.6rem;
+    font-weight: 600;
+    margin-left: 1.2rem;
+    @include tablet {
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+  }
+  &__back-arrow {
+    cursor: pointer;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    border-top: 1px solid $instock_secondary-grey;
+  }
+
+  &__outer {
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+
+  &__container {
+    @include tablet {
+      width: 50%;
+      margin: 2.4rem 0;
+    }
+
+    &--left {
+      @include tablet {
+        border-right: 1px solid $instock_secondary-grey;
+      }
+    }
+  }
+  &__subtitle {
+    margin-top: 1.6rem;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 2.4rem;
+
+    @include tablet {
+      margin-top: 0;
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
+  }
+
+  &__inner {
+    border-top: 1px solid $instock_secondary-grey;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2.4rem;
+
+    @include tablet {
+      border-top: none;
+      padding: 0 3.2rem;
+    }
+  }
+
+  &__question {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.6rem;
+    @include tablet {
+      margin-bottom: 2.4rem;
+    }
+
+    &--status {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-radio-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+
+      width: 50%;
+
+      @include tablet {
+        width: 15rem;
+      }
+    }
+  }
+  &__label {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+
+    @include tablet {
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+
+    &--status {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      font-weight: 500;
+      margin-bottom: 0rem;
+      color: $instock_secondary-grey;
+      padding-left: 0.5rem;
+    }
+  }
+
+  &__input {
+    all: unset;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    border: 1px solid $instock_secondary-grey;
+    padding: 0.8rem 0 0.8rem 1.6rem;
+    // margin-bottom: 1.6rem;
+    // @include tablet {
+    //   margin-bottom: 2.4rem;
+    // }
+
+    &--error {
+      border-color: $instock_primary-red;
+    }
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 1.3rem;
+
+      @include tablet {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+      }
+    }
+  }
+  &__textarea {
+    all: unset;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    border: 1px solid $instock_secondary-grey;
+    padding: 0.8rem 1.6rem 0.8rem 1.6rem;
+    height: 12rem;
+  }
+
+  &__error {
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__error-message {
+    margin-left: 0.533rem;
+    color: $instock_primary-red;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  &__error-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    background-color: $buttons-background;
+    padding: 1.6rem 2.4rem;
+
+    @include tablet {
+      justify-content: flex-end;
+      padding: 1.6rem 3.2rem;
+    }
+  }
+
+  &__select {
+    // all: unset;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    border: 1px solid $instock_secondary-grey;
+    padding: 0.8rem 1.6rem 0.8rem 1.6rem;
+    background: url("../../assets/icons/arrow_drop_down-24px.svg") top 3px right
+      6px no-repeat;
+    appearance: none;
+  }
+
+  &__button {
+    all: unset;
+    text-align: center;
+    width: 13.5rem;
+    height: 3.6rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    &--cancel {
+      border: 1px solid $instock_secondary-grey;
+      background-color: white;
+      color: $instock_secondary-slate;
+      margin-right: 1.6rem;
+
+      @include tablet {
+        width: 7.2rem;
+      }
+    }
+
+    &--add {
+      background-color: $instock_primary-blue;
+      color: white;
+    }
+  }
+}

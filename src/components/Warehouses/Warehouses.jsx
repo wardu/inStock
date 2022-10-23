@@ -9,18 +9,18 @@ import "./Warehouses.scss";
 
 import axios from "axios";
 
-const Warehouses = () => {
-  const [warehouses, setWarehouses] = useState([]);
+const Warehouses = ({ warehouses }) => {
+  // const [warehouses, setWarehouses] = useState([]);
 
-  const getWarehouses = async () => {
-    const response = await axios.get("http://localhost:8080/warehouses");
-    setWarehouses(response.data);
-    console.log(response.data);
-  };
+  // const getWarehouses = async () => {
+  //   const response = await axios.get("http://localhost:8080/warehouses");
+  //   setWarehouses(response.data);
+  //   console.log(response.data);
+  // };
 
-  useEffect(() => {
-    getWarehouses();
-  }, []);
+  // useEffect(() => {
+  //   getWarehouses();
+  // }, []);
 
   const warehouseList = warehouses.map((warehouses) => (
     <article key={warehouses.id} className="warehouses__details">
