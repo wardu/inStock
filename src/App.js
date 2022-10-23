@@ -12,7 +12,6 @@ import ItemDetails from "./components/ItemDetails/ItemDetails";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
-import { useParams } from "react-router-dom";
 
 function App() {
   const [errors, setErrors] = useState({
@@ -214,6 +213,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="/" element={<Warehouses />} />
           <Route path="/warehouses" element={<Warehouses />} />
           <Route
             path="/warehouses/:warehouseId"
