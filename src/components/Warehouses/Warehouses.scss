@@ -8,16 +8,16 @@
   width: 90%;
   border: 1px solid $instock_secondary-grey;
   position: relative;
+  background-color: $instock_primary-white;
   top: -0px;
 
   @include tablet {
     width: 85%;
-    top: -45px;
+    top: -90px;
   }
 
   @include desktop {
     width: 80%;
-    top: -35px;
   }
 
   &__title {
@@ -32,7 +32,6 @@
 
   &__title-container {
     padding: 2rem;
-    border-bottom: 0.5px solid $instock_secondary-grey;
 
     @include tablet {
       display: flex;

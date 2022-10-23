@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <nav className="header">
       <div className="header__wrapper">
-        <div>
+        <Link to="/">
           <img src={Logo} alt="instock logo" />
-        </div>
+        </Link>
         <div className="header__container">
           <Link to="/warehouses" className="header__item">
             Warehouses

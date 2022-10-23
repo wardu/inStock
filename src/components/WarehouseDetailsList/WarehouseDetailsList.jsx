@@ -14,12 +14,10 @@ const WarehouseDetailsList = () => {
 
   useEffect(() => {
     const getWarehouseInventory = async () => {
-
       const response = await axios.get(
         `http://localhost:8080/warehouses/${warehouseId}/inventory`
       );
       setInventory(response.data);
-
     };
 
     getWarehouseInventory();
@@ -44,7 +42,7 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__sub-title">
+            <p className="warehouseList__inventory-title">
               CATEGORY
               <img
                 className="warehouseList__sort-arrows"
@@ -54,7 +52,7 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
           <div className="warehouseList__header">
-            <p className="warehouseList__sub-title">
+            <p className="warehouseList__inventory-title">
               STATUS
               <img
                 className="warehouseList__sort-arrows"
@@ -65,7 +63,7 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__sub-title">
+            <p className="warehouseList__inventory-title">
               QTY
               <img
                 className="warehouseList__sort-arrows"
@@ -76,14 +74,14 @@ const WarehouseDetailsList = () => {
           </div>
 
           <div className="warehouseList__header">
-            <p className="warehouseList__sub-title">ACTIONS</p>
+            <p className="warehouseList__action-title">ACTIONS</p>
           </div>
         </article>
 
         {inventory.map((item) => (
           <article className="warehouseList__inventory">
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 INVENTORY ITEM
               </p>
               <div className="warehouseList__item-box">
@@ -101,7 +99,7 @@ const WarehouseDetailsList = () => {
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 CATEGORY
               </p>
               <div>
@@ -110,7 +108,7 @@ const WarehouseDetailsList = () => {
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-status warehouseList__header--mobile">
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 STATUS
               </p>
               <div className="warehouseList__stock">
@@ -123,12 +121,13 @@ const WarehouseDetailsList = () => {
                 >
                   {item.status}
                 </p>
-
               </div>
             </section>
 
             <section className="warehouseList__inventory-box">
-              <p className="warehouseList__header--mobile">QTY</p>
+              <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                QTY
+              </p>
               <div>
                 <p className="warehouseList__category-item">{item.quantity}</p>
               </div>

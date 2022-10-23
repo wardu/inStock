@@ -1,16 +1,18 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { default as React, useEffect, useState } from "react";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
-
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import "./Inventory.scss";
 
 import axios from "axios";
 
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
+  const [inventoryOrder, setInventoryOrder] = useState(true);
 
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -21,6 +23,30 @@ const Inventories = () => {
   useEffect(() => {
     getInventories();
   }, []);
+
+  const showDeleteModal = (id) => {
+    const item = inventories.find((item) => {
+      return id === item.id;
+    });
+    setSelectedItem(item);
+    setShowModal(!showModal);
+  };
+
+  const sortInventory = async (label) => {
+    setInventoryOrder(!inventoryOrder);
+
+    if (inventoryOrder === false) {
+      const response = await axios.get(
+        `http://localhost:8080/inventory?order=descending&label=${label}`
+      );
+      setInventories(response.data);
+    } else if (inventoryOrder === true) {
+      const response = await axios.get(
+        `http://localhost:8080/inventory?order=ascending&label=${label}`
+      );
+      setInventories(response.data);
+    }
+  };
 
   const inventoryList = inventories.map((inventories) => (
     <article key={inventories.id} className="inventories__details">
@@ -47,7 +73,6 @@ const Inventories = () => {
               </div>
 
               <div className="inventories__inventory-category">
-                {" "}
                 {inventories.category}
               </div>
             </div>
@@ -76,6 +101,9 @@ const Inventories = () => {
           className="inventories__delete-icon"
           src={deleteIcon}
           alt="delete"
+          onClick={() => {
+            showDeleteModal(inventories.id);
+          }}
         />
         <img className="inventories__edit-icon" src={editIcon} alt="edit" />
       </div>
@@ -108,6 +136,9 @@ const Inventories = () => {
                 className="inventories__sort-icon"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortInventory("itemName");
+                }}
               />
             </div>
             <div className="inventories__category-subtitle">
@@ -116,6 +147,9 @@ const Inventories = () => {
                 className="inventories__sort-icon"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortInventory("category");
+                }}
               />
             </div>
           </div>
@@ -126,6 +160,9 @@ const Inventories = () => {
                 className="inventories__sort-icon"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortInventory("status");
+                }}
               />
             </div>
             <div className="inventories__qty-subtitle">
@@ -134,6 +171,9 @@ const Inventories = () => {
                 className="inventories__sort-icon"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortInventory("quantity");
+                }}
               />
             </div>
             <div className="inventories__warehouse-subtitle">
@@ -142,6 +182,9 @@ const Inventories = () => {
                 className="inventories__sort-icon"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortInventory("warehouseName");
+                }}
               />
             </div>
           </div>
@@ -150,6 +193,15 @@ const Inventories = () => {
       </div>
 
       <div className="inventories__container">{inventoryList}</div>
+      <div>
+        {showModal && (
+          <DeleteItemModal
+            selectedItem={selectedItem}
+            showDeleteModal={showDeleteModal}
+            getInventories={getInventories}
+          />
+        )}
+      </div>
     </section>
   );
 };
