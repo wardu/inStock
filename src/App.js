@@ -246,15 +246,15 @@ function App() {
     e.preventDefault();
     console.log("edit");
 
-    // if (!e.target.itemName.value) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     itemName: true,
-    //   }));
-    // }
+    if (!inventory.itemName) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        itemName: true,
+      }));
+    }
 
-    // if (!e.target.description.value) {
+    // if (!inventory.description) {
     //   showError = true;
     //   setErrors((prevErrors) => ({
     //     ...prevErrors,
@@ -262,7 +262,7 @@ function App() {
     //   }));
     // }
 
-    // if (!e.target.category.value) {
+    // if (!inventory.category) {
     //   showError = true;
     //   setErrors((prevErrors) => ({
     //     ...prevErrors,
@@ -302,10 +302,10 @@ function App() {
     //   }));
     // }
 
-    // if (showError) {
-    //   console.log("error");
-    //   return;
-    // }
+    if (showError) {
+      console.log("error");
+      return;
+    }
 
     // const editedInventory = {
     //   id: `${inventories.id}}`,
