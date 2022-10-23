@@ -196,4 +196,19 @@
       width: 12.5rem;
     }
   }
+  &__pill {
+    margin: 0;
+    padding: 0.25rem 1rem;
+    border-radius: 1.5rem;
+
+    &--red {
+      background-color: rgba(201, 69, 21, 0.07);
+      color: $instock_primary-red;
+    }
+
+    &--green {
+      background-color: rgba(21, 132, 99, 0.07);
+      color: $instock_primary-green;
+    }
+  }
 }

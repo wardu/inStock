@@ -115,8 +115,8 @@ const WarehouseDetailsList = () => {
                 <p
                   className={
                     item.status === "In Stock"
-                      ? "item-details__pill item-details__pill--green"
-                      : "item-details__pill item-details__pill--red"
+                      ? "warehouseList__pill warehouseList__pill--green"
+                      : "warehouseList__pill warehouseList__pill--red"
                   }
                 >
                   {item.status}
