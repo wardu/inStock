@@ -24,6 +24,7 @@ function App() {
     contactPhone: false,
     contactEmail: false,
   });
+  const [emailIsValid, setEmailIsValid] = useState(true);
 
   let showError = false;
 

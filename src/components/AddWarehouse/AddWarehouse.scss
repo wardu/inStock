@@ -12,6 +12,7 @@
 
   @include tablet {
     margin: 0 3.2rem;
+    top: -10.5rem;
   }
 
   @include desktop {
@@ -127,10 +128,6 @@
     font-size: 1.3rem;
     border: 1px solid $instock_secondary-grey;
     padding: 0.8rem 0 0.8rem 1.6rem;
-    // margin-bottom: 1.6rem;
-    // @include tablet {
-    //   margin-bottom: 2.4rem;
-    // }
 
     &--error {
       border-color: $instock_primary-red;
