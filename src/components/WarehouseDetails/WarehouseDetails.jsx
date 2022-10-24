@@ -51,6 +51,9 @@ const WarehouseDetails = () => {
         <section className="details__address-box">
           <p className="details__address-title">WAREHOUSE ADDRESS:</p>
           <p className="details__address-location">{warehouse.address}</p>
+          <p className="details__address-location">
+            {warehouse.city},{warehouse.country}
+          </p>
         </section>
 
         <article className="details__info">
