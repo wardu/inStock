@@ -125,9 +125,11 @@ const WarehouseDetailsList = () => {
                 </p>
                 <div className="warehouseList__item-box">
                   <div className="warehouseList__link">
-                    <p className="warehouseList__inventory-item">
-                      {item.itemName}
-                    </p>
+                    <Link to={`/inventory/${item.id}`}>
+                      <p className="warehouseList__inventory-item">
+                        {item.itemName}
+                      </p>
+                    </Link>
                     <img
                       className="warehouseList__chevron"
                       src={arrowRight}
