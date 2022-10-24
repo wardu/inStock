@@ -42,7 +42,7 @@ const ItemDetails = () => {
         </div>
         <div className="itemDetails__info--second-half">
           <div className="itemDetails__stock-container">
-            <div class="itemDetails__status">
+            <div className="itemDetails__status">
               <h3 className="itemDetails__info--header">STATUS</h3>
               <p
                 className={
