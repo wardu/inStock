@@ -12,6 +12,7 @@ import ItemDetails from "./components/ItemDetails/ItemDetails";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
+import { useParams } from "react-router-dom";
 
 import { useEffect } from "react";
 
@@ -127,6 +128,27 @@ function App() {
     };
 
     await axios.post("http://localhost:8080/warehouses", newWarehouse);
+  };
+
+  const addItem = async (e) => {
+    e.preventDefault();
+
+    if (showError) {
+      return;
+    }
+
+    const newItem = {
+      id: "",
+      warehouseID: e.target.warehouseID.value,
+      warehouseName: e.target.warehouseName.value,
+      itemName: e.target.itemName.value,
+      description: e.target.description.value,
+      category: e.target.category.value,
+      status: e.target.status.value,
+      quantity: e.target.quantity.value,
+    };
+
+    await axios.post("http://localhost:8080/inventory", newItem);
   };
 
   /// ----------  Edited Warehouse
@@ -313,7 +335,10 @@ function App() {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/:itemId" element={<ItemDetails />} />
           {/* <Route path="/inventory/:itemId/edit" element={<EditItem />} /> */}
-          <Route path="/inventory/add" element={<AddItem />} />
+          <Route
+            path="/inventory/add"
+            element={<AddItem warehouses={warehouses} />}
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
