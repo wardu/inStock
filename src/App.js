@@ -116,6 +116,27 @@ function App() {
     await axios.post('http://localhost:8080/warehouses', newWarehouse);
   };
 
+  const addItem = async (e) => {
+    e.preventDefault();
+
+    if (showError) {
+      return;
+    }
+
+    const newItem = {
+      id: '',
+      warehouseID: e.target.warehouseID.value,
+      warehouseName: e.target.warehouseName.value,
+      itemName: e.target.itemName.value,
+      description: e.target.description.value,
+      category: e.target.category.value,
+      status: e.target.status.value,
+      quantity: e.target.quantity.value,
+    };
+
+    await axios.post('http://localhost:8080/inventory', newItem);
+  };
+
   /// ----------  Edited Warehouse
 
   const editWarehouse = async (e, warehouseId) => {
@@ -257,6 +278,7 @@ function App() {
             path='/inventory/add'
             element={
               <AddItem
+                addItem={addItem}
                 showError={showError}
                 inputErrors={errors}
                 warehouses={Warehouses}
