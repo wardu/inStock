@@ -1,6 +1,6 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/breakpoints' as *;
-@use '../../styles/partials/mixin' as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixin" as *;
 ::-webkit-textarea-placeholder {
   left: 0px;
   top: 0px;
@@ -12,22 +12,24 @@
   top: -5rem;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
-  margin: 0 2rem;
+  width: 90%;
+  font-size: 2rem;
 
   @include tablet {
-    margin: 0 3.2rem;
-    top: -8rem;
+    top: -9rem;
+    font-size: 3.2rem;
   }
 
   @include desktop {
-    margin: 0 13rem;
+    width: 1020px;
   }
 
   &__title-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    padding: 3.2rem 0;
+    padding: 3.2rem 2.4rem;
+    height: 11rem;
 
     & img {
       @include arrow-transition;
@@ -39,12 +41,12 @@
     @include tablet {
       justify-content: flex-start;
       padding: 3.2rem 3.6rem;
-      height: 8rem;
+      height: 9rem;
     }
   }
 
   &__title {
-    font-size: 2.8rem;
+    font-size: 2rem;
     line-height: 3.6rem;
     font-weight: 600;
     margin-left: 1.2rem;
@@ -162,6 +164,9 @@
     }
   }
 
+  &__option-placeholder {
+    color: red;
+  }
   &__input {
     all: unset;
     border-radius: 2rem;
@@ -228,7 +233,7 @@
     font-size: 1.3rem;
     border: 1px solid $instock_secondary-grey;
     padding: 0.8rem 1.6rem 0.8rem 1.6rem;
-    background: url('../../assets/icons/arrow_drop_down-24px.svg') top 3px right
+    background: url("../../assets/icons/arrow_drop_down-24px.svg") top 3px right
       6px no-repeat;
     appearance: none;
   }
@@ -261,7 +266,7 @@
   }
 }
 
-input[type='radio']:checked + label {
+input[type="radio"]:checked + label {
   font-weight: bold;
   color: $instock_primary-black;
 }

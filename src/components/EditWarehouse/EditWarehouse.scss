@@ -1,6 +1,7 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/breakpoints' as *;
-@use '../../styles/partials/mixin' as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixin" as *;
+
 
 .edit-warehouse {
   position: relative;
@@ -9,22 +10,29 @@
   top: -5rem;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
-  margin: 0 2rem;
+  width: 90%;
 
   @include tablet {
-    margin: 0 3.2rem;
-    top: -8rem;
+    top: -9rem;
   }
 
   @include desktop {
-    margin: 0 13rem;
+    width: 1020px;
   }
 
   &__title-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    padding: 3.2rem 0;
+    padding: 3.2rem 2.4rem;
+    height: 7rem;
+
+    & img {
+      @include arrow-transition;
+    }
+    & img:hover {
+      @include arrow-hover;
+    }
 
     & img {
       @include arrow-transition;
@@ -36,12 +44,13 @@
     @include tablet {
       justify-content: flex-start;
       padding: 3.2rem 3.6rem;
-      height: 8rem;
+      height: 9rem;
+
     }
   }
 
   &__title {
-    font-size: 2.8rem;
+    font-size: 2rem;
     line-height: 3.6rem;
     font-weight: 600;
     margin-left: 1.2rem;

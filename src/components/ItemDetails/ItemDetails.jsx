@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './ItemDetails.scss';
-import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-import arrowBack from '../../assets/icons/arrow_back-24px.svg';
-import editIcon from '../../assets/icons/edit-24px.svg';
+import React, { useEffect, useState } from "react";
+import "./ItemDetails.scss";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+import arrowBack from "../../assets/icons/arrow_back-24px.svg";
+import editIcon from "../../assets/icons/edit-24px.svg";
 const ItemDetails = () => {
   const [itemDetails, setItemDetails] = useState(null);
   const { itemId } = useParams();
@@ -24,42 +24,43 @@ const ItemDetails = () => {
   }
 
   return (
-    <div className='itemDetails'>
-      <div className='itemDetails__header'>
-        <Link to='/inventory' className='itemDetails__header--back'>
-          <img src={arrowBack} alt='back' />
+    <div className="itemDetails">
+      <div className="itemDetails__header">
+        <Link to="/inventory" className="itemDetails__header--back">
+          <img src={arrowBack} alt="back" />
         </Link>
-        <h1 className='itemDetails__header--name'>{itemDetails.itemName}</h1>
-        <img className='itemDetails__header--edit' src={editIcon} alt='edit' />
+        <h1 className="itemDetails__header--name">{itemDetails.itemName}</h1>
+
+        <img className="itemDetails__header--edit" src={editIcon} alt="edit" />
       </div>
-      <div className='itemDetails__info'>
-        <div className='itemDetails__info--first-half'>
-          <h3 className='itemDetails__info--header'>ITEM DESCRIPTION</h3>
-          <p className='itemDetails__info--text'>{itemDetails.description}</p>
-          <h3 className='itemDetails__info--header'>CATEGORY</h3>
-          <p className='itemDetails__info--text'>{itemDetails.category}</p>
+      <div className="itemDetails__info">
+        <div className="itemDetails__info--first-half">
+          <h3 className="itemDetails__info--header">ITEM DESCRIPTION</h3>
+          <p className="itemDetails__info--text">{itemDetails.description}</p>
+          <h3 className="itemDetails__info--header">CATEGORY</h3>
+          <p className="itemDetails__info--text">{itemDetails.category}</p>
         </div>
-        <div className='itemDetails__info--second-half'>
-          <div className='itemDetails__stock-container'>
-            <div className='itemDetails__status'>
-              <h3 className='itemDetails__info--header'>STATUS</h3>
+        <div className="itemDetails__info--second-half">
+          <div className="itemDetails__stock-container">
+            <div className="itemDetails__status">
+              <h3 className="itemDetails__info--header">STATUS</h3>
               <p
                 className={
-                  itemDetails.status === 'In Stock'
-                    ? 'itemDetails__pill itemDetails__pill--green'
-                    : 'itemDetails__pill itemDetails__pill--red'
+                  itemDetails.status === "In Stock"
+                    ? "itemDetails__pill itemDetails__pill--green"
+                    : "itemDetails__pill itemDetails__pill--red"
                 }
               >
                 {itemDetails.status}
               </p>
             </div>
-            <div className='itemDetails__quantity'>
-              <h3 className='itemDetails__info--header'>QUANTITY</h3>
-              <p className='itemDetails__info--text'>{itemDetails.quantity}</p>
+            <div className="itemDetails__quantity">
+              <h3 className="itemDetails__info--header">QUANTITY</h3>
+              <p className="itemDetails__info--text">{itemDetails.quantity}</p>
             </div>
           </div>
-          <h3 className='itemDetails__info--header'>WAREHOUSE</h3>
-          <p className='itemDetails__info--text'>{itemDetails.warehouseName}</p>
+          <h3 className="itemDetails__info--header">WAREHOUSE</h3>
+          <p className="itemDetails__info--text">{itemDetails.warehouseName}</p>
         </div>
       </div>
     </div>
