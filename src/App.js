@@ -13,6 +13,8 @@ import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
 
+import { useEffect } from "react";
+
 function App() {
   const [errors, setErrors] = useState({
     name: false,
@@ -24,8 +26,21 @@ function App() {
     contactPhone: false,
     contactEmail: false,
   });
+  const [inventories, setInventories] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({});
+  const [warehouses, setWarehouses] = useState([]);
 
   let showError = false;
+
+  const getWarehouses = async () => {
+    const response = await axios.get("http://localhost:8080/warehouses");
+    setWarehouses(response.data);
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    getWarehouses();
+  }, []);
 
   const addWarehouse = async (e) => {
     e.preventDefault();
@@ -207,6 +222,105 @@ function App() {
     );
   };
 
+  const getInventories = async () => {
+    const response = await axios.get("http://localhost:8080/inventory");
+    setInventories(response.data);
+    // console.log(response.data);
+  };
+
+  useEffect(() => {
+    getInventories();
+  }, []);
+
+  const selectItem = (id) => {
+    const chosenItem = inventories.find((item) => {
+      return item.id === id;
+    });
+    setSelectedItem(chosenItem);
+  };
+
+  // editInventory
+
+  const editInventory = async (e, itemId, inventory) => {
+    e.preventDefault();
+    console.log("edit");
+
+    if (!inventory.itemName) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        itemName: true,
+      }));
+    }
+
+    // if (!inventory.description) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     description: true,
+    //   }));
+    // }
+
+    // if (!inventory.category) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     category: true,
+    //   }));
+    // }
+
+    // if (!e.target.status.value) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     status: true,
+    //   }));
+    // }
+
+    // if (!e.target.quantity.value) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     quantity: true,
+    //   }));
+    // }
+
+    // if (!e.target.warehouseId.value) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     warehouseId: true,
+    //   }));
+    // }
+
+    // if (!e.target.warehouseName.value) {
+    //   showError = true;
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     warehouseName: true,
+    //   }));
+    // }
+
+    if (showError) {
+      console.log("error");
+      return;
+    }
+
+    // const editedInventory = {
+    //   id: `${inventories.id}}`,
+    //   warehouseId: e.target.warehouseId.value,
+    //   warehouseName: e.target.warehouseName.value,
+    //   itemName: e.target.itemName.value,
+    //   description: e.target.description.value,
+    //   category: e.target.category.value,
+    //   status: e.target.status.value,
+    //   quantity: e.target.quantity.value,
+    // };
+
+    await axios.put(`http://localhost:8080/inventory/${itemId}`, inventory);
+  };
+  //end
+
   return (
     <>
       {/* <ItemDetails /> */}
@@ -215,6 +329,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Warehouses />} />
           <Route path="/warehouses" element={<Warehouses />} />
+
           <Route
             path="/warehouses/:warehouseId"
             element={<WarehouseDetails />}
@@ -250,9 +365,46 @@ function App() {
               />
             }
           />
+          <Route
+            path="/inventory"
+            element={
+              <Inventory
+                editInventory={editInventory}
+                showError={showError}
+                inputErrors={errors}
+                inventories={inventories}
+                selectItem={selectItem}
+                test="test"
+              />
+            }
+
+            // selectedItem={selectedItem}
+          />
+          <Route path="/inventory/:itemId" element={<ItemDetails />} />
+          <Route
+            path="/inventory/:itemId/edit"
+            element={
+              <EditItem
+                editInventory={editInventory}
+                selectedItem={selectedItem}
+                inventories={inventories}
+                warehouses={warehouses}
+              />
+            }
+          />
+          <Route
+            path="/warehouses/add"
+            element={
+              <AddWarehouse
+                addWarehouse={addWarehouse}
+                showError={showError}
+                inputErrors={errors}
+              />
+            }
+          />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/:itemId" element={<ItemDetails />} />
-          <Route path="/inventory/:itemId/edit" element={<EditItem />} />
+          {/* <Route path="/inventory/:itemId/edit" element={<EditItem />} /> */}
           <Route path="/inventory/add" element={<AddItem />} />
         </Routes>
       </BrowserRouter>
