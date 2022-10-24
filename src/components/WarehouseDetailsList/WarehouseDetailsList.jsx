@@ -79,7 +79,7 @@ const WarehouseDetailsList = () => {
         </article>
 
         {inventory.map((item) => (
-          <article className="warehouseList__inventory">
+          <article key={item.id} className="warehouseList__inventory">
             <section className="warehouseList__inventory-box">
               <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 INVENTORY ITEM
