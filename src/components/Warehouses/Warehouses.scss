@@ -96,6 +96,7 @@
     font-size: 1rem;
     height: 3rem;
     border-radius: 20px;
+    cursor: pointer;
 
     @include tablet {
       width: 16.8rem;
@@ -267,6 +268,7 @@
   }
 
   &__edit-icon {
+    cursor: pointer;
     @include tablet {
       height: 20px;
     }
@@ -278,6 +280,7 @@
       display: inline;
       height: 20px;
       padding-right: 1.6rem;
+      cursor: pointer;
     }
   }
 
