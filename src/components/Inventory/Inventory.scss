@@ -17,7 +17,7 @@
   }
 
   @include desktop {
-    width: 80%;
+    width: 1020px;
   }
 
   &__title {
@@ -124,7 +124,9 @@
       padding: 1.5rem 5rem;
     }
   }
-
+  &__details:hover {
+    background-color: rgba(46, 102, 230, 0.07);
+  }
   &__details-container {
     display: flex;
     padding: 1.5rem 2rem;
@@ -397,6 +399,25 @@
   &__info-container {
     @include tablet {
       width: 90%;
+    }
+  }
+
+  &__pill {
+    margin: 0;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+
+    &--red {
+      background-color: rgba(201, 69, 21, 0.07);
+      color: $instock_primary-red;
+    }
+
+    &--green {
+      background-color: rgba(21, 132, 99, 0.07);
+      color: $instock_primary-green;
     }
   }
 }
