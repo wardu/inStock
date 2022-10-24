@@ -112,6 +112,12 @@
       flex-direction: row;
     }
 
+    &--item-name {
+      @include tablet {
+        margin-bottom: 0;
+      }
+    }
+
     &-radio-wrapper {
       display: flex;
       flex-direction: row;
@@ -208,6 +214,10 @@
       justify-content: flex-end;
       padding: 1.6rem 3.2rem;
     }
+  }
+
+  &__quantity-outstock {
+    display: none !important;
   }
 
   &__select {
