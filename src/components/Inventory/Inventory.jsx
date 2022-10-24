@@ -23,19 +23,11 @@ const Inventories = () => {
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     setInventories(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
     getInventories();
   }, []);
-
-  // const selectItem = (id) => {
-  //   const chosenItem = inventories.find((item) => {
-  //     return item.id === id;
-  //   });
-  //   setSelectedItem(chosenItem);
-  // };
 
   const showDeleteModal = (id) => {
     const item = inventories.find((item) => {
@@ -92,6 +84,7 @@ const Inventories = () => {
               <div className="inventories__qty-label">QTY</div>
               <div className="inventories__qty">{inventories.quantity}</div>
             </div>
+
             <div className="inventories__warehouse-name-container">
               <div className="inventories__warehouse-name-label">WAREHOUSE</div>
               <div className="inventories__warehouse-name">
@@ -131,7 +124,11 @@ const Inventories = () => {
             ></input>
           </div>
           <div className="inventories__button-container">
-            <button className="inventories__button-add">+ Add New Item</button>
+            <Link to="/inventory/add">
+              <button className="inventories__button-add">
+                + Add New Item
+              </button>
+            </Link>
           </div>
         </div>
       </div>

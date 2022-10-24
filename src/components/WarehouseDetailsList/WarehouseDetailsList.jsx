@@ -79,7 +79,7 @@ const WarehouseDetailsList = () => {
         </article>
 
         {inventory.map((item) => (
-          <article className="warehouseList__inventory">
+          <article key={item.id} className="warehouseList__inventory">
             <section className="warehouseList__inventory-box">
               <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 INVENTORY ITEM
@@ -136,11 +136,17 @@ const WarehouseDetailsList = () => {
                   src={deleteIcon}
                   alt="delete"
                 />
-                <img
-                  className="warehouseList__edit-icon"
-                  src={editIcon}
-                  alt="edit"
-                />
+
+                <Link to={`/inventory/${item.id}/edit`}>
+                  <img
+                    className="warehouseList__edit-icon"
+                    src={editIcon}
+                    alt="edit"
+                    // onClick={() => {
+                    //   showDeleteModal(item.id);
+                    // }}
+                  />
+                </Link>
               </div>
             </section>
           </article>

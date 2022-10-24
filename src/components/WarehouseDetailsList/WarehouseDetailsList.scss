@@ -66,6 +66,9 @@
       height: 7rem;
     }
   }
+  &__inventory:last-child {
+    border-bottom: 0;
+  }
 
   &__inventory:hover {
     background-color: rgba(46, 102, 230, 0.07);
