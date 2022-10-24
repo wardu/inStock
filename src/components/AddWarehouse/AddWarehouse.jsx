@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
+import Button from "../Button/Button";
 import "./AddWarehouse.scss";
 
 const AddWarehouse = ({ addWarehouse, inputErrors }) => {
@@ -246,15 +247,25 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
         </div>
 
         <div className="form__buttons">
-          <button
+          <Button
+            buttonClass={"button button--cancel button--form-cancel"}
+            buttonAction={() => navigate("/warehouses")}
+            buttonText="Cancel"
+          />
+          {/* <button
             className="form__button form__button--cancel"
             onClick={() => navigate("/warehouses")}
           >
             Cancel
-          </button>
-          <button className="form__button form__button--add">
+          </button> */}
+          <Button
+            buttonClass={"button button--add"}
+            // buttonAction={() => navigate("/warehouses")}
+            buttonText="+ Add Warehouse"
+          />
+          {/* <button className="form__button form__button--add">
             + Add Warehouse
-          </button>
+          </button> */}
         </div>
       </form>
     </section>

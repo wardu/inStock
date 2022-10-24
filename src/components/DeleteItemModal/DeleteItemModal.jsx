@@ -40,25 +40,11 @@ const DeleteItemModal = ({ selectedItem, showDeleteModal, getInventories }) => {
               buttonAction={() => deleteItem(selectedItem.id)}
               buttonText="Cancel"
             />
-            {/* <button
-              className="delete-modal__button delete-modal__button--cancel"
-              onClick={() => {
-                showDeleteModal();
-              }}
-            >
-              Cancel
-            </button> */}
             <Button
               buttonClass={"button button--delete"}
               buttonAction={() => deleteItem(selectedItem.id)}
               buttonText="Delete"
             />
-            {/* <button
-              className="delete-modal__button delete-modal__button--delete"
-              onClick={() => deleteItem(selectedItem.id)}
-            >
-              Delete
-            </button> */}
           </div>
         </div>
       </div>

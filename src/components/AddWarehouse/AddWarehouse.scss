@@ -174,30 +174,30 @@
     }
   }
 
-  &__button {
-    all: unset;
-    text-align: center;
-    width: 13.5rem;
-    height: 3.6rem;
-    border-radius: 2rem;
-    font-weight: 600;
-    font-size: 1.3rem;
-    cursor: pointer;
+  // &__button {
+  //   all: unset;
+  //   text-align: center;
+  //   width: 13.5rem;
+  //   height: 3.6rem;
+  //   border-radius: 2rem;
+  //   font-weight: 600;
+  //   font-size: 1.3rem;
+  //   cursor: pointer;
 
-    &--cancel {
-      border: 1px solid $instock_secondary-grey;
-      background-color: white;
-      color: $instock_secondary-slate;
-      margin-right: 1.6rem;
+  //   &--cancel {
+  //     border: 1px solid $instock_secondary-grey;
+  //     background-color: white;
+  //     color: $instock_secondary-slate;
+  //     margin-right: 1.6rem;
 
-      @include tablet {
-        width: 7.2rem;
-      }
-    }
+  //     @include tablet {
+  //       width: 7.2rem;
+  //     }
+  //   }
 
-    &--add {
-      background-color: $instock_primary-blue;
-      color: white;
-    }
-  }
+  //   &--add {
+  //     background-color: $instock_primary-blue;
+  //     color: white;
+  //   }
+  // }
 }
