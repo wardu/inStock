@@ -140,15 +140,15 @@ const AddItem = ({ warehouses }) => {
   };
 
   return (
-    <section className='edit-inventory'>
-      <div className='edit-inventory__title-wrapper'>
+    <section className='add-inventory'>
+      <div className='add-inventory__title-wrapper'>
         <img
           src={BackArrow}
           alt=''
-          className='edit-inventory__back-arrow'
+          className='add-inventory__back-arrow'
           onClick={() => navigate('/inventory')}
         />
-        <h1 className='edit-inventory__title'>Add New Inventory Item</h1>
+        <h1 className='add-inventory__title'>Add New Inventory Item</h1>
       </div>
 
       <form className='form' onSubmit={(e) => addInventory(e, inventory)}>

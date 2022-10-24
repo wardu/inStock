@@ -1,5 +1,6 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/breakpoints' as *;
+@use '../../styles/partials/mixin' as *;
 ::-webkit-textarea-placeholder {
   left: 0px;
   top: 0px;
@@ -15,6 +16,7 @@
 
   @include tablet {
     margin: 0 3.2rem;
+    top: -8rem;
   }
 
   @include desktop {
@@ -27,9 +29,17 @@
     align-items: center;
     padding: 3.2rem 0;
 
+    & img {
+      @include arrow-transition;
+    }
+    & img:hover {
+      @include arrow-hover;
+    }
+
     @include tablet {
       justify-content: flex-start;
       padding: 3.2rem 3.6rem;
+      height: 8rem;
     }
   }
 
