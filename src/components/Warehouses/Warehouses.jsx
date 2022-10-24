@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import arrowRight from "../../assets/icons/chevron_right-24px.svg";
-import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
-import editIcon from "../../assets/icons/edit-24px.svg";
-import sortArrow from "../../assets/icons/sort-24px.svg";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import React, { useEffect, useState } from 'react';
+import arrowRight from '../../assets/icons/chevron_right-24px.svg';
+import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
+import editIcon from '../../assets/icons/edit-24px.svg';
+import sortArrow from '../../assets/icons/sort-24px.svg';
+import DeleteWarehouseModal from '../DeleteWarehouseModal/DeleteWarehouseModal';
+import { Link } from 'react-router-dom';
 
-import "./Warehouses.scss";
+import './Warehouses.scss';
 
-import axios from "axios";
+import axios from 'axios';
 
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
@@ -16,7 +17,7 @@ const Warehouses = () => {
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
 
   const getWarehouses = async () => {
-    const response = await axios.get("http://localhost:8080/warehouses");
+    const response = await axios.get('http://localhost:8080/warehouses');
     setWarehouses(response.data);
     console.log(response.data);
   };
@@ -49,66 +50,66 @@ const Warehouses = () => {
   };
 
   const warehouseList = warehouses.map((warehouses) => (
-    <article key={warehouses.id} className="warehouses__details">
-      <div className="warehouses__details-container">
-        <div className="warehouses__details-wrapper-left">
-          <div className="warehouses__name-container">
-            <div className="warehouses__warehouse-name-label">WAREHOUSE</div>
+    <article key={warehouses.id} className='warehouses__details'>
+      <div className='warehouses__details-container'>
+        <div className='warehouses__details-wrapper-left'>
+          <div className='warehouses__name-container'>
+            <div className='warehouses__warehouse-name-label'>WAREHOUSE</div>
 
-            <div className="warehouses__warehouse-name">
-              {" "}
-              {warehouses.name}{" "}
-              <img className="warehouses__arrow-icon" src={arrowRight} alt="" />
+            <div className='warehouses__warehouse-name'>
+              {' '}
+              {warehouses.name}{' '}
+              <img className='warehouses__arrow-icon' src={arrowRight} alt='' />
             </div>
           </div>
-          <div className="warehouses__address-container">
-            <div className="warehouses__warehouse-address-label">ADDRESS</div>
+          <div className='warehouses__address-container'>
+            <div className='warehouses__warehouse-address-label'>ADDRESS</div>
 
-            <div className="warehouses__warehouse-address">
-              {" "}
+            <div className='warehouses__warehouse-address'>
+              {' '}
               {warehouses.address}, {warehouses.city}, {warehouses.country}
             </div>
           </div>
-          <div className="warehouses__delete-icon-container">
+          <div className='warehouses__delete-icon-container'>
             <img
-              className="warehouses__delete-icon"
+              className='warehouses__delete-icon'
               src={deleteIcon}
-              alt="delete"
+              alt='delete'
               onClick={() => {
                 showDeleteModal(warehouses.id);
               }}
             />
           </div>
         </div>
-        <div className="warehouses__details-wrapper-right">
-          <div className="warehouses__contact-name-container">
-            <div className="warehouses__contact-name-label">CONTACT NAME</div>
-            <div className="warehouses__contact-name">
+        <div className='warehouses__details-wrapper-right'>
+          <div className='warehouses__contact-name-container'>
+            <div className='warehouses__contact-name-label'>CONTACT NAME</div>
+            <div className='warehouses__contact-name'>
               {warehouses.contact.name}
             </div>
           </div>
-          <div className="warehouses__contact-information-container">
-            <div className="warehouses__contact-info-label">
+          <div className='warehouses__contact-information-container'>
+            <div className='warehouses__contact-info-label'>
               CONTACT INFORMATION
             </div>
-            <div className="warehouses__contact-phone">
-              {warehouses.contact.phone}{" "}
+            <div className='warehouses__contact-phone'>
+              {warehouses.contact.phone}{' '}
             </div>
-            <div className="warehouses__contact-email">
+            <div className='warehouses__contact-email'>
               {warehouses.contact.email}
             </div>
           </div>
-          <div className="warehouses__edit-icon-container">
-            {" "}
+          <div className='warehouses__edit-icon-container'>
+            {' '}
             <img
-              className="warehouses__delete-icon-tablet"
+              className='warehouses__delete-icon-tablet'
               src={deleteIcon}
-              alt="delete"
+              alt='delete'
               onClick={() => {
                 showDeleteModal(warehouses.id);
               }}
             />
-            <img className="warehouses__edit-icon" src={editIcon} alt="edit" />
+            <img className='warehouses__edit-icon' src={editIcon} alt='edit' />
           </div>
         </div>
       </div>
@@ -116,76 +117,78 @@ const Warehouses = () => {
   ));
 
   return (
-    <section className="warehouses">
-      <div className="warehouses__title-container">
-        <h1 className="warehouses__title">Warehouses</h1>
-        <div className="warehouses__title-wrapper-right">
-          <div className="warehouses__wrapper-search">
+    <section className='warehouses'>
+      <div className='warehouses__title-container'>
+        <h1 className='warehouses__title'>Warehouses</h1>
+        <div className='warehouses__title-wrapper-right'>
+          <div className='warehouses__wrapper-search'>
             <input
-              placeholder="Search..."
-              type="search"
-              className="warehouses__search"
+              placeholder='Search...'
+              type='search'
+              className='warehouses__search'
             ></input>
           </div>
-          <div className="warehouses__button-container">
-            <button className="warehouses__button-add">
-              + Add New Warehouse
-            </button>
+          <div className='warehouses__button-container'>
+            <Link to='/inventory/add'>
+              <button className='warehouses__button-add'>
+                + Add New Warehouse
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-      <div className="warehouses__subtitle">
-        <div className="warehouses__details-wrapper-left">
-          <div className="warehouses__warehouse-subtitle">
+      <div className='warehouses__subtitle'>
+        <div className='warehouses__details-wrapper-left'>
+          <div className='warehouses__warehouse-subtitle'>
             WAREHOUSE
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
-                sortTable("warehouseName");
+                sortTable('warehouseName');
               }}
             />
           </div>
-          <div className="warehouses__address-subtitle">
+          <div className='warehouses__address-subtitle'>
             ADDRESS
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
-                sortTable("address");
+                sortTable('address');
               }}
             />
           </div>
         </div>
-        <div className="warehouses__details-wrapper-right">
-          <div className="warehouses__contact-name-subtitle">
+        <div className='warehouses__details-wrapper-right'>
+          <div className='warehouses__contact-name-subtitle'>
             CONTACT NAME
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
-                sortTable("contactName");
+                sortTable('contactName');
               }}
             />
           </div>
-          <div className="warehouses__contact-info-subtitle">
+          <div className='warehouses__contact-info-subtitle'>
             CONTACT INFORMATION
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
-                sortTable("contactInfo");
+                sortTable('contactInfo');
               }}
             />
           </div>
-          <div className="warehouses__actions-subtitle">ACTIONS</div>
+          <div className='warehouses__actions-subtitle'>ACTIONS</div>
         </div>
       </div>
-      <div className="warehouses__container">{warehouseList}</div>
+      <div className='warehouses__container'>{warehouseList}</div>
 
       <div>
         {showModal && (
