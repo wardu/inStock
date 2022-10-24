@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
 import { sortTable } from "../../utils/sortingHelpers.mjs";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
-import { Link } from "react-router-dom";
-
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import "./Warehouses.scss";
 
 import axios from "axios";
@@ -84,6 +83,14 @@ const Warehouses = () => {
   // setState(false);
   // // }
   // };
+
+  const deleteWarehouse = async (selectedWarehouse) => {
+    await axios.delete(
+      `http://localhost:8080/warehouses/${selectedWarehouse.id}`
+    );
+    getWarehouses();
+    showDeleteModal();
+  };
 
   const showDeleteModal = (id) => {
     const warehouse = warehouses.find((warehouse) => {
@@ -267,10 +274,13 @@ const Warehouses = () => {
 
       <div>
         {showModal && (
-          <DeleteWarehouseModal
-            selectedWarehouse={selectedWarehouse}
+          <DeleteItemModal
+            selectedItem={selectedWarehouse.name}
             showDeleteModal={showDeleteModal}
-            getWarehouses={getWarehouses}
+            getInventories={getWarehouses}
+            deleteItem={() => deleteWarehouse(selectedWarehouse)}
+            list="list of warehouses"
+            description="warehouse"
           />
         )}
       </div>

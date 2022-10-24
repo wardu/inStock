@@ -13,7 +13,6 @@ const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [inventoryOrder, setInventoryOrder] = useState(true);
   const [sortItem, setSortItem] = useState(false);
   const [sortCategory, setSortCategory] = useState(false);
   const [sortStatus, setSortStatus] = useState(false);
@@ -28,6 +27,12 @@ const Inventories = () => {
   useEffect(() => {
     getInventories();
   }, []);
+
+  const deleteItem = async (selectedItem) => {
+    await axios.delete(`http://localhost:8080/inventory/${selectedItem.id}`);
+    getInventories();
+    showDeleteModal();
+  };
 
   const showDeleteModal = (id) => {
     const item = inventories.find((item) => {
@@ -221,9 +226,12 @@ const Inventories = () => {
       <div>
         {showModal && (
           <DeleteItemModal
-            selectedItem={selectedItem}
+            selectedItem={selectedItem.itemName}
             showDeleteModal={showDeleteModal}
             getInventories={getInventories}
+            deleteItem={() => deleteItem(selectedItem)}
+            list="inventory list"
+            description="inventory item"
           />
         )}
       </div>

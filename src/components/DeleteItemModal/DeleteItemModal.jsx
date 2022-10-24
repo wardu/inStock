@@ -1,15 +1,20 @@
-import axios from "axios";
 import React from "react";
 import CrossIcon from "../../assets/icons/close-24px.svg";
 import Button from "../Button/Button";
 import "./DeleteItemModal.scss";
 
-const DeleteItemModal = ({ selectedItem, showDeleteModal, getInventories }) => {
-  const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/inventory/${id}`);
-    getInventories();
-    showDeleteModal();
-  };
+const DeleteItemModal = ({
+  selectedItem,
+  showDeleteModal,
+  deleteItem,
+  list,
+  description,
+}) => {
+  //   const deleteItem = async (id) => {
+  //     await axios.delete(`http://localhost:8080/inventory/${id}`);
+  //     getInventories();
+  //     showDeleteModal();
+  //   };
 
   return (
     <section className="delete-modal">
@@ -26,23 +31,25 @@ const DeleteItemModal = ({ selectedItem, showDeleteModal, getInventories }) => {
         <div className="delete-modal__wrapper">
           <div className="delete-modal__copy">
             <h2 className="delete-modal__title">
-              Delete {selectedItem.itemName} inventory item?
+              Delete {selectedItem} {description}?
             </h2>
             <p className="delete-modal__text">
-              Please confirm that you'd like to delete {selectedItem.itemName}{" "}
-              from the inventory list. You won't be able to undo this action.
+              Please confirm that you'd like to delete {selectedItem} from the{" "}
+              {list}. You won't be able to undo this action.
             </p>
           </div>
 
           <div className="delete-modal__buttons">
             <Button
               buttonClass={"button button--cancel"}
-              buttonAction={() => deleteItem(selectedItem.id)}
+              buttonAction={() => {
+                showDeleteModal();
+              }}
               buttonText="Cancel"
             />
             <Button
               buttonClass={"button button--delete"}
-              buttonAction={() => deleteItem(selectedItem.id)}
+              buttonAction={() => deleteItem()}
               buttonText="Delete"
             />
           </div>
