@@ -14,6 +14,7 @@ import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
 import { useParams } from "react-router-dom";
 
+
 import { useEffect } from "react";
 
 function App() {
@@ -42,114 +43,95 @@ function App() {
     getWarehouses();
   }, []);
 
-  const addWarehouse = async (e) => {
-    e.preventDefault();
 
-    if (!e.target.name.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        name: true,
-      }));
-    }
+  // const addWarehouse = async (e) => {
+  //   e.preventDefault();
 
-    if (!e.target.address.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        address: true,
-      }));
-    }
+  //   if (!e.target.name.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       name: true,
+  //     }));
+  //   }
 
-    if (!e.target.city.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        city: true,
-      }));
-    }
+  //   if (!e.target.address.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       address: true,
+  //     }));
+  //   }
 
-    if (!e.target.country.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        country: true,
-      }));
-    }
+  //   if (!e.target.city.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       city: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactName.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactName: true,
-      }));
-    }
+  //   if (!e.target.country.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       country: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactPosition.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactPosition: true,
-      }));
-    }
+  //   if (!e.target.contactName.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactName: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactPhone.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactPhone: true,
-      }));
-    }
+  //   if (!e.target.contactPosition.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactPosition: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactEmail.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactEmail: true,
-      }));
-    }
+  //   if (!e.target.contactPhone.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactPhone: true,
+  //     }));
+  //   }
 
-    if (showError) {
-      return;
-    }
+  //   if (!e.target.contactEmail.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactEmail: true,
+  //     }));
+  //   }
 
-    const newWarehouse = {
-      id: "",
-      name: e.target.name.value,
-      address: e.target.address.value,
-      city: e.target.city.value,
-      country: e.target.country.value,
-      contact: {
-        name: e.target.contactName.value,
-        position: e.target.contactPosition.value,
-        phone: e.target.contactPhone.value,
-        email: e.target.contactEmail.value,
-      },
-    };
+  //   if (showError) {
+  //     return;
+  //   }
 
-    await axios.post("http://localhost:8080/warehouses", newWarehouse);
-  };
+  //   const newWarehouse = {
+  //     id: "",
+  //     name: e.target.name.value,
+  //     address: e.target.address.value,
+  //     city: e.target.city.value,
+  //     country: e.target.country.value,
+  //     contact: {
+  //       name: e.target.contactName.value,
+  //       position: e.target.contactPosition.value,
+  //       phone: e.target.contactPhone.value,
+  //       email: e.target.contactEmail.value,
+  //     },
+  //   };
 
-  const addItem = async (e) => {
-    e.preventDefault();
+  //   await axios.post("http://localhost:8080/warehouses", newWarehouse);
+  // };
 
-    if (showError) {
-      return;
-    }
-
-    const newItem = {
-      id: "",
-      warehouseID: e.target.warehouseID.value,
-      warehouseName: e.target.warehouseName.value,
-      itemName: e.target.itemName.value,
-      description: e.target.description.value,
-      category: e.target.category.value,
-      status: e.target.status.value,
-      quantity: e.target.quantity.value,
-    };
-
-    await axios.post("http://localhost:8080/inventory", newItem);
-  };
 
   /// ----------  Edited Warehouse
 
@@ -246,7 +228,6 @@ function App() {
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     setInventories(response.data);
-    // console.log(response.data);
   };
 
   useEffect(() => {
@@ -259,6 +240,7 @@ function App() {
     });
     setSelectedItem(chosenItem);
   };
+
 
   return (
     <>
@@ -284,21 +266,12 @@ function App() {
               />
             }
           />
+
           <Route
             path="/warehouses/add"
             element={
               <AddWarehouse
-                addWarehouse={addWarehouse}
-                showError={showError}
-                inputErrors={errors}
-              />
-            }
-          />
-          <Route
-            path="/warehouses/add"
-            element={
-              <AddWarehouse
-                addWarehouse={addWarehouse}
+                // addWarehouse={addWarehouse}
                 showError={showError}
                 inputErrors={errors}
               />
@@ -312,6 +285,7 @@ function App() {
                 inputErrors={errors}
                 inventories={inventories}
                 selectItem={selectItem}
+
               />
             }
 
@@ -322,16 +296,9 @@ function App() {
             path="/inventory/:itemId/edit"
             element={<EditItem warehouses={warehouses} />}
           />
-          <Route
-            path="/warehouses/add"
-            element={
-              <AddWarehouse
-                addWarehouse={addWarehouse}
-                showError={showError}
-                inputErrors={errors}
-              />
-            }
-          />
+       
+        
+
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/:itemId" element={<ItemDetails />} />
           {/* <Route path="/inventory/:itemId/edit" element={<EditItem />} /> */}
