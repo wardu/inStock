@@ -30,8 +30,16 @@ const ItemDetails = () => {
           <img src={arrowBack} alt="back" />
         </Link>
         <h1 className="itemDetails__header--name">{itemDetails.itemName}</h1>
-
-        <img className="itemDetails__header--edit" src={editIcon} alt="edit" />
+        <Link
+          className="itemDetails__header--edit"
+          to={`/inventory/${itemDetails.id}/edit`}
+        >
+          <img
+            className="itemDetails__header--edit"
+            src={editIcon}
+            alt="edit"
+          />
+        </Link>
       </div>
       <div className="itemDetails__info">
         <div className="itemDetails__info--first-half">
