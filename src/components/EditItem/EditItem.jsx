@@ -1,4 +1,4 @@
-import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
@@ -9,37 +9,19 @@ import { useEffect, useState } from "react";
 
 const categories = ["Electronics", "Gear", "Apparel", "Accessories", "Health"];
 
-const EditItem = ({
-  editInventory,
-  inputErrors,
-  inventories,
-  selectedItem,
-  warehouses,
-}) => {
+const EditItem = ({ warehouses }) => {
   const navigate = useNavigate();
   const { itemId } = useParams();
+
   const [inventory, setInventory] = useState(null);
-  // const [warehouses, setWarehouses] = useState([]);
-  console.log(warehouses);
-  console.log(inventory?.warehouseName); //? warehouseName is optional
-
-  useEffect(() => {
-    getInventory(itemId).then((response) => {
-      console.log(response.data);
-      setInventory(response.data);
-    });
-  }, []);
-  //Change handlers that allow the input fields to be
-  // inserted into the UseState
-  console.log(inventories);
-
-  // let categories = new Set();
-
-  // inventories.forEach((item) => {
-  //   categories.add(item.category);
-  // });
-
-  console.log(inventories);
+  const [errors, setErrors] = useState({
+    itemName: false,
+    description: false,
+    status: false,
+    quantity: false,
+    warehouseId: false,
+    warehouseName: false,
+  });
 
   const inputChangeHandler = (e) => {
     setInventory({
@@ -48,14 +30,23 @@ const EditItem = ({
     });
   };
 
+  // Ensure the quantity is reset if the user selects out of stock
+  const statusChangeHandler = (e) => {
+    if (e.target.value === "Out of Stock") {
+      setInventory({
+        ...inventory,
+        quantity: 0,
+        status: "Out of Stock",
+      });
+    } else {
+      inputChangeHandler(e);
+    }
+  };
+
   const changeWarehouse = (e) => {
-    console.log(e.target.value);
-    // const warehouse = JSON.parse(e.target.value); //converts the stringiy back into an object
-    // console.log(warehouse);
-    const warehouse = warehouses.find((warehouse) => {
-      //find the warehouse using the ID (id is e.target.value)
-      if (warehouse.id == e.target.value) return true; //
-    });
+    const warehouse = warehouses.find(
+      (warehouse) => warehouse.id === e.target.value
+    );
     setInventory({
       ...inventory, //spread operator, to keep all other values the same, but change other values below
       warehouseName: warehouse.name,
@@ -63,26 +54,81 @@ const EditItem = ({
     });
   };
 
-  //Gets the data to populate the fields upon load
-
-  const getData = async () => {
-    const response = await getInventory(itemId);
-    setInventory(response.data);
-  };
-
   useEffect(() => {
+    const getData = async () => {
+      const response = await getInventory(itemId);
+      setInventory(response.data);
+    };
+
     getData();
-  }, []);
+  }, [itemId]);
+
+  const editInventory = async (e, itemId, inventory) => {
+    e.preventDefault();
+
+    setErrors({
+      itemName: false,
+      description: false,
+      category: false,
+      country: false,
+      status: false,
+      quantity: false,
+    });
+
+    let showError = false;
+
+    if (!inventory.itemName) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        itemName: true,
+      }));
+    }
+
+    if (!inventory.description) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        description: true,
+      }));
+    }
+
+    if (!inventory.category) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        category: true,
+      }));
+    }
+
+    if (!inventory.status) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        status: true,
+      }));
+    }
+
+    if (inventory.status === "In Stock" && !inventory.quantity) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        quantity: true,
+      }));
+    }
+
+    if (showError) {
+      return;
+    }
+
+    await axios.put(`http://localhost:8080/inventory/${itemId}`, inventory);
+
+    navigate("/inventory");
+  };
 
   if (!inventory) {
     return <p>Loading...</p>;
   }
-
-  console.log(inventory.category);
-  console.log(inventory.description);
-  console.log(inventory.itemName);
-  console.log(inventory.status);
-  console.log(inventory.warehouseName);
 
   return (
     <section className="edit-inventory">
@@ -117,6 +163,16 @@ const EditItem = ({
                   onChange={(e) => inputChangeHandler(e)}
                 />
               </div>
+              {errors.itemName && (
+                <div className="form__error">
+                  <img
+                    src={ErrorIcon}
+                    alt="An exclamation mark icon"
+                    className="form__error-icon"
+                  />
+                  <p className="form__error-message">This field is required</p>
+                </div>
+              )}
               <div className="form__question">
                 <label htmlFor="description" className="form__label">
                   Description
@@ -130,6 +186,18 @@ const EditItem = ({
                   value={inventory.description}
                   onChange={(e) => inputChangeHandler(e)}
                 />
+                {errors.description && (
+                  <div className="form__error">
+                    <img
+                      src={ErrorIcon}
+                      alt="An exclamation mark icon"
+                      className="form__error-icon"
+                    />
+                    <p className="form__error-message">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="form__question">
                 <label htmlFor="category" className="form__label">
@@ -141,12 +209,10 @@ const EditItem = ({
                   name="category"
                   id="category"
                   value={inventory.category}
-                  // placeholder={inventory.category}
-                  // defaultValue={inventory.category}
                   onChange={(e) => inputChangeHandler(e)}
                 >
-                  {categories.map((category) => {
-                    return <option>{category}</option>;
+                  {categories.map((category, i) => {
+                    return <option key={i}>{category}</option>;
                   })}
                 </select>
               </div>
@@ -163,12 +229,11 @@ const EditItem = ({
                   <div className="form__question-radio-wrapper">
                     <input
                       type="radio"
-                      checked={inventory.status == "In Stock" ? true : false}
+                      checked={inventory.status === "In Stock" ? true : false}
                       name="status"
                       id="In Stock"
                       value="In Stock"
-                      onChange={(e) => inputChangeHandler(e)}
-                      //onchange change state false
+                      onChange={(e) => statusChangeHandler(e)}
                     />
                     <label htmlFor="In Stock" className="form__label--status">
                       In Stock
@@ -178,12 +243,12 @@ const EditItem = ({
                     <input
                       type="radio"
                       checked={
-                        inventory.status == "Out of Stock" ? true : false
+                        inventory.status === "Out of Stock" ? true : false
                       }
                       name="status"
                       id="Out of Stock"
                       value="Out of Stock"
-                      onChange={(e) => inputChangeHandler(e)}
+                      onChange={(e) => statusChangeHandler(e)}
                     />
                     <label
                       htmlFor="Out of Stock"
@@ -206,13 +271,25 @@ const EditItem = ({
                 </label>
                 <input
                   className="form__input"
-                  type="text"
-                  name="itemName"
-                  id="itemName"
+                  type="number"
+                  name="quantity"
+                  id="quantity"
                   value={inventory.quantity}
                   placeholder="Quantity"
                   onChange={(e) => inputChangeHandler(e)}
                 />
+                {errors.quantity && (
+                  <div className="form__error">
+                    <img
+                      src={ErrorIcon}
+                      alt="An exclamation mark icon"
+                      className="form__error-icon"
+                    />
+                    <p className="form__error-message">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="form__question">
                 <label htmlFor="warehouse" className="form__label">
@@ -228,7 +305,9 @@ const EditItem = ({
                 >
                   {warehouses.map((warehouse) => {
                     return (
-                      <option value={warehouse.id}>{warehouse.name}</option>
+                      <option key={warehouse.id} value={warehouse.id}>
+                        {warehouse.name}
+                      </option>
                     );
                   })}
                   {/* <option>{inventory.warehouseName}</option> */}

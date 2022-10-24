@@ -35,7 +35,6 @@ function App() {
   const getWarehouses = async () => {
     const response = await axios.get("http://localhost:8080/warehouses");
     setWarehouses(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
@@ -239,88 +238,6 @@ function App() {
     setSelectedItem(chosenItem);
   };
 
-  // editInventory
-
-  const editInventory = async (e, itemId, inventory) => {
-    e.preventDefault();
-    console.log("edit");
-
-    if (!inventory.itemName) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        itemName: true,
-      }));
-    }
-
-    // if (!inventory.description) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     description: true,
-    //   }));
-    // }
-
-    // if (!inventory.category) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     category: true,
-    //   }));
-    // }
-
-    // if (!e.target.status.value) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     status: true,
-    //   }));
-    // }
-
-    // if (!e.target.quantity.value) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     quantity: true,
-    //   }));
-    // }
-
-    // if (!e.target.warehouseId.value) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     warehouseId: true,
-    //   }));
-    // }
-
-    // if (!e.target.warehouseName.value) {
-    //   showError = true;
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     warehouseName: true,
-    //   }));
-    // }
-
-    if (showError) {
-      console.log("error");
-      return;
-    }
-
-    // const editedInventory = {
-    //   id: `${inventories.id}}`,
-    //   warehouseId: e.target.warehouseId.value,
-    //   warehouseName: e.target.warehouseName.value,
-    //   itemName: e.target.itemName.value,
-    //   description: e.target.description.value,
-    //   category: e.target.category.value,
-    //   status: e.target.status.value,
-    //   quantity: e.target.quantity.value,
-    // };
-
-    await axios.put(`http://localhost:8080/inventory/${itemId}`, inventory);
-  };
-  //end
-
   return (
     <>
       {/* <ItemDetails /> */}
@@ -369,12 +286,10 @@ function App() {
             path="/inventory"
             element={
               <Inventory
-                editInventory={editInventory}
                 showError={showError}
                 inputErrors={errors}
                 inventories={inventories}
                 selectItem={selectItem}
-                test="test"
               />
             }
 
@@ -383,14 +298,7 @@ function App() {
           <Route path="/inventory/:itemId" element={<ItemDetails />} />
           <Route
             path="/inventory/:itemId/edit"
-            element={
-              <EditItem
-                editInventory={editInventory}
-                selectedItem={selectedItem}
-                inventories={inventories}
-                warehouses={warehouses}
-              />
-            }
+            element={<EditItem warehouses={warehouses} />}
           />
           <Route
             path="/warehouses/add"
