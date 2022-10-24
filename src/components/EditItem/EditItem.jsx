@@ -194,6 +194,26 @@ const EditItem = ({
                   </div>
                 </div>
               </div>
+              <div
+                className={
+                  inventory.status === "Out of Stock"
+                    ? "form__question form__quantity-outstock"
+                    : "form__question form__quantity-instock"
+                }
+              >
+                <label htmlFor="name" className="form__label">
+                  Quantity
+                </label>
+                <input
+                  className="form__input"
+                  type="text"
+                  name="itemName"
+                  id="itemName"
+                  value={inventory.quantity}
+                  placeholder="Quantity"
+                  onChange={(e) => inputChangeHandler(e)}
+                />
+              </div>
               <div className="form__question">
                 <label htmlFor="warehouse" className="form__label">
                   Warehouse

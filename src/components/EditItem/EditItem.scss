@@ -210,6 +210,10 @@
     }
   }
 
+  &__quantity-outstock {
+    display: none !important;
+  }
+
   &__select {
     // all: unset;
     border-radius: 2rem;
