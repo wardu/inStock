@@ -8,13 +8,6 @@ import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
 import './Inventory.scss';
 import axios from 'axios';
 
-// const Inventory = ({ inventories, selectItem, test }) => {
-//   console.log(inventories);
-//   console.log(selectItem);
-//   console.log(test);
-// const [inventories, setInventories] = useState([]);
-// const [selectedItem, setSelectedItem] = useState({});
-
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -24,19 +17,11 @@ const Inventories = () => {
   const getInventories = async () => {
     const response = await axios.get('http://localhost:8080/inventory');
     setInventories(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
     getInventories();
   }, []);
-
-  // const selectItem = (id) => {
-  //   const chosenItem = inventories.find((item) => {
-  //     return item.id === id;
-  //   });
-  //   setSelectedItem(chosenItem);
-  // };
 
   const showDeleteModal = (id) => {
     const item = inventories.find((item) => {
@@ -130,12 +115,7 @@ const Inventories = () => {
           }}
         />
         <Link to={`/inventory/${inventories.id}/edit`}>
-          <img
-            className='inventories__edit-icon'
-            src={editIcon}
-            alt='edit'
-            // onClick={() => selectItem(inventories.id)}
-          />
+          <img className='inventories__edit-icon' src={editIcon} alt='edit' />
         </Link>
       </div>
     </article>
