@@ -246,7 +246,6 @@ function App() {
   const getInventories = async () => {
     const response = await axios.get('http://localhost:8080/inventory');
     setInventories(response.data);
-    // console.log(response.data);
   };
 
   useEffect(() => {
@@ -264,7 +263,6 @@ function App() {
 
   const editInventory = async (e, itemId, inventory) => {
     e.preventDefault();
-    console.log('edit');
 
     if (!inventory.itemName) {
       showError = true;
@@ -323,7 +321,6 @@ function App() {
     // }
 
     if (showError) {
-      console.log('error');
       return;
     }
 
