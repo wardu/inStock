@@ -1,25 +1,24 @@
+import axios from "axios";
 import { default as React, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
-import { Link } from "react-router-dom";
+import { sortItems } from "../../utils/sortingHelpers.mjs";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import "./Inventory.scss";
-import axios from "axios";
-
-// const Inventory = ({ inventories, selectItem, test }) => {
-//   console.log(inventories);
-//   console.log(selectItem);
-//   console.log(test);
-// const [inventories, setInventories] = useState([]);
-// const [selectedItem, setSelectedItem] = useState({});
 
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [inventoryOrder, setInventoryOrder] = useState(true);
+  const [sortItem, setSortItem] = useState(false);
+  const [sortCategory, setSortCategory] = useState(false);
+  const [sortStatus, setSortStatus] = useState(false);
+  const [sortQuantity, setSortQuantity] = useState(false);
+  const [sortWarehouse, setSortWarehouse] = useState(false);
 
   const getInventories = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -44,22 +43,6 @@ const Inventories = () => {
     });
     setSelectedItem(item);
     setShowModal(!showModal);
-  };
-
-  const sortInventory = async (label) => {
-    setInventoryOrder(!inventoryOrder);
-
-    if (inventoryOrder === false) {
-      const response = await axios.get(
-        `http://localhost:8080/inventory?order=descending&label=${label}`
-      );
-      setInventories(response.data);
-    } else if (inventoryOrder === true) {
-      const response = await axios.get(
-        `http://localhost:8080/inventory?order=ascending&label=${label}`
-      );
-      setInventories(response.data);
-    }
   };
 
   const inventoryList = inventories.map((inventories) => (
@@ -129,12 +112,7 @@ const Inventories = () => {
           }}
         />
         <Link to={`/inventory/${inventories.id}/edit`}>
-          <img
-            className="inventories__edit-icon"
-            src={editIcon}
-            alt="edit"
-            // onClick={() => selectItem(inventories.id)}
-          />
+          <img className="inventories__edit-icon" src={editIcon} alt="edit" />
         </Link>
       </div>
     </article>
@@ -167,7 +145,7 @@ const Inventories = () => {
                 src={sortArrow}
                 alt="sort"
                 onClick={() => {
-                  sortInventory("itemName");
+                  sortItems(sortItem, setSortItem, "itemName", setInventories);
                 }}
               />
             </div>
@@ -178,7 +156,12 @@ const Inventories = () => {
                 src={sortArrow}
                 alt="sort"
                 onClick={() => {
-                  sortInventory("category");
+                  sortItems(
+                    sortCategory,
+                    setSortCategory,
+                    "category",
+                    setInventories
+                  );
                 }}
               />
             </div>
@@ -191,7 +174,12 @@ const Inventories = () => {
                 src={sortArrow}
                 alt="sort"
                 onClick={() => {
-                  sortInventory("status");
+                  sortItems(
+                    sortStatus,
+                    setSortStatus,
+                    "status",
+                    setInventories
+                  );
                 }}
               />
             </div>
@@ -202,7 +190,12 @@ const Inventories = () => {
                 src={sortArrow}
                 alt="sort"
                 onClick={() => {
-                  sortInventory("quantity");
+                  sortItems(
+                    sortQuantity,
+                    setSortQuantity,
+                    "quantity",
+                    setInventories
+                  );
                 }}
               />
             </div>
@@ -213,7 +206,12 @@ const Inventories = () => {
                 src={sortArrow}
                 alt="sort"
                 onClick={() => {
-                  sortInventory("warehouseName");
+                  sortItems(
+                    sortWarehouse,
+                    setSortWarehouse,
+                    "warehouseName",
+                    setInventories
+                  );
                 }}
               />
             </div>

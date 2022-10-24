@@ -42,93 +42,93 @@ function App() {
     getWarehouses();
   }, []);
 
-  const addWarehouse = async (e) => {
-    e.preventDefault();
+  // const addWarehouse = async (e) => {
+  //   e.preventDefault();
 
-    if (!e.target.name.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        name: true,
-      }));
-    }
+  //   if (!e.target.name.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       name: true,
+  //     }));
+  //   }
 
-    if (!e.target.address.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        address: true,
-      }));
-    }
+  //   if (!e.target.address.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       address: true,
+  //     }));
+  //   }
 
-    if (!e.target.city.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        city: true,
-      }));
-    }
+  //   if (!e.target.city.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       city: true,
+  //     }));
+  //   }
 
-    if (!e.target.country.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        country: true,
-      }));
-    }
+  //   if (!e.target.country.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       country: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactName.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactName: true,
-      }));
-    }
+  //   if (!e.target.contactName.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactName: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactPosition.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactPosition: true,
-      }));
-    }
+  //   if (!e.target.contactPosition.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactPosition: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactPhone.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactPhone: true,
-      }));
-    }
+  //   if (!e.target.contactPhone.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactPhone: true,
+  //     }));
+  //   }
 
-    if (!e.target.contactEmail.value) {
-      showError = true;
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        contactEmail: true,
-      }));
-    }
+  //   if (!e.target.contactEmail.value) {
+  //     showError = true;
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       contactEmail: true,
+  //     }));
+  //   }
 
-    if (showError) {
-      return;
-    }
+  //   if (showError) {
+  //     return;
+  //   }
 
-    const newWarehouse = {
-      id: "",
-      name: e.target.name.value,
-      address: e.target.address.value,
-      city: e.target.city.value,
-      country: e.target.country.value,
-      contact: {
-        name: e.target.contactName.value,
-        position: e.target.contactPosition.value,
-        phone: e.target.contactPhone.value,
-        email: e.target.contactEmail.value,
-      },
-    };
+  //   const newWarehouse = {
+  //     id: "",
+  //     name: e.target.name.value,
+  //     address: e.target.address.value,
+  //     city: e.target.city.value,
+  //     country: e.target.country.value,
+  //     contact: {
+  //       name: e.target.contactName.value,
+  //       position: e.target.contactPosition.value,
+  //       phone: e.target.contactPhone.value,
+  //       email: e.target.contactEmail.value,
+  //     },
+  //   };
 
-    await axios.post("http://localhost:8080/warehouses", newWarehouse);
-  };
+  //   await axios.post("http://localhost:8080/warehouses", newWarehouse);
+  // };
 
   /// ----------  Edited Warehouse
 
@@ -345,7 +345,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/warehouses/add"
             element={
               <AddWarehouse
@@ -354,12 +354,12 @@ function App() {
                 inputErrors={errors}
               />
             }
-          />
+          /> */}
           <Route
             path="/warehouses/add"
             element={
               <AddWarehouse
-                addWarehouse={addWarehouse}
+                // addWarehouse={addWarehouse}
                 showError={showError}
                 inputErrors={errors}
               />
@@ -392,7 +392,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/warehouses/add"
             element={
               <AddWarehouse
@@ -401,7 +401,7 @@ function App() {
                 inputErrors={errors}
               />
             }
-          />
+          /> */}
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/:itemId" element={<ItemDetails />} />
           {/* <Route path="/inventory/:itemId/edit" element={<EditItem />} /> */}

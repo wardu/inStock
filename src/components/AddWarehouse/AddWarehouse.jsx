@@ -1,12 +1,113 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import Button from "../Button/Button";
 import "./AddWarehouse.scss";
 
-const AddWarehouse = ({ addWarehouse, inputErrors }) => {
+const AddWarehouse = () => {
+  const [errors, setErrors] = useState({
+    name: false,
+    address: false,
+    city: false,
+    country: false,
+    contactName: false,
+    contactPosition: false,
+    contactPhone: false,
+    contactEmail: false,
+  });
   const navigate = useNavigate();
+
+  let showError = false;
+
+  const addWarehouse = async (e) => {
+    e.preventDefault();
+
+    if (!e.target.name.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        name: true,
+      }));
+    }
+
+    if (!e.target.address.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        address: true,
+      }));
+    }
+
+    if (!e.target.city.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        city: true,
+      }));
+    }
+
+    if (!e.target.country.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        country: true,
+      }));
+    }
+
+    if (!e.target.contactName.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactName: true,
+      }));
+    }
+
+    if (!e.target.contactPosition.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactPosition: true,
+      }));
+    }
+
+    if (!e.target.contactPhone.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactPhone: true,
+      }));
+    }
+
+    if (!e.target.contactEmail.value) {
+      showError = true;
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        contactEmail: true,
+      }));
+    }
+
+    if (showError) {
+      return;
+    }
+
+    const newWarehouse = {
+      id: "",
+      name: e.target.name.value,
+      address: e.target.address.value,
+      city: e.target.city.value,
+      country: e.target.country.value,
+      contact: {
+        name: e.target.contactName.value,
+        position: e.target.contactPosition.value,
+        phone: e.target.contactPhone.value,
+        email: e.target.contactEmail.value,
+      },
+    };
+
+    await axios.post("http://localhost:8080/warehouses", newWarehouse);
+  };
 
   return (
     <section className="add-warehouse">
@@ -33,11 +134,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="name"
                   id="name"
                   className={`form__input ${
-                    inputErrors.name && "form__input--error"
+                    errors.name && "form__input--error"
                   }`}
                   placeholder="Warehouse Name"
                 />
-                {inputErrors.name && (
+                {errors.name && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -59,11 +160,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="address"
                   id="address"
                   className={`form__input ${
-                    inputErrors.address && "form__input--error"
+                    errors.address && "form__input--error"
                   }`}
                   placeholder="Street Address"
                 />
-                {inputErrors.address && (
+                {errors.address && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -85,11 +186,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="city"
                   id="city"
                   className={`form__input ${
-                    inputErrors.city && "form__input--error"
+                    errors.city && "form__input--error"
                   }`}
                   placeholder="City"
                 />
-                {inputErrors.city && (
+                {errors.city && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -112,11 +213,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="country"
                   id="country"
                   className={`form__input ${
-                    inputErrors.country && "form__input--error"
+                    errors.country && "form__input--error"
                   }`}
                   placeholder="Country"
                 />
-                {inputErrors.country && (
+                {errors.country && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -144,11 +245,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="contactName"
                   id="contactName"
                   className={`form__input ${
-                    inputErrors.contactName && "form__input--error"
+                    errors.contactName && "form__input--error"
                   }`}
                   placeholder="Contact Name"
                 />
-                {inputErrors.contactName && (
+                {errors.contactName && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -171,11 +272,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="contactPosition"
                   id="contactPosition"
                   className={`form__input ${
-                    inputErrors.contactPosition && "form__input--error"
+                    errors.contactPosition && "form__input--error"
                   }`}
                   placeholder="Position"
                 />
-                {inputErrors.contactPosition && (
+                {errors.contactPosition && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -198,11 +299,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="contactPhone"
                   id="contactPhone"
                   className={`form__input ${
-                    inputErrors.contactPhone && "form__input--error"
+                    errors.contactPhone && "form__input--error"
                   }`}
                   placeholder="Phone Number"
                 />
-                {inputErrors.contactPhone && (
+                {errors.contactPhone && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
@@ -225,11 +326,11 @@ const AddWarehouse = ({ addWarehouse, inputErrors }) => {
                   name="contactEmail"
                   id="contactEmail"
                   className={`form__input ${
-                    inputErrors.contactEmail && "form__input--error"
+                    errors.contactEmail && "form__input--error"
                   }`}
                   placeholder="Email"
                 />
-                {inputErrors.contactEmail && (
+                {errors.contactEmail && (
                   <div className="form__error">
                     <img
                       src={ErrorIcon}
