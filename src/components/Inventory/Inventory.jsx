@@ -109,6 +109,7 @@ const Inventories = () => {
               <div className='inventories__qty-label'>QTY</div>
               <div className='inventories__qty'>{inventories.quantity}</div>
             </div>
+
             <div className='inventories__warehouse-name-container'>
               <div className='inventories__warehouse-name-label'>WAREHOUSE</div>
               <div className='inventories__warehouse-name'>

@@ -136,11 +136,17 @@ const WarehouseDetailsList = () => {
                   src={deleteIcon}
                   alt="delete"
                 />
-                <img
-                  className="warehouseList__edit-icon"
-                  src={editIcon}
-                  alt="edit"
-                />
+
+                <Link to={`/inventory/${item.id}/edit`}>
+                  <img
+                    className="warehouseList__edit-icon"
+                    src={editIcon}
+                    alt="edit"
+                    // onClick={() => {
+                    //   showDeleteModal(item.id);
+                    // }}
+                  />
+                </Link>
               </div>
             </section>
           </article>
