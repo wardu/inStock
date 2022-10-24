@@ -28,6 +28,12 @@ const Inventories = () => {
     getInventories();
   }, []);
 
+  const deleteItem = async (selectedItem) => {
+    await axios.delete(`http://localhost:8080/inventory/${selectedItem.id}`);
+    getInventories();
+    showDeleteModal();
+  };
+
   const showDeleteModal = (id) => {
     const item = inventories.find((item) => {
       return id === item.id;
@@ -220,9 +226,12 @@ const Inventories = () => {
       <div>
         {showModal && (
           <DeleteItemModal
-            selectedItem={selectedItem}
+            selectedItem={selectedItem.itemName}
             showDeleteModal={showDeleteModal}
             getInventories={getInventories}
+            deleteItem={() => deleteItem(selectedItem)}
+            list="inventory list"
+            description="inventory item"
           />
         )}
       </div>

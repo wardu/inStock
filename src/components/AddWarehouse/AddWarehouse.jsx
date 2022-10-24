@@ -106,7 +106,14 @@ const AddWarehouse = () => {
       },
     };
 
-    await axios.post("http://localhost:8080/warehouses", newWarehouse);
+    await axios
+      .post("http://localhost:8080/warehouses", newWarehouse)
+      .then(() => {
+        navigate("/warehouses");
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
