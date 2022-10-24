@@ -112,6 +112,12 @@
       flex-direction: row;
     }
 
+    &--item-name {
+      @include tablet {
+        margin-bottom: 0;
+      }
+    }
+
     &-radio-wrapper {
       display: flex;
       flex-direction: row;

@@ -149,7 +149,7 @@ const EditItem = ({ warehouses }) => {
           <div className="form__container form__container--left">
             <div className="form__inner">
               <h2 className="form__subtitle">Item Details</h2>
-              <div className="form__question">
+              <div className="form__question form__question--item-name">
                 <label htmlFor="name" className="form__label">
                   Item Name
                 </label>
@@ -162,17 +162,20 @@ const EditItem = ({ warehouses }) => {
                   placeholder="Item Name"
                   onChange={(e) => inputChangeHandler(e)}
                 />
+                {errors.itemName && (
+                  <div className="form__error">
+                    <img
+                      src={ErrorIcon}
+                      alt="An exclamation mark icon"
+                      className="form__error-icon"
+                    />
+                    <p className="form__error-message">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </div>
-              {errors.itemName && (
-                <div className="form__error">
-                  <img
-                    src={ErrorIcon}
-                    alt="An exclamation mark icon"
-                    className="form__error-icon"
-                  />
-                  <p className="form__error-message">This field is required</p>
-                </div>
-              )}
+
               <div className="form__question">
                 <label htmlFor="description" className="form__label">
                   Description
