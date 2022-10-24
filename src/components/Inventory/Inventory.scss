@@ -13,8 +13,8 @@
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
 
   @include tablet {
-    width: 85%;
-    top: -86px;
+    width: 90%;
+    top: -9rem;
   }
 
   @include desktop {
@@ -33,11 +33,13 @@
 
   &__title-container {
     padding: 2rem;
+    border-bottom: 1px solid $instock_secondary-grey;
 
     @include tablet {
       display: flex;
       padding: 2rem 3rem;
       justify-content: space-between;
+      height: 9rem;
     }
 
     @include desktop {

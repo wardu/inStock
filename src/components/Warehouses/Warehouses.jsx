@@ -5,6 +5,8 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
 import { sortTable } from "../../utils/sortingHelpers.mjs";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import { Link } from "react-router-dom";
+
 import "./Warehouses.scss";
 
 import axios from "axios";
@@ -98,12 +100,17 @@ const Warehouses = () => {
         <div className="warehouses__details-wrapper-left">
           <div className="warehouses__name-container">
             <div className="warehouses__warehouse-name-label">WAREHOUSE</div>
-
-            <div className="warehouses__warehouse-name">
-              {" "}
-              {warehouses.name}{" "}
-              <img className="warehouses__arrow-icon" src={arrowRight} alt="" />
-            </div>
+            <Link to={`/warehouses/${warehouses.id}`}>
+              <div className="warehouses__warehouse-name">
+                {" "}
+                {warehouses.name}{" "}
+                <img
+                  className="warehouses__arrow-icon"
+                  src={arrowRight}
+                  alt=""
+                />
+              </div>
+            </Link>
           </div>
           <div className="warehouses__address-container">
             <div className="warehouses__warehouse-address-label">ADDRESS</div>
@@ -152,7 +159,13 @@ const Warehouses = () => {
                 showDeleteModal(warehouses.id);
               }}
             />
-            <img className="warehouses__edit-icon" src={editIcon} alt="edit" />
+            <Link to={`/warehouses/${warehouses.id}/edit`}>
+              <img
+                className="warehouses__edit-icon"
+                src={editIcon}
+                alt="edit"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -172,9 +185,11 @@ const Warehouses = () => {
             ></input>
           </div>
           <div className="warehouses__button-container">
-            <button className="warehouses__button-add">
-              + Add New Warehouse
-            </button>
+            <Link to={`/warehouses/add`}>
+              <button className="warehouses__button-add">
+                + Add New Warehouse
+              </button>
+            </Link>
           </div>
         </div>
       </div>
