@@ -118,55 +118,59 @@ const WarehouseDetailsList = () => {
 
         {inventory.map((item) => (
           <article key={item.id} className="warehouseList__inventory">
-            <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header-mobile">
-                INVENTORY ITEM
-              </p>
-              <div className="warehouseList__item-box">
-                <div className="warehouseList__link">
-                  <p className="warehouseList__inventory-item">
-                    {item.itemName}
-                  </p>
-                  <img
-                    className="warehouseList__chevron"
-                    src={arrowRight}
-                    alt=""
-                  />
-                </div>
-              </div>
-            </section>
-
-            <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header-mobile">
-                CATEGORY
-              </p>
-              <p className="WarehouseList__category-item">{item.category}</p>
-            </section>
-
-            <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header-mobile">
-                STATUS
-              </p>
-              <div className="warehouseList__stock">
-                <p
-                  className={
-                    item.status === "In Stock"
-                      ? "warehouseList__pill warehouseList__pill--green"
-                      : "warehouseList__pill warehouseList__pill--red"
-                  }
-                >
-                  {item.status}
+            <div className="warehouseList__inventory-wrapper">
+              <section className="warehouseList__inventory-box">
+                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                  INVENTORY ITEM
                 </p>
-              </div>
-            </section>
+                <div className="warehouseList__item-box">
+                  <div className="warehouseList__link">
+                    <Link to={`/inventory/${item.id}`}>
+                      <p className="warehouseList__inventory-item">
+                        {item.itemName}
+                      </p>
+                    </Link>
+                    <img
+                      className="warehouseList__chevron"
+                      src={arrowRight}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </section>
 
-            <section className="warehouseList__inventory-box">
-              <p className="warehouseList__inventory-title warehouseList__header-mobile">
-                QTY
-              </p>
-              <p className="warehouseList__category-item">{item.quantity}</p>
-            </section>
+              <section className="warehouseList__inventory-box">
+                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                  CATEGORY
+                </p>
+                <p className="warehouseList__category-item">{item.category}</p>
+              </section>
+            </div>
+            <div className="warehouseList__inventory-wrapper">
+              <section className="warehouseList__inventory-box">
+                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                  STATUS
+                </p>
+                <div className="warehouseList__stock">
+                  <p
+                    className={
+                      item.status === "In Stock"
+                        ? "warehouseList__pill warehouseList__pill--green"
+                        : "warehouseList__pill warehouseList__pill--red"
+                    }
+                  >
+                    {item.status}
+                  </p>
+                </div>
+              </section>
 
+              <section className="warehouseList__inventory-box">
+                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+                  QTY
+                </p>
+                <p className="warehouseList__category-item">{item.quantity}</p>
+              </section>
+            </div>
             <section className="warehouseList__inventory-icon">
               <div className="warehouseList__action-icons">
                 <img
