@@ -36,7 +36,6 @@ function App() {
   const getWarehouses = async () => {
     const response = await axios.get('http://localhost:8080/warehouses');
     setWarehouses(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
@@ -427,7 +426,10 @@ function App() {
           <Route path='/inventory' element={<Inventory />} />
           <Route path='/inventory/:itemId' element={<ItemDetails />} />
           {/* <Route path="/inventory/:itemId/edit" element={<EditItem />} /> */}
-          <Route path='/inventory/add' element={<AddItem />} />
+          <Route
+            path='/inventory/add'
+            element={<AddItem warehouses={warehouses} />}
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
