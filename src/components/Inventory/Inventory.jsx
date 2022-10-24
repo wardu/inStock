@@ -112,7 +112,7 @@ const Inventories = () => {
             <div className="inventories__warehouse-name-container">
               <div className="inventories__warehouse-name-label">WAREHOUSE</div>
               <div className="inventories__warehouse-name">
-                {inventories.warehouseName}{" "}
+                {inventories.warehouseName}
               </div>
             </div>
           </div>
