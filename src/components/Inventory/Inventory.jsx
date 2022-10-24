@@ -13,7 +13,6 @@ const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [inventoryOrder, setInventoryOrder] = useState(true);
   const [sortItem, setSortItem] = useState(false);
   const [sortCategory, setSortCategory] = useState(false);
   const [sortStatus, setSortStatus] = useState(false);

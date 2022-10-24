@@ -112,7 +112,18 @@
       padding: 0.5rem 0.5rem 0.7rem 0;
     }
   }
+  &__inventory-wrapper {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
 
+    @include tablet {
+      flex-direction: row;
+      width: 38%;
+      justify-content: space-between;
+    }
+  }
   &__inventory-item {
     color: $instock_primary-blue;
     font-size: 1.5rem;
