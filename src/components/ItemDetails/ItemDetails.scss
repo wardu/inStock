@@ -1,0 +1,156 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixin" as *;
+
+.itemDetails {
+  padding-top: 1rem;
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  z-index: 1;
+  top: -4rem;
+
+  background: #ffffff;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+  @include tablet {
+    width: 1020px;
+    top: -9rem;
+    margin: 0 auto;
+  }
+
+  &-status {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    margin: 0;
+    margin-top: 0.3rem;
+
+    @include tablet {
+      position: relative;
+    }
+  }
+
+  &__header {
+    border-bottom: 1px solid #bdc5d5;
+    @include flex-center;
+    &--back {
+      padding-left: 1.5rem;
+      padding-right: 0.5rem;
+
+      @include tablet {
+        padding-left: 2rem;
+      }
+
+      @include desktop {
+        padding-left: 2.5rem;
+      }
+    }
+
+    &--name {
+      padding: 1.5rem 0rem;
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+      margin: 0;
+
+      @include tablet {
+        padding: 2rem 0rem;
+        font-size: 2.2rem;
+        line-height: 3rem;
+      }
+    }
+
+    &--edit {
+      margin-left: auto;
+      padding-right: 1.5rem;
+
+      @include desktop {
+        padding-right: 2.5rem;
+      }
+    }
+  }
+  &__info {
+    margin: 1rem 1.5rem;
+    box-sizing: border-box;
+
+    @include tablet {
+      margin: 1.5rem 2rem;
+      display: flex;
+    }
+    @include desktop {
+      margin: 1.5rem 2.5rem;
+    }
+
+    &--header {
+      font-size: 1rem;
+      line-height: 1.2rem;
+      color: $instock_secondary-slate;
+      padding-bottom: 0.25rem;
+
+      @include tablet {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+    }
+
+    &--text {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      color: $instock_primary-black;
+      padding-bottom: 1rem;
+
+      @include tablet {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    &--first-half {
+      @include tablet {
+        width: 50%;
+        box-sizing: border-box;
+        padding-right: 2rem;
+        border-right: 1px solid $instock_secondary-grey;
+      }
+
+      @include desktop {
+        padding-right: 2.5rem;
+      }
+    }
+
+    &--second-half {
+      @include tablet {
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 2rem;
+      }
+
+      @include desktop {
+        padding-left: 2.5rem;
+      }
+    }
+  }
+
+  &__stock-container {
+    display: flex;
+  }
+
+  &__quantity {
+    margin-left: 40%;
+  }
+  &__pill {
+    margin: 0;
+    padding: 0.15rem 0.8rem;
+    border-radius: 1.5rem;
+
+    &--red {
+      background-color: rgba(201, 69, 21, 0.07);
+      color: $instock_primary-red;
+    }
+
+    &--green {
+      background-color: rgba(21, 132, 99, 0.07);
+      color: $instock_primary-green;
+    }
+  }
+}

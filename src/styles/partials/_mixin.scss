@@ -1,0 +1,13 @@
+// set this mixin to the base tag
+@mixin arrow-transition {
+  transition: transform 0.3s ease;
+}
+// set this mixin to the :hover tag
+@mixin arrow-hover {
+  transform: translatex(-4px);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}

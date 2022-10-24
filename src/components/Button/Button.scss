@@ -1,0 +1,46 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/breakpoints" as *;
+
+.button {
+  all: unset;
+  width: 16.3rem;
+  height: 3.6rem;
+  border-radius: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: 600;
+
+  @include tablet {
+    width: 7.2rem;
+    height: 3.8rem;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+
+  &--cancel {
+    color: $instock_secondary-slate;
+    border: 1px solid #bdc5d5;
+    margin-right: 1.7rem;
+    background-color: white;
+  }
+
+  &--delete {
+    color: white;
+    background-color: #c94515;
+  }
+
+  &--add {
+    background-color: $instock_primary-blue;
+    color: white;
+    width: 13.5rem;
+  }
+
+  &--form-cancel {
+    width: 13.9rem;
+
+    @include tablet {
+      width: 7.2rem;
+    }
+  }
+}
