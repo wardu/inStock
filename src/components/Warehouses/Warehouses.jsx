@@ -3,17 +3,20 @@ import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
+import { sortTable } from "../../utils/sortingHelpers.mjs";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
-
 import "./Warehouses.scss";
 
 import axios from "axios";
 
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
-  const [warehousesOrder, setWarehousesOrder] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
+  const [sortWarehouse, setsortWarehouse] = useState(false);
+  const [sortContact, setSortContact] = useState(false);
+  const [sortAddress, setSortAddress] = useState(false);
+  const [sortContactInfo, setSortContactInfo] = useState(false);
 
   const getWarehouses = async () => {
     const response = await axios.get("http://localhost:8080/warehouses");
@@ -25,20 +28,61 @@ const Warehouses = () => {
     getWarehouses();
   }, []);
 
-  const sortTable = async (label) => {
-    setWarehousesOrder(!warehousesOrder);
-    if (warehousesOrder === false) {
-      const response = await axios.get(
-        `http://localhost:8080/warehouses?order=descending&label=${label}`
-      );
-      setWarehouses(response.data);
-    } else if (warehousesOrder === true) {
-      const response = await axios.get(
-        `http://localhost:8080/warehouses?order=ascending&label=${label}`
-      );
-      setWarehouses(response.data);
-    }
-  };
+  // const sortTable = async (label) => {
+  //   setWarehousesOrder(!warehousesOrder);
+  //   if (warehousesOrder === false) {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/warehouses?order=descending&label=${label}`
+  //     );
+  //     setWarehouses(response.data);
+  //   } else if (warehousesOrder === true) {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/warehouses?order=ascending&label=${label}`
+  //     );
+  //     setWarehouses(response.data);
+  //   }
+  // };
+
+  // const sortTable = async (label) => {
+  //   if (
+  //     !Object.keys(warehousesOrder).length === 0 ||
+  //     Object.keys(warehousesOrder[0]) !== label
+  //   ) {
+  //     setWarehousesOrder({ label: true });
+  //     const response = await axios.get(
+  //       `http://localhost:8080/warehouses?order=ascending&label=${label}`
+  //     );
+  //     setWarehouses(response.data);
+  //     return;
+  //   }
+  //   setWarehousesOrder({ label: !warehousesOrder.label });
+  //   const response = await axios.get(
+  //     `http://localhost:8080/warehouses?order=${
+  //       warehousesOrder.label === true ? "ascending" : "descending"
+  //     }&label=${label}`
+  //   );
+  //   setWarehouses(response.data);
+  //   return;
+  // };
+
+  // const sortTable = async (state, setState, label) => {
+  //   const response = await axios.get(
+  //     `http://localhost:8080/warehouses?order=${
+  //       state ? "descending" : "ascending"
+  //     }&label=${label}`
+  //   );
+  //   setWarehouses(response.data);
+  //   setState(!state);
+  //   return;
+
+  // else if (warehousesOrder === true) {
+  // const response = await axios.get(
+  //   `http://localhost:8080/warehouses?order=descending&label=${label}`
+  // );
+  // setWarehouses(response.data);
+  // setState(false);
+  // // }
+  // };
 
   const showDeleteModal = (id) => {
     const warehouse = warehouses.find((warehouse) => {
@@ -143,7 +187,12 @@ const Warehouses = () => {
               src={sortArrow}
               alt="sort"
               onClick={() => {
-                sortTable("warehouseName");
+                sortTable(
+                  sortWarehouse,
+                  setsortWarehouse,
+                  "warehouseName",
+                  setWarehouses
+                );
               }}
             />
           </div>
@@ -154,7 +203,12 @@ const Warehouses = () => {
               src={sortArrow}
               alt="sort"
               onClick={() => {
-                sortTable("address");
+                sortTable(
+                  sortAddress,
+                  setSortAddress,
+                  "address",
+                  setWarehouses
+                );
               }}
             />
           </div>
@@ -167,7 +221,12 @@ const Warehouses = () => {
               src={sortArrow}
               alt="sort"
               onClick={() => {
-                sortTable("contactName");
+                sortTable(
+                  sortContact,
+                  setSortContact,
+                  "contactName",
+                  setWarehouses
+                );
               }}
             />
           </div>
@@ -178,7 +237,12 @@ const Warehouses = () => {
               src={sortArrow}
               alt="sort"
               onClick={() => {
-                sortTable("contactInfo");
+                sortTable(
+                  sortContactInfo,
+                  setSortContactInfo,
+                  "contactInfo",
+                  setWarehouses
+                );
               }}
             />
           </div>
