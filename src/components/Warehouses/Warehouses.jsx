@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import arrowRight from "../../assets/icons/chevron_right-24px.svg";
-import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
-import editIcon from "../../assets/icons/edit-24px.svg";
-import sortArrow from "../../assets/icons/sort-24px.svg";
-import { sortTable } from "../../utils/sortingHelpers.mjs";
-import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
-import "./Warehouses.scss";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import arrowRight from '../../assets/icons/chevron_right-24px.svg';
+import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
+import editIcon from '../../assets/icons/edit-24px.svg';
+import sortArrow from '../../assets/icons/sort-24px.svg';
+import { sortTable } from '../../utils/sortingHelpers.mjs';
+import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
+import './Warehouses.scss';
 
-import axios from "axios";
+import axios from 'axios';
 
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
@@ -20,69 +20,13 @@ const Warehouses = () => {
   const [sortContactInfo, setSortContactInfo] = useState(false);
 
   const getWarehouses = async () => {
-    const response = await axios.get("http://localhost:8080/warehouses");
+    const response = await axios.get('http://localhost:8080/warehouses');
     setWarehouses(response.data);
   };
 
   useEffect(() => {
     getWarehouses();
   }, []);
-
-  // const sortTable = async (label) => {
-  //   setWarehousesOrder(!warehousesOrder);
-  //   if (warehousesOrder === false) {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/warehouses?order=descending&label=${label}`
-  //     );
-  //     setWarehouses(response.data);
-  //   } else if (warehousesOrder === true) {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/warehouses?order=ascending&label=${label}`
-  //     );
-  //     setWarehouses(response.data);
-  //   }
-  // };
-
-  // const sortTable = async (label) => {
-  //   if (
-  //     !Object.keys(warehousesOrder).length === 0 ||
-  //     Object.keys(warehousesOrder[0]) !== label
-  //   ) {
-  //     setWarehousesOrder({ label: true });
-  //     const response = await axios.get(
-  //       `http://localhost:8080/warehouses?order=ascending&label=${label}`
-  //     );
-  //     setWarehouses(response.data);
-  //     return;
-  //   }
-  //   setWarehousesOrder({ label: !warehousesOrder.label });
-  //   const response = await axios.get(
-  //     `http://localhost:8080/warehouses?order=${
-  //       warehousesOrder.label === true ? "ascending" : "descending"
-  //     }&label=${label}`
-  //   );
-  //   setWarehouses(response.data);
-  //   return;
-  // };
-
-  // const sortTable = async (state, setState, label) => {
-  //   const response = await axios.get(
-  //     `http://localhost:8080/warehouses?order=${
-  //       state ? "descending" : "ascending"
-  //     }&label=${label}`
-  //   );
-  //   setWarehouses(response.data);
-  //   setState(!state);
-  //   return;
-
-  // else if (warehousesOrder === true) {
-  // const response = await axios.get(
-  //   `http://localhost:8080/warehouses?order=descending&label=${label}`
-  // );
-  // setWarehouses(response.data);
-  // setState(false);
-  // // }
-  // };
 
   const deleteWarehouse = async (selectedWarehouse) => {
     await axios.delete(
@@ -101,75 +45,75 @@ const Warehouses = () => {
   };
 
   const warehouseList = warehouses.map((warehouses) => (
-    <article key={warehouses.id} className="warehouses__details">
-      <div className="warehouses__details-container">
-        <div className="warehouses__details-wrapper-left">
-          <div className="warehouses__name-container">
-            <div className="warehouses__warehouse-name-label">WAREHOUSE</div>
+    <article key={warehouses.id} className='warehouses__details'>
+      <div className='warehouses__details-container'>
+        <div className='warehouses__details-wrapper-left'>
+          <div className='warehouses__name-container'>
+            <div className='warehouses__warehouse-name-label'>WAREHOUSE</div>
             <Link to={`/warehouses/${warehouses.id}`}>
-              <div className="warehouses__warehouse-name">
-                {" "}
-                {warehouses.name}{" "}
+              <div className='warehouses__warehouse-name'>
+                {' '}
+                {warehouses.name}{' '}
                 <img
-                  className="warehouses__arrow-icon"
+                  className='warehouses__arrow-icon'
                   src={arrowRight}
-                  alt=""
+                  alt=''
                 />
               </div>
             </Link>
           </div>
-          <div className="warehouses__address-container">
-            <div className="warehouses__warehouse-address-label">ADDRESS</div>
+          <div className='warehouses__address-container'>
+            <div className='warehouses__warehouse-address-label'>ADDRESS</div>
 
-            <div className="warehouses__warehouse-address">
-              {" "}
+            <div className='warehouses__warehouse-address'>
+              {' '}
               {warehouses.address}, {warehouses.city}, {warehouses.country}
             </div>
           </div>
-          <div className="warehouses__delete-icon-container">
+          <div className='warehouses__delete-icon-container'>
             <img
-              className="warehouses__delete-icon"
+              className='warehouses__delete-icon'
               src={deleteIcon}
-              alt="delete"
+              alt='delete'
               onClick={() => {
                 showDeleteModal(warehouses.id);
               }}
             />
           </div>
         </div>
-        <div className="warehouses__details-wrapper-right">
-          <div className="warehouses__contact-name-container">
-            <div className="warehouses__contact-name-label">CONTACT NAME</div>
-            <div className="warehouses__contact-name">
+        <div className='warehouses__details-wrapper-right'>
+          <div className='warehouses__contact-name-container'>
+            <div className='warehouses__contact-name-label'>CONTACT NAME</div>
+            <div className='warehouses__contact-name'>
               {warehouses.contact.name}
             </div>
           </div>
-          <div className="warehouses__contact-information-container">
-            <div className="warehouses__contact-info-label">
+          <div className='warehouses__contact-information-container'>
+            <div className='warehouses__contact-info-label'>
               CONTACT INFORMATION
             </div>
-            <div className="warehouses__contact-phone">
-              {warehouses.contact.phone}{" "}
+            <div className='warehouses__contact-phone'>
+              {warehouses.contact.phone}{' '}
             </div>
-            <div className="warehouses__contact-email">
+            <div className='warehouses__contact-email'>
               {warehouses.contact.email}
             </div>
           </div>
-          <div className="warehouses__edit-icon-container">
-            {" "}
+          <div className='warehouses__edit-icon-container'>
+            {' '}
             <img
-              className="warehouses__delete-icon-tablet"
+              className='warehouses__delete-icon-tablet'
               src={deleteIcon}
-              alt="delete"
+              alt='delete'
               onClick={() => {
                 showDeleteModal(warehouses.id);
               }}
             />
             <Link to={`/warehouses/${warehouses.id}/edit`}>
               <img
-                className="warehouses__edit-icon"
+                className='warehouses__edit-icon'
                 src={editIcon}
-                alt="edit"
+                alt='edit'
               />
             </Link>
           </div>
@@ -179,98 +123,98 @@ const Warehouses = () => {
   ));
 
   return (
-    <section className="warehouses">
-      <div className="warehouses__title-container">
-        <h1 className="warehouses__title">Warehouses</h1>
-        <div className="warehouses__title-wrapper-right">
-          <div className="warehouses__wrapper-search">
+    <section className='warehouses'>
+      <div className='warehouses__title-container'>
+        <h1 className='warehouses__title'>Warehouses</h1>
+        <div className='warehouses__title-wrapper-right'>
+          <div className='warehouses__wrapper-search'>
             <input
-              placeholder="Search..."
-              type="search"
-              className="warehouses__search"
+              placeholder='Search...'
+              type='search'
+              className='warehouses__search'
             ></input>
           </div>
-          <div className="warehouses__button-container">
+          <div className='warehouses__button-container'>
             <Link to={`/warehouses/add`}>
-              <button className="warehouses__button-add">
+              <button className='warehouses__button-add'>
                 + Add New Warehouse
               </button>
             </Link>
           </div>
         </div>
       </div>
-      <div className="warehouses__subtitle">
-        <div className="warehouses__details-wrapper-left">
-          <div className="warehouses__warehouse-subtitle">
+      <div className='warehouses__subtitle'>
+        <div className='warehouses__details-wrapper-left'>
+          <div className='warehouses__warehouse-subtitle'>
             WAREHOUSE
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
                 sortTable(
                   sortWarehouse,
                   setsortWarehouse,
-                  "warehouseName",
+                  'warehouseName',
                   setWarehouses
                 );
               }}
             />
           </div>
-          <div className="warehouses__address-subtitle">
+          <div className='warehouses__address-subtitle'>
             ADDRESS
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
                 sortTable(
                   sortAddress,
                   setSortAddress,
-                  "address",
+                  'address',
                   setWarehouses
                 );
               }}
             />
           </div>
         </div>
-        <div className="warehouses__details-wrapper-right">
-          <div className="warehouses__contact-name-subtitle">
+        <div className='warehouses__details-wrapper-right'>
+          <div className='warehouses__contact-name-subtitle'>
             CONTACT NAME
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
                 sortTable(
                   sortContact,
                   setSortContact,
-                  "contactName",
+                  'contactName',
                   setWarehouses
                 );
               }}
             />
           </div>
-          <div className="warehouses__contact-info-subtitle">
+          <div className='warehouses__contact-info-subtitle'>
             CONTACT INFORMATION
             <img
-              className="warehouses__sort-icon"
+              className='warehouses__sort-icon'
               src={sortArrow}
-              alt="sort"
+              alt='sort'
               onClick={() => {
                 sortTable(
                   sortContactInfo,
                   setSortContactInfo,
-                  "contactInfo",
+                  'contactInfo',
                   setWarehouses
                 );
               }}
             />
           </div>
-          <div className="warehouses__actions-subtitle">ACTIONS</div>
+          <div className='warehouses__actions-subtitle'>ACTIONS</div>
         </div>
       </div>
-      <div className="warehouses__container">{warehouseList}</div>
+      <div className='warehouses__container'>{warehouseList}</div>
 
       <div>
         {showModal && (
@@ -279,8 +223,8 @@ const Warehouses = () => {
             showDeleteModal={showDeleteModal}
             getInventories={getWarehouses}
             deleteItem={() => deleteWarehouse(selectedWarehouse)}
-            list="list of warehouses"
-            description="warehouse"
+            list='list of warehouses'
+            description='warehouse'
           />
         )}
       </div>
