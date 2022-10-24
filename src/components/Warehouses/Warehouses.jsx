@@ -1,26 +1,52 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortArrow from "../../assets/icons/sort-24px.svg";
+import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
 
 import "./Warehouses.scss";
 
 import axios from "axios";
 
-const Warehouses = ({ warehouses }) => {
-  // const [warehouses, setWarehouses] = useState([]);
+const Warehouses = () => {
+  const [warehouses, setWarehouses] = useState([]);
+  const [warehousesOrder, setWarehousesOrder] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState({});
 
-  // const getWarehouses = async () => {
-  //   const response = await axios.get("http://localhost:8080/warehouses");
-  //   setWarehouses(response.data);
-  //   console.log(response.data);
-  // };
+  const getWarehouses = async () => {
+    const response = await axios.get("http://localhost:8080/warehouses");
+    setWarehouses(response.data);
+    console.log(response.data);
+  };
 
-  // useEffect(() => {
-  //   getWarehouses();
-  // }, []);
+  useEffect(() => {
+    getWarehouses();
+  }, []);
+
+  const sortTable = async (label) => {
+    setWarehousesOrder(!warehousesOrder);
+    if (warehousesOrder === false) {
+      const response = await axios.get(
+        `http://localhost:8080/warehouses?order=descending&label=${label}`
+      );
+      setWarehouses(response.data);
+    } else if (warehousesOrder === true) {
+      const response = await axios.get(
+        `http://localhost:8080/warehouses?order=ascending&label=${label}`
+      );
+      setWarehouses(response.data);
+    }
+  };
+
+  const showDeleteModal = (id) => {
+    const warehouse = warehouses.find((warehouse) => {
+      return id === warehouse.id;
+    });
+    setSelectedWarehouse(warehouse);
+    setShowModal(!showModal);
+  };
 
   const warehouseList = warehouses.map((warehouses) => (
     <article key={warehouses.id} className="warehouses__details">
@@ -48,6 +74,9 @@ const Warehouses = ({ warehouses }) => {
               className="warehouses__delete-icon"
               src={deleteIcon}
               alt="delete"
+              onClick={() => {
+                showDeleteModal(warehouses.id);
+              }}
             />
           </div>
         </div>
@@ -75,6 +104,9 @@ const Warehouses = ({ warehouses }) => {
               className="warehouses__delete-icon-tablet"
               src={deleteIcon}
               alt="delete"
+              onClick={() => {
+                showDeleteModal(warehouses.id);
+              }}
             />
             <img className="warehouses__edit-icon" src={editIcon} alt="edit" />
           </div>
@@ -106,26 +138,64 @@ const Warehouses = ({ warehouses }) => {
         <div className="warehouses__details-wrapper-left">
           <div className="warehouses__warehouse-subtitle">
             WAREHOUSE
-            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+            <img
+              className="warehouses__sort-icon"
+              src={sortArrow}
+              alt="sort"
+              onClick={() => {
+                sortTable("warehouseName");
+              }}
+            />
           </div>
           <div className="warehouses__address-subtitle">
             ADDRESS
-            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+            <img
+              className="warehouses__sort-icon"
+              src={sortArrow}
+              alt="sort"
+              onClick={() => {
+                sortTable("address");
+              }}
+            />
           </div>
         </div>
         <div className="warehouses__details-wrapper-right">
           <div className="warehouses__contact-name-subtitle">
             CONTACT NAME
-            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+            <img
+              className="warehouses__sort-icon"
+              src={sortArrow}
+              alt="sort"
+              onClick={() => {
+                sortTable("contactName");
+              }}
+            />
           </div>
           <div className="warehouses__contact-info-subtitle">
-            CONTACT INFORMATION{" "}
-            <img className="warehouses__sort-icon" src={sortArrow} alt="sort" />
+            CONTACT INFORMATION
+            <img
+              className="warehouses__sort-icon"
+              src={sortArrow}
+              alt="sort"
+              onClick={() => {
+                sortTable("contactInfo");
+              }}
+            />
           </div>
           <div className="warehouses__actions-subtitle">ACTIONS</div>
         </div>
       </div>
       <div className="warehouses__container">{warehouseList}</div>
+
+      <div>
+        {showModal && (
+          <DeleteWarehouseModal
+            selectedWarehouse={selectedWarehouse}
+            showDeleteModal={showDeleteModal}
+            getWarehouses={getWarehouses}
+          />
+        )}
+      </div>
     </section>
   );
 };

@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials//mixin" as *;
 
 .inventories {
   font-size: 1rem;
@@ -123,7 +124,9 @@
       padding: 1.5rem 5rem;
     }
   }
-
+  &__details:hover {
+    background-color: rgba(46, 102, 230, 0.07);
+  }
   &__details-container {
     display: flex;
     padding: 1.5rem 2rem;
@@ -139,9 +142,8 @@
     width: 43%;
 
     @include tablet {
-      display: flex;
+      @include flex-center;
       width: 50%;
-      align-items: center;
     }
   }
 
@@ -155,9 +157,8 @@
     width: 43%;
 
     @include tablet {
-      display: flex;
+      @include flex-center;
       width: 50%;
-      align-items: center;
       justify-content: space-between;
     }
 

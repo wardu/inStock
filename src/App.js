@@ -12,7 +12,6 @@ import ItemDetails from "./components/ItemDetails/ItemDetails";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import Warehouses from "./components/Warehouses/Warehouses";
 import "./styles/partials/_resets.scss";
-import { useParams } from "react-router-dom";
 
 import { useEffect } from "react";
 
@@ -328,10 +327,9 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route
-            path="/warehouses"
-            element={<Warehouses warehouses={warehouses} />}
-          />
+          <Route path="/" element={<Warehouses />} />
+          <Route path="/warehouses" element={<Warehouses />} />
+
           <Route
             path="/warehouses/:warehouseId"
             element={<WarehouseDetails />}
