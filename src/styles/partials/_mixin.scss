@@ -6,3 +6,8 @@
 @mixin arrow-hover {
   transform: translatex(-4px);
 }
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}

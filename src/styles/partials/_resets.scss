@@ -11,6 +11,9 @@ body {
   box-sizing: border-box;
   font-size: 1.6rem;
   font-family: Titillium Web;
+  min-height: 100vh;
+  position: relative;
+  background-color: $instock_secondary-light-grey;
 }
 
 *,
@@ -36,7 +39,4 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
-}
-body {
-  background-color: $instock_secondary-light-grey;
 }
