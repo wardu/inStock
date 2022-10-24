@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/mixin" as *;
 
 .header {
   display: flex;
@@ -14,8 +15,7 @@
 
   &__wrapper {
     background-color: $instock_primary-black;
-    display: flex;
-    align-items: center;
+    @include flex-center;
     flex-direction: column;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
@@ -28,8 +28,7 @@
       bottom: 3.5rem;
       height: 20rem;
       width: 90%;
-      display: flex;
-      align-items: center;
+      @include flex-center;
       justify-content: space-between;
     }
 

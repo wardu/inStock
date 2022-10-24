@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials//mixin" as *;
 
 .inventories {
   font-size: 1rem;
@@ -139,9 +140,8 @@
     width: 43%;
 
     @include tablet {
-      display: flex;
+      @include flex-center;
       width: 50%;
-      align-items: center;
     }
   }
 
@@ -155,9 +155,8 @@
     width: 43%;
 
     @include tablet {
-      display: flex;
+      @include flex-center;
       width: 50%;
-      align-items: center;
       justify-content: space-between;
     }
 
