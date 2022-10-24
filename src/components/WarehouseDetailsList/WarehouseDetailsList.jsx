@@ -73,7 +73,7 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
 
-          <div className="warehouseList__header">
+          <div className="warehouseList__header-action">
             <p className="warehouseList__action-title">ACTIONS</p>
           </div>
         </article>
@@ -102,9 +102,7 @@ const WarehouseDetailsList = () => {
               <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 CATEGORY
               </p>
-              <div>
-                <p className="WarehouseList__category-item">{item.category}</p>
-              </div>
+              <p className="WarehouseList__category-item">{item.category}</p>
             </section>
 
             <section className="warehouseList__inventory-box">
@@ -115,8 +113,8 @@ const WarehouseDetailsList = () => {
                 <p
                   className={
                     item.status === "In Stock"
-                      ? "item-details__pill item-details__pill--green"
-                      : "item-details__pill item-details__pill--red"
+                      ? "warehouseList__pill warehouseList__pill--green"
+                      : "warehouseList__pill warehouseList__pill--red"
                   }
                 >
                   {item.status}
@@ -128,9 +126,7 @@ const WarehouseDetailsList = () => {
               <p className="warehouseList__inventory-title warehouseList__header-mobile">
                 QTY
               </p>
-              <div>
-                <p className="warehouseList__category-item">{item.quantity}</p>
-              </div>
+              <p className="warehouseList__category-item">{item.quantity}</p>
             </section>
 
             <section className="warehouseList__inventory-icon">
