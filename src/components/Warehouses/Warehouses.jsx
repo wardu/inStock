@@ -23,7 +23,6 @@ const Warehouses = () => {
   const getWarehouses = async () => {
     const response = await axios.get("http://localhost:8080/warehouses");
     setWarehouses(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {

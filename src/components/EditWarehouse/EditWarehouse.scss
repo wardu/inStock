@@ -2,6 +2,7 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/mixin" as *;
 
+
 .edit-warehouse {
   position: relative;
   background-color: white;
@@ -33,10 +34,18 @@
       @include arrow-hover;
     }
 
+    & img {
+      @include arrow-transition;
+    }
+    & img:hover {
+      @include arrow-hover;
+    }
+
     @include tablet {
       justify-content: flex-start;
       padding: 3.2rem 3.6rem;
       height: 9rem;
+
     }
   }
 

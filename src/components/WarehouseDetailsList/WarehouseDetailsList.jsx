@@ -3,14 +3,30 @@ import sortArrow from "../../assets/icons/sort-24px.svg";
 import arrowRight from "../../assets/icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import { sortItems } from "../../utils/sortingHelpers.mjs";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 
 const WarehouseDetailsList = () => {
   const [inventory, setInventory] = useState(null);
-
+  const [modal, setModal] = useState(false);
   const { warehouseId } = useParams();
+  const [selectedItem, setSelectedItem] = useState({});
+
+  const [sortInventoryItem, setSortInventoryItem] = useState(false);
+  const [sortCategory, setSortCategory] = useState(false);
+  const [sortStatus, setSortStatus] = useState(false);
+  const [sortQty, setSortQty] = useState(false);
+
+  const showModal = (id) => {
+    const item = inventory.find((item) => {
+      return id === item.id;
+    });
+    setSelectedItem(item);
+    setModal(!modal);
+  };
 
   useEffect(() => {
     const getWarehouseInventory = async () => {
@@ -37,6 +53,14 @@ const WarehouseDetailsList = () => {
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortItems(
+                    sortInventoryItem,
+                    setSortInventoryItem,
+                    "itemName",
+                    setInventory
+                  );
+                }}
               />
             </p>
           </div>
@@ -48,6 +72,14 @@ const WarehouseDetailsList = () => {
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortItems(
+                    sortCategory,
+                    setSortCategory,
+                    "category",
+                    setInventory
+                  );
+                }}
               />
             </p>
           </div>
@@ -58,6 +90,9 @@ const WarehouseDetailsList = () => {
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortItems(sortStatus, setSortStatus, "status", setInventory);
+                }}
               />
             </p>
           </div>
@@ -69,6 +104,9 @@ const WarehouseDetailsList = () => {
                 className="warehouseList__sort-arrows"
                 src={sortArrow}
                 alt="sort"
+                onClick={() => {
+                  sortItems(sortQty, setSortQty, "quantity", setInventory);
+                }}
               />
             </p>
           </div>
@@ -135,6 +173,9 @@ const WarehouseDetailsList = () => {
                   className="warehouseList__delete-icon"
                   src={deleteIcon}
                   alt="delete"
+                  onClick={() => {
+                    showModal(item.id);
+                  }}
                 />
 
                 <Link to={`/inventory/${item.id}/edit`}>
@@ -142,15 +183,21 @@ const WarehouseDetailsList = () => {
                     className="warehouseList__edit-icon"
                     src={editIcon}
                     alt="edit"
-                    // onClick={() => {
-                    //   showDeleteModal(item.id);
-                    // }}
                   />
                 </Link>
               </div>
             </section>
           </article>
         ))}
+        <div>
+          {modal && (
+            <DeleteItemModal
+              selectedItem={selectedItem}
+              showDeleteModal={showModal}
+              // getInventories={getWarehouseInventory}
+            />
+          )}
+        </div>
       </section>
     </div>
   );

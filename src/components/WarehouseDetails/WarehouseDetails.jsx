@@ -38,10 +38,12 @@ const WarehouseDetails = () => {
         </div>
 
         <div className="details__title-edit">
-          <div className="details__edit-wrapper">
-            <img src={edit} alt="edit" className="details__edit-icon " />
-            <p className="details__edit-text">Edit</p>
-          </div>
+          <Link to={`/warehouses/${warehouse.id}/edit`}>
+            <div className="details__edit-wrapper">
+              <img src={edit} alt="edit" className="details__edit-icon " />
+              <p className="details__edit-text">Edit</p>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -49,6 +51,9 @@ const WarehouseDetails = () => {
         <section className="details__address-box">
           <p className="details__address-title">WAREHOUSE ADDRESS:</p>
           <p className="details__address-location">{warehouse.address}</p>
+          <p className="details__address-location">
+            {warehouse.city},{warehouse.country}
+          </p>
         </section>
 
         <article className="details__info">
