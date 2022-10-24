@@ -1,6 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/breakpoints" as *;
-
+@use "../../styles/partials/mixin" as *;
 .warehouseList {
   border: 0.01rem solid $instock_primary-white;
   background-color: $instock_primary-white;
@@ -23,9 +23,8 @@
     @include tablet {
       width: 14.5rem;
       text-align: center;
-      display: flex;
       justify-content: center;
-      align-items: center;
+      @include flex-center;
       background-color: rgba(247, 248, 249, 0.7);
     }
   }
@@ -35,8 +34,7 @@
     width: 5rem;
 
     @include tablet {
-      display: flex;
-      align-items: center;
+      @include flex-center;
       justify-content: center;
       width: 14.5rem;
     }
@@ -74,8 +72,7 @@
     display: block;
 
     @include tablet {
-      display: flex;
-      align-items: center;
+      @include flex-center;
       justify-content: center;
       width: 14.5rem;
     }
@@ -89,8 +86,7 @@
     justify-content: center;
 
     @include tablet {
-      display: flex;
-      align-items: center;
+      @include flex-center;
       justify-content: flex-start;
     }
 
@@ -145,8 +141,7 @@
   }
 
   &__link {
-    display: flex;
-    align-items: center;
+    @include flex-center;
   }
   &__header-mobile {
     @include tablet {
@@ -182,16 +177,14 @@
   &__sub-title {
     @include tablet {
       width: 10rem;
-      display: flex;
-      align-items: center;
+      @include flex-center;
       justify-content: center;
     }
   }
   &__action-title {
     display: none;
     @include tablet {
-      display: flex;
-      align-items: center;
+      @include flex-center;
       color: $instock_secondary-slate;
     }
     @include desktop {
@@ -220,9 +213,8 @@
 
     @include tablet {
       text-align: center;
-      display: flex;
+      @include flex-center;
       justify-content: center;
-      align-items: center;
       background-color: rgba(247, 248, 249, 0.7);
     }
   }
