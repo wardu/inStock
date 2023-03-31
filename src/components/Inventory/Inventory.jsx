@@ -22,7 +22,7 @@ const Inventories = () => {
   const [sortWarehouse, setSortWarehouse] = useState(false);
 
   const getInventories = async () => {
-    const response = await axios.get("${BASE_URL}/inventory");
+    const response = await axios.get(`${BASE_URL}/inventory`);
     setInventories(response.data);
   };
 
