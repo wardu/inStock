@@ -9,6 +9,8 @@ import { sortItems } from "../../utils/sortingHelpers.mjs";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import "./Inventory.scss";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Inventories = () => {
   const [inventories, setInventories] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +22,7 @@ const Inventories = () => {
   const [sortWarehouse, setSortWarehouse] = useState(false);
 
   const getInventories = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
+    const response = await axios.get("${BASE_URL}/inventory");
     setInventories(response.data);
   };
 
@@ -29,7 +31,7 @@ const Inventories = () => {
   }, []);
 
   const deleteItem = async (selectedItem) => {
-    await axios.delete(`http://localhost:8080/inventory/${selectedItem.id}`);
+    await axios.delete(`${BASE_URL}/inventory/${selectedItem.id}`);
     getInventories();
     showDeleteModal();
   };
@@ -43,38 +45,38 @@ const Inventories = () => {
   };
 
   const inventoryList = inventories.map((inventories) => (
-    <article key={inventories.id} className="inventories__details">
-      <div className="inventories__info-container">
-        <div className="inventories__details-container">
-          <div className="inventories__details-wrapper-left">
-            <div className="inventories__name-container">
-              <div className="inventories__inventory-name-label">
+    <article key={inventories.id} className='inventories__details'>
+      <div className='inventories__info-container'>
+        <div className='inventories__details-container'>
+          <div className='inventories__details-wrapper-left'>
+            <div className='inventories__name-container'>
+              <div className='inventories__inventory-name-label'>
                 INVENTORY ITEM
               </div>
               <Link to={`/inventory/${inventories.id}`}>
-                <div className="inventories__inventory-name">
+                <div className='inventories__inventory-name'>
                   {inventories.itemName}
                   <img
-                    className="inventories__arrow-icon"
+                    className='inventories__arrow-icon'
                     src={arrowRight}
-                    alt=""
+                    alt=''
                   />
                 </div>
               </Link>
             </div>
-            <div className="inventories__category-container">
-              <div className="inventories__inventory-category-label">
+            <div className='inventories__category-container'>
+              <div className='inventories__inventory-category-label'>
                 CATEGORY
               </div>
 
-              <div className="inventories__inventory-category">
+              <div className='inventories__inventory-category'>
                 {inventories.category}
               </div>
             </div>
           </div>
-          <div className="inventories__details-wrapper-right">
-            <div className="inventories__status-container">
-              <div className="inventories__status-label">STATUS</div>
+          <div className='inventories__details-wrapper-right'>
+            <div className='inventories__status-container'>
+              <div className='inventories__status-label'>STATUS</div>
               <div
                 className={
                   inventories.status === "In Stock"
@@ -85,78 +87,78 @@ const Inventories = () => {
                 {inventories.status}
               </div>
             </div>
-            <div className="inventories__qty-container">
-              <div className="inventories__qty-label">QTY</div>
-              <div className="inventories__qty">{inventories.quantity}</div>
+            <div className='inventories__qty-container'>
+              <div className='inventories__qty-label'>QTY</div>
+              <div className='inventories__qty'>{inventories.quantity}</div>
             </div>
 
-            <div className="inventories__warehouse-name-container">
-              <div className="inventories__warehouse-name-label">WAREHOUSE</div>
-              <div className="inventories__warehouse-name">
+            <div className='inventories__warehouse-name-container'>
+              <div className='inventories__warehouse-name-label'>WAREHOUSE</div>
+              <div className='inventories__warehouse-name'>
                 {inventories.warehouseName}{" "}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="inventories__icon-container">
+      <div className='inventories__icon-container'>
         {" "}
         <img
-          className="inventories__delete-icon"
+          className='inventories__delete-icon'
           src={deleteIcon}
-          alt="delete"
+          alt='delete'
           onClick={() => {
             showDeleteModal(inventories.id);
           }}
         />
         <Link to={`/inventory/${inventories.id}/edit`}>
-          <img className="inventories__edit-icon" src={editIcon} alt="edit" />
+          <img className='inventories__edit-icon' src={editIcon} alt='edit' />
         </Link>
       </div>
     </article>
   ));
 
   return (
-    <section className="inventories">
-      <div className="inventories__title-container">
-        <h1 className="inventories__title">Inventory</h1>
-        <div className="inventories__title-wrapper-right">
-          <div className="inventories__wrapper-search">
+    <section className='inventories'>
+      <div className='inventories__title-container'>
+        <h1 className='inventories__title'>Inventory</h1>
+        <div className='inventories__title-wrapper-right'>
+          <div className='inventories__wrapper-search'>
             <input
-              placeholder="Search..."
-              type="search"
-              className="inventories__search"
+              placeholder='Search...'
+              type='search'
+              className='inventories__search'
             ></input>
           </div>
-          <div className="inventories__button-container">
-            <Link to="/inventory/add">
-              <button className="inventories__button-add">
+          <div className='inventories__button-container'>
+            <Link to='/inventory/add'>
+              <button className='inventories__button-add'>
                 + Add New Item
               </button>
             </Link>
           </div>
         </div>
       </div>
-      <div className="inventories__subtitle">
-        <div className="inventories__subtitle-container">
-          <div className="inventories__details-wrapper-left">
-            <div className="inventories__inventory-item-subtitle">
+      <div className='inventories__subtitle'>
+        <div className='inventories__subtitle-container'>
+          <div className='inventories__details-wrapper-left'>
+            <div className='inventories__inventory-item-subtitle'>
               INVENTORY ITEM
               <img
-                className="inventories__sort-icon"
+                className='inventories__sort-icon'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(sortItem, setSortItem, "itemName", setInventories);
                 }}
               />
             </div>
-            <div className="inventories__category-subtitle">
+            <div className='inventories__category-subtitle'>
               CATEGORY
               <img
-                className="inventories__sort-icon"
+                className='inventories__sort-icon'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortCategory,
@@ -168,13 +170,13 @@ const Inventories = () => {
               />
             </div>
           </div>
-          <div className="inventories__details-wrapper-right">
-            <div className="inventories__status-subtitle">
+          <div className='inventories__details-wrapper-right'>
+            <div className='inventories__status-subtitle'>
               STATUS
               <img
-                className="inventories__sort-icon"
+                className='inventories__sort-icon'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortStatus,
@@ -185,12 +187,12 @@ const Inventories = () => {
                 }}
               />
             </div>
-            <div className="inventories__qty-subtitle">
+            <div className='inventories__qty-subtitle'>
               QTY{" "}
               <img
-                className="inventories__sort-icon"
+                className='inventories__sort-icon'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortQuantity,
@@ -201,12 +203,12 @@ const Inventories = () => {
                 }}
               />
             </div>
-            <div className="inventories__warehouse-subtitle">
+            <div className='inventories__warehouse-subtitle'>
               WAREHOUSE{" "}
               <img
-                className="inventories__sort-icon"
+                className='inventories__sort-icon'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortWarehouse,
@@ -219,10 +221,10 @@ const Inventories = () => {
             </div>
           </div>
         </div>
-        <div className="inventories__actions-subtitle">ACTIONS</div>
+        <div className='inventories__actions-subtitle'>ACTIONS</div>
       </div>
 
-      <div className="inventories__container">{inventoryList}</div>
+      <div className='inventories__container'>{inventoryList}</div>
       <div>
         {showModal && (
           <DeleteItemModal
@@ -230,8 +232,8 @@ const Inventories = () => {
             showDeleteModal={showDeleteModal}
             getInventories={getInventories}
             deleteItem={() => deleteItem(selectedItem)}
-            list="inventory list"
-            description="inventory item"
+            list='inventory list'
+            description='inventory item'
           />
         )}
       </div>

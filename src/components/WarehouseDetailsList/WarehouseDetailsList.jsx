@@ -9,6 +9,8 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const WarehouseDetailsList = () => {
   const [inventory, setInventory] = useState(null);
   const [modal, setModal] = useState(false);
@@ -31,7 +33,7 @@ const WarehouseDetailsList = () => {
   useEffect(() => {
     const getWarehouseInventory = async () => {
       const response = await axios.get(
-        `http://localhost:8080/warehouses/${warehouseId}/inventory`
+        `${BASE_URL}/warehouses/${warehouseId}/inventory`
       );
       setInventory(response.data);
     };
@@ -44,15 +46,15 @@ const WarehouseDetailsList = () => {
   }
   return (
     <div>
-      <section className="warehouseList">
-        <article className="warehouseList__tablet-heading">
-          <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+      <section className='warehouseList'>
+        <article className='warehouseList__tablet-heading'>
+          <div className='warehouseList__header'>
+            <p className='warehouseList__inventory-title'>
               INVENTORY ITEM
               <img
-                className="warehouseList__sort-arrows"
+                className='warehouseList__sort-arrows'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortInventoryItem,
@@ -65,13 +67,13 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
 
-          <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+          <div className='warehouseList__header'>
+            <p className='warehouseList__inventory-title'>
               CATEGORY
               <img
-                className="warehouseList__sort-arrows"
+                className='warehouseList__sort-arrows'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(
                     sortCategory,
@@ -83,13 +85,13 @@ const WarehouseDetailsList = () => {
               />
             </p>
           </div>
-          <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+          <div className='warehouseList__header'>
+            <p className='warehouseList__inventory-title'>
               STATUS
               <img
-                className="warehouseList__sort-arrows"
+                className='warehouseList__sort-arrows'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(sortStatus, setSortStatus, "status", setInventory);
                 }}
@@ -97,13 +99,13 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
 
-          <div className="warehouseList__header">
-            <p className="warehouseList__inventory-title">
+          <div className='warehouseList__header'>
+            <p className='warehouseList__inventory-title'>
               QTY
               <img
-                className="warehouseList__sort-arrows"
+                className='warehouseList__sort-arrows'
                 src={sortArrow}
-                alt="sort"
+                alt='sort'
                 onClick={() => {
                   sortItems(sortQty, setSortQty, "quantity", setInventory);
                 }}
@@ -111,47 +113,47 @@ const WarehouseDetailsList = () => {
             </p>
           </div>
 
-          <div className="warehouseList__header-action">
-            <p className="warehouseList__action-title">ACTIONS</p>
+          <div className='warehouseList__header-action'>
+            <p className='warehouseList__action-title'>ACTIONS</p>
           </div>
         </article>
 
         {inventory.map((item) => (
-          <article key={item.id} className="warehouseList__inventory">
-            <div className="warehouseList__inventory-wrapper">
-              <section className="warehouseList__inventory-box">
-                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+          <article key={item.id} className='warehouseList__inventory'>
+            <div className='warehouseList__inventory-wrapper'>
+              <section className='warehouseList__inventory-box'>
+                <p className='warehouseList__inventory-title warehouseList__header-mobile'>
                   INVENTORY ITEM
                 </p>
-                <div className="warehouseList__item-box">
-                  <div className="warehouseList__link">
+                <div className='warehouseList__item-box'>
+                  <div className='warehouseList__link'>
                     <Link to={`/inventory/${item.id}`}>
-                      <p className="warehouseList__inventory-item">
+                      <p className='warehouseList__inventory-item'>
                         {item.itemName}
                       </p>
                     </Link>
                     <img
-                      className="warehouseList__chevron"
+                      className='warehouseList__chevron'
                       src={arrowRight}
-                      alt=""
+                      alt=''
                     />
                   </div>
                 </div>
               </section>
 
-              <section className="warehouseList__inventory-box">
-                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+              <section className='warehouseList__inventory-box'>
+                <p className='warehouseList__inventory-title warehouseList__header-mobile'>
                   CATEGORY
                 </p>
-                <p className="warehouseList__category-item">{item.category}</p>
+                <p className='warehouseList__category-item'>{item.category}</p>
               </section>
             </div>
-            <div className="warehouseList__inventory-wrapper">
-              <section className="warehouseList__inventory-box">
-                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+            <div className='warehouseList__inventory-wrapper'>
+              <section className='warehouseList__inventory-box'>
+                <p className='warehouseList__inventory-title warehouseList__header-mobile'>
                   STATUS
                 </p>
-                <div className="warehouseList__stock">
+                <div className='warehouseList__stock'>
                   <p
                     className={
                       item.status === "In Stock"
@@ -164,19 +166,19 @@ const WarehouseDetailsList = () => {
                 </div>
               </section>
 
-              <section className="warehouseList__inventory-box">
-                <p className="warehouseList__inventory-title warehouseList__header-mobile">
+              <section className='warehouseList__inventory-box'>
+                <p className='warehouseList__inventory-title warehouseList__header-mobile'>
                   QTY
                 </p>
-                <p className="warehouseList__category-item">{item.quantity}</p>
+                <p className='warehouseList__category-item'>{item.quantity}</p>
               </section>
             </div>
-            <section className="warehouseList__inventory-icon">
-              <div className="warehouseList__action-icons">
+            <section className='warehouseList__inventory-icon'>
+              <div className='warehouseList__action-icons'>
                 <img
-                  className="warehouseList__delete-icon"
+                  className='warehouseList__delete-icon'
                   src={deleteIcon}
-                  alt="delete"
+                  alt='delete'
                   onClick={() => {
                     showModal(item.id);
                   }}
@@ -184,9 +186,9 @@ const WarehouseDetailsList = () => {
 
                 <Link to={`/inventory/${item.id}/edit`}>
                   <img
-                    className="warehouseList__edit-icon"
+                    className='warehouseList__edit-icon'
                     src={editIcon}
-                    alt="edit"
+                    alt='edit'
                   />
                 </Link>
               </div>
@@ -198,7 +200,6 @@ const WarehouseDetailsList = () => {
             <DeleteItemModal
               selectedItem={selectedItem}
               showDeleteModal={showModal}
-              // getInventories={getWarehouseInventory}
             />
           )}
         </div>

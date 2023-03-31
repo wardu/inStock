@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import arrowRight from '../../assets/icons/chevron_right-24px.svg';
-import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
-import editIcon from '../../assets/icons/edit-24px.svg';
-import sortArrow from '../../assets/icons/sort-24px.svg';
-import { sortTable } from '../../utils/sortingHelpers.mjs';
-import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
-import './Warehouses.scss';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import arrowRight from "../../assets/icons/chevron_right-24px.svg";
+import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
+import editIcon from "../../assets/icons/edit-24px.svg";
+import sortArrow from "../../assets/icons/sort-24px.svg";
+import { sortTable } from "../../utils/sortingHelpers.mjs";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
+import "./Warehouses.scss";
 
-import axios from 'axios';
+import axios from "axios";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
@@ -20,7 +22,7 @@ const Warehouses = () => {
   const [sortContactInfo, setSortContactInfo] = useState(false);
 
   const getWarehouses = async () => {
-    const response = await axios.get('http://localhost:8080/warehouses');
+    const response = await axios.get(`${BASE_URL}/warehouses`);
     setWarehouses(response.data);
   };
 
@@ -29,9 +31,7 @@ const Warehouses = () => {
   }, []);
 
   const deleteWarehouse = async (selectedWarehouse) => {
-    await axios.delete(
-      `http://localhost:8080/warehouses/${selectedWarehouse.id}`
-    );
+    await axios.delete(`${BASE_URL}/warehouses/${selectedWarehouse.id}`);
     getWarehouses();
     showDeleteModal();
   };
@@ -52,8 +52,8 @@ const Warehouses = () => {
             <div className='warehouses__warehouse-name-label'>WAREHOUSE</div>
             <Link to={`/warehouses/${warehouses.id}`}>
               <div className='warehouses__warehouse-name'>
-                {' '}
-                {warehouses.name}{' '}
+                {" "}
+                {warehouses.name}{" "}
                 <img
                   className='warehouses__arrow-icon'
                   src={arrowRight}
@@ -66,7 +66,7 @@ const Warehouses = () => {
             <div className='warehouses__warehouse-address-label'>ADDRESS</div>
 
             <div className='warehouses__warehouse-address'>
-              {' '}
+              {" "}
               {warehouses.address}, {warehouses.city}, {warehouses.country}
             </div>
           </div>
@@ -93,14 +93,14 @@ const Warehouses = () => {
               CONTACT INFORMATION
             </div>
             <div className='warehouses__contact-phone'>
-              {warehouses.contact.phone}{' '}
+              {warehouses.contact.phone}{" "}
             </div>
             <div className='warehouses__contact-email'>
               {warehouses.contact.email}
             </div>
           </div>
           <div className='warehouses__edit-icon-container'>
-            {' '}
+            {" "}
             <img
               className='warehouses__delete-icon-tablet'
               src={deleteIcon}
@@ -155,7 +155,7 @@ const Warehouses = () => {
                 sortTable(
                   sortWarehouse,
                   setsortWarehouse,
-                  'warehouseName',
+                  "warehouseName",
                   setWarehouses
                 );
               }}
@@ -171,7 +171,7 @@ const Warehouses = () => {
                 sortTable(
                   sortAddress,
                   setSortAddress,
-                  'address',
+                  "address",
                   setWarehouses
                 );
               }}
@@ -189,7 +189,7 @@ const Warehouses = () => {
                 sortTable(
                   sortContact,
                   setSortContact,
-                  'contactName',
+                  "contactName",
                   setWarehouses
                 );
               }}
@@ -205,7 +205,7 @@ const Warehouses = () => {
                 sortTable(
                   sortContactInfo,
                   setSortContactInfo,
-                  'contactInfo',
+                  "contactInfo",
                   setWarehouses
                 );
               }}

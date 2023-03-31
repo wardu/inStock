@@ -1,8 +1,9 @@
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const sortTable = async (state, setState, label, setWarehouses) => {
   const response = await axios.get(
-    `http://localhost:8080/warehouses?order=${
+    `${BASE_URL}/warehouses?order=${
       state ? "descending" : "ascending"
     }&label=${label}`
   );
@@ -13,7 +14,7 @@ const sortTable = async (state, setState, label, setWarehouses) => {
 
 const sortItems = async (state, setState, label, setInventories) => {
   const response = await axios.get(
-    `http://localhost:8080/inventory?order=${
+    `${BASE_URL}/inventory?order=${
       state ? "descending" : "ascending"
     }&label=${label}`
   );

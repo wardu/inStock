@@ -4,13 +4,16 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const ItemDetails = () => {
   const [itemDetails, setItemDetails] = useState(null);
   const { itemId } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/inventory/${itemId}`)
+      .get(`${BASE_URL}/inventory/${itemId}`)
       .then((res) => {
         setItemDetails(res.data);
       })
@@ -24,34 +27,34 @@ const ItemDetails = () => {
   }
 
   return (
-    <div className="itemDetails">
-      <div className="itemDetails__header">
-        <Link to="/inventory" className="itemDetails__header--back">
-          <img src={arrowBack} alt="back" />
+    <div className='itemDetails'>
+      <div className='itemDetails__header'>
+        <Link to='/inventory' className='itemDetails__header--back'>
+          <img src={arrowBack} alt='back' />
         </Link>
-        <h1 className="itemDetails__header--name">{itemDetails.itemName}</h1>
+        <h1 className='itemDetails__header--name'>{itemDetails.itemName}</h1>
         <Link
-          className="itemDetails__header--edit"
+          className='itemDetails__header--edit'
           to={`/inventory/${itemDetails.id}/edit`}
         >
           <img
-            className="itemDetails__header--edit"
+            className='itemDetails__header--edit'
             src={editIcon}
-            alt="edit"
+            alt='edit'
           />
         </Link>
       </div>
-      <div className="itemDetails__info">
-        <div className="itemDetails__info--first-half">
-          <h3 className="itemDetails__info--header">ITEM DESCRIPTION</h3>
-          <p className="itemDetails__info--text">{itemDetails.description}</p>
-          <h3 className="itemDetails__info--header">CATEGORY</h3>
-          <p className="itemDetails__info--text">{itemDetails.category}</p>
+      <div className='itemDetails__info'>
+        <div className='itemDetails__info--first-half'>
+          <h3 className='itemDetails__info--header'>ITEM DESCRIPTION</h3>
+          <p className='itemDetails__info--text'>{itemDetails.description}</p>
+          <h3 className='itemDetails__info--header'>CATEGORY</h3>
+          <p className='itemDetails__info--text'>{itemDetails.category}</p>
         </div>
-        <div className="itemDetails__info--second-half">
-          <div className="itemDetails__stock-container">
-            <div className="itemDetails__status">
-              <h3 className="itemDetails__info--header">STATUS</h3>
+        <div className='itemDetails__info--second-half'>
+          <div className='itemDetails__stock-container'>
+            <div className='itemDetails__status'>
+              <h3 className='itemDetails__info--header'>STATUS</h3>
               <p
                 className={
                   itemDetails.status === "In Stock"
@@ -62,13 +65,13 @@ const ItemDetails = () => {
                 {itemDetails.status}
               </p>
             </div>
-            <div className="itemDetails__quantity">
-              <h3 className="itemDetails__info--header">QUANTITY</h3>
-              <p className="itemDetails__info--text">{itemDetails.quantity}</p>
+            <div className='itemDetails__quantity'>
+              <h3 className='itemDetails__info--header'>QUANTITY</h3>
+              <p className='itemDetails__info--text'>{itemDetails.quantity}</p>
             </div>
           </div>
-          <h3 className="itemDetails__info--header">WAREHOUSE</h3>
-          <p className="itemDetails__info--text">{itemDetails.warehouseName}</p>
+          <h3 className='itemDetails__info--header'>WAREHOUSE</h3>
+          <p className='itemDetails__info--text'>{itemDetails.warehouseName}</p>
         </div>
       </div>
     </div>

@@ -6,6 +6,8 @@ import ErrorIcon from "../../assets/icons/error-24px.svg";
 import "./AddItem.scss";
 import { useState } from "react";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 //   -------------------- starts here
 const AddItem = ({ warehouses }) => {
   const navigate = useNavigate();
@@ -106,7 +108,7 @@ const AddItem = ({ warehouses }) => {
       id: inventory.warehouseID,
     };
 
-    await axios.post("http://localhost:8080/inventory", newInventory);
+    await axios.post("${BASE_URL}/inventory", newInventory);
 
     navigate("/inventory");
   };
@@ -138,83 +140,83 @@ const AddItem = ({ warehouses }) => {
   };
 
   return (
-    <section className="add-inventory">
-      <div className="add-inventory__title-wrapper">
+    <section className='add-inventory'>
+      <div className='add-inventory__title-wrapper'>
         <img
           src={BackArrow}
-          alt=""
-          className="add-inventory__back-arrow"
+          alt=''
+          className='add-inventory__back-arrow'
           onClick={() => navigate("/inventory")}
         />
-        <h1 className="add-inventory__title">Add New Inventory Item</h1>
+        <h1 className='add-inventory__title'>Add New Inventory Item</h1>
       </div>
 
-      <form className="form" onSubmit={(e) => addInventory(e, inventory)}>
-        <div className="form__outer">
-          <div className="form__container form__container--left">
-            <div className="form__inner">
-              <h2 className="form__subtitle">Item Details</h2>
-              <div className="form__question">
-                <label htmlFor="name" className="form__label">
+      <form className='form' onSubmit={(e) => addInventory(e, inventory)}>
+        <div className='form__outer'>
+          <div className='form__container form__container--left'>
+            <div className='form__inner'>
+              <h2 className='form__subtitle'>Item Details</h2>
+              <div className='form__question'>
+                <label htmlFor='name' className='form__label'>
                   Item Name
                 </label>
 
                 <input
-                  type="text"
-                  name="itemName"
-                  id="itemName"
+                  type='text'
+                  name='itemName'
+                  id='itemName'
                   className={`form__input ${
                     errors.itemName && "form__input--error"
                   }`}
-                  placeholder="Item Name"
+                  placeholder='Item Name'
                   value={inventory.itemName}
                   onChange={(e) => inputChangeHandler(e)}
                 />
                 {errors.itemName && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="form__question">
-                <label htmlFor="description" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='description' className='form__label'>
                   Description
                 </label>
                 <textarea
-                  type="text"
-                  name="description"
-                  id="description"
+                  type='text'
+                  name='description'
+                  id='description'
                   className={` form__textarea ${
                     errors.description && "form__input--error"
                   }`}
-                  placeholder="Please enter a brief description..."
+                  placeholder='Please enter a brief description...'
                   value={inventory.description}
                   onChange={(e) => inputChangeHandler(e)}
                 />
                 {errors.description && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="form__question">
-                <label htmlFor="category" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='category' className='form__label'>
                   Category
                 </label>
 
@@ -222,11 +224,11 @@ const AddItem = ({ warehouses }) => {
                   className={`form__select ${
                     errors.category && "form__input--error"
                   }`}
-                  name="category"
+                  name='category'
                   value={inventory.category}
                   onChange={(e) => inputChangeHandler(e)}
                 >
-                  <option className="form__option-placeholder">
+                  <option className='form__option-placeholder'>
                     Please select
                   </option>
                   {categories.map((category, i) => {
@@ -235,13 +237,13 @@ const AddItem = ({ warehouses }) => {
                 </select>
 
                 {errors.category && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
@@ -250,69 +252,69 @@ const AddItem = ({ warehouses }) => {
             </div>
           </div>
 
-          <div className="form__container">
-            <div className="form__inner">
-              <h2 className="form__subtitle">Item Availability</h2>
-              <div className="form__question">
-                <label htmlFor="contactName" className="form__label">
+          <div className='form__container'>
+            <div className='form__inner'>
+              <h2 className='form__subtitle'>Item Availability</h2>
+              <div className='form__question'>
+                <label htmlFor='contactName' className='form__label'>
                   Status
                 </label>
-                <div className="form__question--status">
-                  <div className="form__question-radio-wrapper">
+                <div className='form__question--status'>
+                  <div className='form__question-radio-wrapper'>
                     <input
-                      type="radio"
+                      type='radio'
                       checked={inventory.status === "In Stock" ? true : false}
-                      name="status"
-                      id="In Stock"
-                      value="In Stock"
+                      name='status'
+                      id='In Stock'
+                      value='In Stock'
                       onChange={(e) => inputChangeHandler(e)}
                       //onchange change state false
                     />
-                    <label htmlFor="In Stock" className="form__label--status">
+                    <label htmlFor='In Stock' className='form__label--status'>
                       In Stock
                     </label>
                   </div>
-                  <div className="form__question-radio-wrapper">
+                  <div className='form__question-radio-wrapper'>
                     <input
-                      type="radio"
+                      type='radio'
                       checked={
                         inventory.status === "Out of Stock" ? true : false
                       }
-                      name="status"
-                      id="Out of Stock"
-                      value="Out of Stock"
+                      name='status'
+                      id='Out of Stock'
+                      value='Out of Stock'
                       onChange={(e) => inputChangeHandler(e)}
                     />
                     <label
-                      htmlFor="Out of Stock"
-                      className="form__label--status"
+                      htmlFor='Out of Stock'
+                      className='form__label--status'
                     >
                       Out of Stock
                     </label>
                   </div>
                 </div>
                 {inventory.status === "In Stock" && (
-                  <div className="form__question--quantity">
-                    <div className="form__question">
-                      <label htmlFor="quantity" className="form__label">
+                  <div className='form__question--quantity'>
+                    <div className='form__question'>
+                      <label htmlFor='quantity' className='form__label'>
                         Quantity
                       </label>
                       <input
-                        type="number"
-                        name="quantity"
-                        id="quantity"
+                        type='number'
+                        name='quantity'
+                        id='quantity'
                         value={inventory.quantity}
                         onChange={(e) => inputChangeHandler(e)}
-                        className="form__input"
+                        className='form__input'
                       />
                       {errors.quantity && (
-                        <div className="form__error">
+                        <div className='form__error'>
                           <img
                             src={ErrorIcon}
-                            alt="An exclamation mark icon"
-                            className="form__error-icon"
+                            alt='An exclamation mark icon'
+                            className='form__error-icon'
                           />
-                          <p className="form__error-message">
+                          <p className='form__error-message'>
                             This field is required
                           </p>
                         </div>
@@ -321,32 +323,32 @@ const AddItem = ({ warehouses }) => {
                   </div>
                 )}
                 {errors.status && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="form__question">
-                <label htmlFor="warehouse" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='warehouse' className='form__label'>
                   Warehouse
                 </label>
                 <select
-                  className="form__select"
-                  type="select"
-                  name="warehouse"
-                  id="warehouse"
+                  className='form__select'
+                  type='select'
+                  name='warehouse'
+                  id='warehouse'
                   value={inventory.warehouseID}
                   onChange={changeWarehouse}
                 >
-                  <option className="form__option-placeholder">
+                  <option className='form__option-placeholder'>
                     {" "}
                     Please select
                   </option>
@@ -359,13 +361,13 @@ const AddItem = ({ warehouses }) => {
                   })}
                 </select>
                 {errors.warehouse && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
@@ -375,14 +377,14 @@ const AddItem = ({ warehouses }) => {
           </div>
         </div>
 
-        <div className="form__buttons">
+        <div className='form__buttons'>
           <button
-            className="form__button form__button--cancel"
+            className='form__button form__button--cancel'
             onClick={() => navigate(`/warehouses`)}
           >
             Cancel
           </button>
-          <button className="form__button form__button--add">+ Add Item</button>
+          <button className='form__button form__button--add'>+ Add Item</button>
         </div>
       </form>
     </section>

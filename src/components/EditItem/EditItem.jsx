@@ -7,6 +7,8 @@ import { useParams } from "react-router";
 import { getInventory } from "../../utils/apiHelpers.mjs";
 import { useEffect, useState } from "react";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const categories = ["Electronics", "Gear", "Apparel", "Accessories", "Health"];
 
 const EditItem = ({ warehouses }) => {
@@ -121,7 +123,7 @@ const EditItem = ({ warehouses }) => {
       return;
     }
 
-    await axios.put(`http://localhost:8080/inventory/${itemId}`, inventory);
+    await axios.put(`${BASE_URL}/inventory/${itemId}`, inventory);
 
     navigate("/inventory");
   };
@@ -131,86 +133,86 @@ const EditItem = ({ warehouses }) => {
   }
 
   return (
-    <section className="edit-inventory">
-      <div className="edit-inventory__title-wrapper">
+    <section className='edit-inventory'>
+      <div className='edit-inventory__title-wrapper'>
         <img
           src={BackArrow}
-          alt=""
-          className="edit-inventory__back-arrow"
+          alt=''
+          className='edit-inventory__back-arrow'
           onClick={() => navigate("/inventory")}
         />
-        <h1 className="edit-inventory__title">Edit Inventory Item</h1>
+        <h1 className='edit-inventory__title'>Edit Inventory Item</h1>
       </div>
       <form
-        className="form"
+        className='form'
         onSubmit={(e) => editInventory(e, itemId, inventory)}
       >
-        <div className="form__outer">
-          <div className="form__container form__container--left">
-            <div className="form__inner">
-              <h2 className="form__subtitle">Item Details</h2>
-              <div className="form__question form__question--item-name">
-                <label htmlFor="name" className="form__label">
+        <div className='form__outer'>
+          <div className='form__container form__container--left'>
+            <div className='form__inner'>
+              <h2 className='form__subtitle'>Item Details</h2>
+              <div className='form__question form__question--item-name'>
+                <label htmlFor='name' className='form__label'>
                   Item Name
                 </label>
                 <input
-                  className="form__input"
-                  type="text"
-                  name="itemName"
-                  id="itemName"
+                  className='form__input'
+                  type='text'
+                  name='itemName'
+                  id='itemName'
                   value={inventory.itemName}
-                  placeholder="Item Name"
+                  placeholder='Item Name'
                   onChange={(e) => inputChangeHandler(e)}
                 />
                 {errors.itemName && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="form__question">
-                <label htmlFor="description" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='description' className='form__label'>
                   Description
                 </label>
                 <textarea
-                  className="form__textarea"
-                  type="text"
-                  name="description"
-                  id="description"
-                  placeholder="Description"
+                  className='form__textarea'
+                  type='text'
+                  name='description'
+                  id='description'
+                  placeholder='Description'
                   value={inventory.description}
                   onChange={(e) => inputChangeHandler(e)}
                 />
                 {errors.description && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
-              <div className="form__question">
-                <label htmlFor="category" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='category' className='form__label'>
                   Category
                 </label>
                 <select
-                  className="form__select"
-                  type="select"
-                  name="category"
-                  id="category"
+                  className='form__select'
+                  type='select'
+                  name='category'
+                  id='category'
                   value={inventory.category}
                   onChange={(e) => inputChangeHandler(e)}
                 >
@@ -221,41 +223,41 @@ const EditItem = ({ warehouses }) => {
               </div>
             </div>
           </div>
-          <div className="form__container">
-            <div className="form__inner">
-              <h2 className="form__subtitle">Item Availability</h2>
-              <div className="form__question">
-                <label htmlFor="status" className="form__label">
+          <div className='form__container'>
+            <div className='form__inner'>
+              <h2 className='form__subtitle'>Item Availability</h2>
+              <div className='form__question'>
+                <label htmlFor='status' className='form__label'>
                   Status
                 </label>
-                <div className="form__question--status">
-                  <div className="form__question-radio-wrapper">
+                <div className='form__question--status'>
+                  <div className='form__question-radio-wrapper'>
                     <input
-                      type="radio"
+                      type='radio'
                       checked={inventory.status === "In Stock" ? true : false}
-                      name="status"
-                      id="In Stock"
-                      value="In Stock"
+                      name='status'
+                      id='In Stock'
+                      value='In Stock'
                       onChange={(e) => statusChangeHandler(e)}
                     />
-                    <label htmlFor="In Stock" className="form__label--status">
+                    <label htmlFor='In Stock' className='form__label--status'>
                       In Stock
                     </label>
                   </div>
-                  <div className="form__question-radio-wrapper">
+                  <div className='form__question-radio-wrapper'>
                     <input
-                      type="radio"
+                      type='radio'
                       checked={
                         inventory.status === "Out of Stock" ? true : false
                       }
-                      name="status"
-                      id="Out of Stock"
-                      value="Out of Stock"
+                      name='status'
+                      id='Out of Stock'
+                      value='Out of Stock'
                       onChange={(e) => statusChangeHandler(e)}
                     />
                     <label
-                      htmlFor="Out of Stock"
-                      className="form__label--status"
+                      htmlFor='Out of Stock'
+                      className='form__label--status'
                     >
                       Out of Stock
                     </label>
@@ -269,40 +271,40 @@ const EditItem = ({ warehouses }) => {
                     : "form__question form__quantity-instock"
                 }
               >
-                <label htmlFor="name" className="form__label">
+                <label htmlFor='name' className='form__label'>
                   Quantity
                 </label>
                 <input
-                  className="form__input"
-                  type="number"
-                  name="quantity"
-                  id="quantity"
+                  className='form__input'
+                  type='number'
+                  name='quantity'
+                  id='quantity'
                   value={inventory.quantity}
-                  placeholder="Quantity"
+                  placeholder='Quantity'
                   onChange={(e) => inputChangeHandler(e)}
                 />
                 {errors.quantity && (
-                  <div className="form__error">
+                  <div className='form__error'>
                     <img
                       src={ErrorIcon}
-                      alt="An exclamation mark icon"
-                      className="form__error-icon"
+                      alt='An exclamation mark icon'
+                      className='form__error-icon'
                     />
-                    <p className="form__error-message">
+                    <p className='form__error-message'>
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
-              <div className="form__question">
-                <label htmlFor="warehouse" className="form__label">
+              <div className='form__question'>
+                <label htmlFor='warehouse' className='form__label'>
                   Warehouse
                 </label>
                 <select
-                  className="form__select"
-                  type="select"
-                  name="warehouse"
-                  id="warehouse"
+                  className='form__select'
+                  type='select'
+                  name='warehouse'
+                  id='warehouse'
                   value={inventory.warehouseID}
                   onChange={changeWarehouse}
                 >
@@ -320,14 +322,14 @@ const EditItem = ({ warehouses }) => {
           </div>
         </div>
 
-        <div className="form__buttons">
+        <div className='form__buttons'>
           <button
-            className="form__button form__button--cancel"
+            className='form__button form__button--cancel'
             onClick={() => navigate(`/inventory`)}
           >
             Cancel
           </button>
-          <button className="form__button form__button--add" type="submit">
+          <button className='form__button form__button--add' type='submit'>
             Save
           </button>
         </div>
